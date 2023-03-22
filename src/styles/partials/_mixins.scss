@@ -8,85 +8,85 @@
 @mixin m-h1-type {
 	font-size: $m-h1-size;
 	line-height: $m-h1-lh;
-	font-weight: $wt-h1h2h3;
+	font-weight: $wt-h1h2h3h4;
 }
 
 @mixin m-h2-type {
 	font-size: $m-h2-size;
 	line-height: $m-h2-lh;
-	font-weight: $wt-h1h2h3;
+	font-weight: $wt-h1h2h3h4;
 }
 
 @mixin m-h3-type {
 	font-size: $m-h3-size ;
 	line-height: $m-h3-lh ;
-	font-weight: $wt-h1h2h3 ;
+	font-weight: $wt-h1h2h3h4 ;
 }
 
 @mixin m-h4-type {
 	font-size: $m-h4-size;
 	line-height: $m-h4-lh;
-	font-weight: $wt-h4p1p2p3 ;
+	font-weight: $wt-h1h2h3h4 ;
 }
 
 @mixin m-p1-type {
 	font-size: $m-p1-size;
 	line-height: $m-p1-lh;
-	font-weight: $wt-h4p1p2p3 ;
+	font-weight: $wt-p1p2p3 ;
 }
 
 @mixin m-p2-type {
 	font-size: $m-p2-size;
 	line-height: $m-p2-lh;
-	font-weight: $wt-h4p1p2p3 ;
+	font-weight: $wt-p1p2p3 ;
 }
 
 @mixin m-p3-type {
 	font-size: $m-p3-size;
 	line-height: $m-p3-lh;
-	font-weight: $wt-h4p1p2p3 ;
+	font-weight: $wt-p1p2p3 ;
 }
 
 @mixin t-h1-type {
 	font-size: $t-h1-size;
 	line-height: $t-h1-lh;
-	font-weight: $wt-h1h2h3;
+	font-weight: $wt-h1h2h3h4;
 }
 
 @mixin t-h2-type {
 	font-size: $t-h2-size;
 	line-height: $t-h2-lh;
-	font-weight: $wt-h1h2h3;
+	font-weight: $wt-h1h2h3h4;
 }
 
 @mixin t-h3-type {
 	font-size: $t-h3-size ;
 	line-height: $t-h3-lh ;
-	font-weight: $wt-h1h2h3 ;
+	font-weight: $wt-h1h2h3h4 ;
 }
 
 @mixin t-h4-type {
 	font-size: $t-h4-size;
 	line-height: $t-h4-lh;
-	font-weight: $wt-h4p1p2p3 ;
+	font-weight: $wt-h1h2h3h4 ;
 }
 
 @mixin t-p1-type {
 	font-size: $t-p1-size;
 	line-height: $t-p1-lh;
-	font-weight: $wt-h4p1p2p3 ;
+	font-weight: $wt-p1p2p3 ;
 }
 
 @mixin t-p2-type {
 	font-size: $t-p2-size;
 	line-height: $t-p2-lh;
-	font-weight: $wt-h4p1p2p3 ;
+	font-weight: $wt-p1p2p3 ;
 }
 
 @mixin t-p3-type {
 	font-size: $t-p3-size;
 	line-height: $t-p3-lh;
-	font-weight: $wt-h4p1p2p3 ;
+	font-weight: $wt-p1p2p3 ;
 }
 
 @mixin logo-style {
@@ -103,7 +103,7 @@
 	text-decoration: none;
 	width: 100%;
 	@include h3-type-label-link-button;
-	height: 2rem;
+	height: 2.25rem;
 	border-radius: 20px;
 	outline: none;
 	border: none;
@@ -119,6 +119,7 @@
 	}
 
 	@include tablet-viewport {
+		height: 2.375rem;
 		width: fit-content;
 		padding-left: $pad-med-16;
 		padding-right: $pad-med-16;
@@ -220,6 +221,7 @@
 }
 
 @mixin h4-type-table-header {
+	color: $slate;
 	text-transform: uppercase;
 	@include m-h4-type;
 
@@ -306,7 +308,6 @@
 
 @mixin primary-button-style {
 	@include button-style;
-	// @include button-img-style;
 }
 
 @mixin secondary-button-style {
@@ -344,6 +345,33 @@
 	@include tag-style;
 	background-color: rgba($green, .07);
 	color: $green;
+}
+
+// FORM FIELDS
+
+@mixin form-field-style {
+	font-family: inherit;
+	color: $slate;
+	background-color: $white;
+	height: 2.25rem;
+	border: $divider-anywhere;
+	border-radius: 20px;
+	padding: 1rem;
+
+	&:focus {
+		outline: none;
+		color: $instock-black;
+		border: 1px solid $instock-indigo;
+	}
+
+	&__error {
+		border: 1px solid $red;
+	}
+
+	@include tablet-viewport {
+		height: 2.375rem;
+
+	}
 }
 
 // ******* NOT READY YET *********

@@ -16,20 +16,21 @@ function App () {
           <p className="p1">@include p1-type-body-large</p>
           <p className="p2">@include p2-type-body-medium</p>
           <p className="p3">@include p3-type-body-small</p>
+          <input type="search" name="appsearch" id="appsearch" className="appsearch" placeholder="form-field-style" />
         </div>
         <div className="sass__class--buttons">
-          <p className="primary-button">@include primary-button-style</p>
-          <p className="secondary-button">@include secondary-button-style</p>
-          <p className="delete-button">@include delete-button-style</p>
+          <p className="primary-button">primary-button-style</p>
+          <p className="secondary-button">secondary-button-style</p>
+          <p className="delete-button">delete-button-style</p>
         </div>
         <div className="sass__class--tags">
-          <p className="tag-in">@include tag-in-style</p>
-          <p className="tag-out">@include tag-out-style</p>
+          <p className="tag-in">tag-in-style</p>
+          <p className="tag-out">tag-out-style</p>
         </div>
         <div className="sass__class--links">
-          <p className="text-link">@include text-link-style</p>
-          <p className="inactive-nav">@include inactive-nav-link-style</p>
-          <p className="active-nav">@include active-nav-link-style</p>
+          <p className="text-link">text-link-style</p>
+          <p className="inactive-nav">inactive-nav-link-style</p>
+          <p className="active-nav">active-nav-link-style</p>
         </div>
       </div>
 
