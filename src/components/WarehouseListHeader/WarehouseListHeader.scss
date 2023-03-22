@@ -42,28 +42,8 @@
 			}
 
 			>input {
-				font-family: inherit;
-				color: $slate;
-				background-color: $white;
-				height: 2.25rem;
-				// width: 100%;
-				border: $divider-anywhere;
-				border-radius: 20px;
-				padding: 1rem;
+				@include form-field-style;
 				background: url('../../assets/icons/search-24px.svg') no-repeat right 1rem center;
-
-
-
-				&:focus {
-					outline: none;
-					color: $instock-black;
-					border: 2px solid $instock-indigo;
-				}
-
-				@include tablet-viewport {
-					height: 2.375rem;
-
-				}
 
 			}
 
