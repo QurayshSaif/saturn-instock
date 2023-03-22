@@ -68,7 +68,9 @@ const AddWarehouse = () => {
                 </div>
                 <div className='add-wh__buttons-ctr'>
                     <div className='add-wh__cancel-btn'><p>Cancel</p></div>
-                    <button className='add-wh__add-btn'>+ Add Warehouse</button>
+                    {/* <button className='add-wh__add-btn'>+ Add Warehouse</button>
+                     */}
+ 
                 </div>
             </div>
         </section>

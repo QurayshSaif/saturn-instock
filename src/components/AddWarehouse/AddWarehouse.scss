@@ -1,7 +1,10 @@
+@use '../../styles/partials/mixins' as *;
+
 .add-wh {
     border-radius: 3px;
-    padding: 0 24px;
     outline: 3px solid greenyellow;
+    margin: 0 16px;
+    // margin-top: -64px;
 
     &__header-ctr {
         display: flex;
@@ -11,12 +14,35 @@
         outline: 1px solid plum;
     }
 
+    &__details-ctr {
+
+    }
+
     &__header {
         margin: 0;
         padding: 0 15px 0 3px;
+        font-size: 28px;
     }
 
     &__subheader {
+        padding-top: 16px;
         padding-bottom: 24px;
+        font-size: 20px;
+    }
+
+    &__location-ctr {
+        @include divider-bottom;
+        // outline: 1px solid brown;
+        // width: 100%;
+        padding: 0 24px;
+    }
+
+    &__contact-ctr {
+        padding: 0 24px;
+    }
+
+    &__buttons-ctr {
+        display: flex;
+        justify-content: space-between;
     }
 }

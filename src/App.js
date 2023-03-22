@@ -9,11 +9,9 @@ function App () {
   return (
     <div className="App">
       <h1>InStock</h1>
-      <MixinReference />
-
-      <WarehouseList />
+      {/* <MixinReference /> */}
+      {/* <WarehouseList /> */}
       <AddWarehouse/>
-      {/* <WarehouseList /> */ }
     </div>
   );
 }
