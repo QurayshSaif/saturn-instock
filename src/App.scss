@@ -110,3 +110,8 @@ h4 {
 	@include active-nav-link-style;
 	// margin: $pad-med-16 0;
 }
+
+.appsearch {
+	@include form-field-style;
+	background: url('./assets/icons/search-24px.svg') no-repeat right 1rem center;
+}
