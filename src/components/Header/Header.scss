@@ -1,0 +1,23 @@
+.Header__container {
+    background: #232940;
+    display: flex;
+    flex-direction: column;
+}
+
+.Header__logo {
+    display: flex;
+    height: 2rem;
+    padding-top: 2rem;
+}
+
+.Header__list {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    justify-content: space-evenly;
+}
+
+.Header__items {
+    color: white;
+    list-style: none;
+}
