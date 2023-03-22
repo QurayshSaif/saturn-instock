@@ -1,0 +1,18 @@
+.add-wh {
+    border-radius: 3px;
+    padding: 0 24px;
+    outline: 3px solid greenyellow;
+
+    &__header-ctr {
+        display: flex;
+        justify-content: center;
+        padding: 2rem 0 1.5rem;
+
+        outline: 1px solid plum;
+    }
+
+    &__header {
+        margin: 0;
+        padding: 0 15px 0 3px;
+    }
+}
