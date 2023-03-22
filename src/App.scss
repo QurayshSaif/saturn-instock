@@ -7,6 +7,43 @@ body {
 	margin: $t-margin;
 }
 
+.sass__class {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	padding: $pad-large-24 0;
+
+	&--headers {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&--paragraphs {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	&--buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	&--tags {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	&--links {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+}
+
 h1 {
 	@include h1-type-page-header;
 	padding-bottom: $pad-med-16;
@@ -29,57 +66,52 @@ h4 {
 
 .p1 {
 	@include p1-type-body-large;
-	padding-bottom: $pad-med-16;
 }
 
 .p2 {
 	@include p2-type-body-medium;
-	padding-bottom: $pad-med-16;
 }
 
 .p3 {
 	@include p3-type-body-small;
-	padding-bottom: $pad-med-16;
 }
 
 .primary-button {
 	@include primary-button-style;
-	margin-bottom: $pad-med-16;
 }
 
 .secondary-button {
 	@include secondary-button-style;
-	margin-bottom: $pad-med-16;
-
 }
 
 .delete-button {
 	@include delete-button-style;
-	margin-bottom: $pad-med-16;
 }
 
 .tag-in {
 	@include tag-in-style;
-	margin-bottom: $pad-med-16;
 }
 
 .tag-out {
 	@include tag-out-style;
-	margin-bottom: $pad-med-16;
 }
 
 .text-link {
 	@include text-link-style;
-	margin-bottom: $pad-med-16;
 }
 
 .inactive-nav {
 	@include inactive-nav-link-style;
 	background-color: $graphite;
-	margin: $pad-med-16 0;
+	// margin: $pad-med-16 0;
 }
 
 .active-nav {
 	@include active-nav-link-style;
-	margin: $pad-med-16 0;
+	// margin: $pad-med-16 0;
+}
+
+.appsearch {
+	@include form-field-style;
+	background: url('./assets/icons/search-24px.svg') no-repeat right 1rem center;
 }
