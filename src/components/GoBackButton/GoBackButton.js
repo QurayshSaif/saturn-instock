@@ -1,5 +1,5 @@
 import React from 'react';
-import ArrowBackButton from "../../Assets/Icons/arrow_back-24px.svg"
+import ArrowBackButton from "../../assets/icons/arrow_back-24px.svg"
 import { Link } from 'react-router-dom';
 import './GoBackButton.scss'
 
