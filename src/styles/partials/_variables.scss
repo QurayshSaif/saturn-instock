@@ -1,0 +1,74 @@
+// breakpoints
+
+$mobile-min-width: 20rem; // 320px
+$tablet-breakpoint: 48rem; // 768px
+$desktop-breakpoint: 80rem; // 1280px
+
+// margins
+
+$m-margin: 1rem;
+$t-margin: 2rem;
+
+// padding
+
+$pad-large-24: 1.5rem;
+$pad-med-16: 1rem;
+$pad-small-4: .25rem;
+
+// colors
+
+$instock-black: #13182C;
+$instock-indigo: #2E66E5;
+$white: #FFFFFF;
+$slate: #5C667E;
+$cloud: #BDC5D5;
+$graphite: #232940;
+$light-grey: #F7F8F9;
+$green: #158463;
+$red: #C94515;
+
+// divider
+
+$divider-anywhere: 1px solid $cloud;
+
+// font - sizes, line heights, weights
+
+// weights
+
+$wt-h1h2h3h4: 600;
+$wt-p1p2p3: 400;
+
+// mobile
+
+$m-h1-size: 1.75rem;
+$m-h1-lh: 2.25rem;
+$m-h2-size: 1.25rem;
+$m-h2-lh: 1.75rem;
+$m-h3-size: .8125rem;
+$m-h3-lh: 1.25rem;
+$m-h4-size: .6875rem;
+$m-h4-lh: 1rem;
+$m-p1-size: .9375rem;
+$m-p1-lh: 1.625rem;
+$m-p2-size: .8125rem;
+$m-p2-lh: 1.25rem;
+$m-p3-size: .6875rem;
+$m-p3-lh: 1rem;
+
+
+// tablet
+
+$t-h1-size: 2rem;
+$t-h1-lh: 2.5rem;
+$t-h2-size: 1.5rem;
+$t-h2-lh: 2rem;
+$t-h3-size: .875rem;
+$t-h3-lh: 1.375rem;
+$t-h4-size: .75rem;
+$t-h4-lh: 1.125rem;
+$t-p1-size: 1rem;
+$t-p1-lh: 1.75rem;
+$t-p2-size: .875rem;
+$t-p2-lh: 1.375rem;
+$t-p3-size: .75rem;
+$t-p3-lh: 1.125rem;
