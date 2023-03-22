@@ -96,7 +96,7 @@
 }
 
 @mixin button-style {
-	// font-family: 'Avenir';
+	font-family: inherit;
 	background-color: $instock-indigo;
 	color: $white;
 	text-transform: capitalize;
@@ -306,7 +306,7 @@
 
 @mixin primary-button-style {
 	@include button-style;
-	@include button-img-style;
+	// @include button-img-style;
 }
 
 @mixin secondary-button-style {
