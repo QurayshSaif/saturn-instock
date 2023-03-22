@@ -1,0 +1,19 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+
+.input {
+    outline: 1px solid orangered;
+    display: flex;
+    flex-direction: column;
+
+    &__box {
+        @include secondary-button-style;
+        padding-left: $pad-med-16;
+        height: 36px;
+        margin-top: 4px;
+        margin-bottom: 16px;
+    }
+
+
+}

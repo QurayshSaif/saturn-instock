@@ -15,7 +15,7 @@ const InputBox = ({isTextarea,htmlFor,className,inputId,inputName,name}) => {
                 <input 
                     type="text"
                     placeholder={inputName}
-                    className={`inputbox ${className}`}
+                    className={`input__box ${className}`}
                     id={inputId}
                     name={name}
                 ></input>
