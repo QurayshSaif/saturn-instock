@@ -220,6 +220,7 @@
 }
 
 @mixin h4-type-table-header {
+	text-transform: uppercase;
 	@include m-h4-type;
 
 	@include tablet-viewport {
