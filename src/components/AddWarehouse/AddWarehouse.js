@@ -1,3 +1,4 @@
+import ActionButton from '../ActionButton/ActionButton';
 import GoBackButton from '../GoBackButton/GoBackButton';
 import InputBox from '../InputBox/InputBox';
 import './AddWarehouse.scss'
@@ -70,7 +71,7 @@ const AddWarehouse = () => {
                     <div className='add-wh__cancel-btn'><p>Cancel</p></div>
                     {/* <button className='add-wh__add-btn'>+ Add Warehouse</button>
                      */}
- 
+                    <ActionButton button={true} className="add-wh__add-btn" name="+ Add Warehouse"/>
                 </div>
             </div>
         </section>
