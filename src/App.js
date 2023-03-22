@@ -3,6 +3,7 @@ import WarehouseList from './components/WarehouseList/WarehouseList';
 
 import React from "react";
 import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
 
 function App () {
@@ -39,6 +40,7 @@ function App () {
       </div> */}
 {/* 
       <WarehouseList /> */}
+      <Footer/>
     </div>
   );
 }
