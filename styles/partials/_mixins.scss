@@ -253,51 +253,38 @@
 }
 
 // LINKS
-
 @mixin inactive-nav-link-style {
 	@include h3-type-label-link-button;
-	color: $slate;
+	color: $cloud;
 	text-decoration: none;
 	text-transform: capitalize;
 	width: auto;
-	padding-left: 2rem;
-	padding-right: 2rem;
-
-
-	&:hover {
-		color: $cloud;
-		text-decoration: $divider-anywhere;
-		cursor: pointer;
-	}
+	padding: 1rem 2rem;
 
 	@include tablet-viewport {
-		padding-left: 0.5rem;
-		padding-right: 0.5rem;
+		width: fit-content;
+		padding: 1rem;
+	}
+
+	&:hover {
+		color: $white;
+		text-decoration: underline;
+		cursor: pointer;
 	}
 
 }
 
 @mixin active-nav-link-style {
-	@include h3-type-label-link-button;
-	background-color: $graphite;
-	color: $white;
-	width: auto;
-	padding-right: 2rem;
-	padding-left: 2rem;
-	border-radius: 20px;
-	border: none;
-	outline: none;
+	@include button-style;
+	background-color: $instock-black;
+	padding-top: 1.25rem;
+	padding-bottom: 1.25rem;
 
 	&:hover {
-		text-decoration: $divider-anywhere;
+		text-decoration: underline;
+		background-color: $instock-black;
 		cursor: pointer;
 	}
-
-	@include tablet-viewport {
-		padding-left: 0.5rem;
-		padding-right: 0.5rem;
-	}
-
 }
 
 @mixin text-link-style {
@@ -310,9 +297,7 @@
 	@include h3-type-label-link-button;
 
 	&:hover {
-		text-decoration: $instock-indigo;
-		text-decoration-color: $instock-indigo;
-		text-decoration-line: 1px;
+		text-decoration: underline;
 	}
 }
 
