@@ -1,7 +1,7 @@
 import "./WarehouseTableRow.scss";
-import chevronSvg from "../../Assets/icons/chevron_right-24px.svg";
-import deleteSvg from "../../Assets/icons/delete_outline-24px.svg";
-import editSvg from "../../Assets/icons/edit-24px.svg";
+import chevronSvg from "../../assets/icons/chevron_right-24px.svg";
+import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
+import editSvg from "../../assets/icons/edit-24px.svg";
 
 const WarehouseTableRow = () => {
   return (

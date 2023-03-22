@@ -1,5 +1,5 @@
 import "./WarehouseTableColumns.scss";
-import sortSvg from "../../Assets/icons/sort-24px.svg";
+import sortSvg from "../../assets/icons/sort-24px.svg";
 
 const WarehouseTableColumns = () => {
   return (

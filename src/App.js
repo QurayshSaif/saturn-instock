@@ -9,7 +9,7 @@ function App () {
   return (
     <div>
       <Header/>
-      <div className="sass__class">
+      {/* <div className="sass__class">
         <div className="sass_class--headers">
           <h1>@include h1-type-page-header</h1>
           <h2>@include h2-type-sub-header</h2>
@@ -36,9 +36,9 @@ function App () {
           <p className="inactive-nav">inactive-nav-link-style</p>
           <p className="active-nav">active-nav-link-style</p>
         </div>
-      </div>
-
-      <WarehouseList />
+      </div> */}
+{/* 
+      <WarehouseList /> */}
     </div>
   );
 }
