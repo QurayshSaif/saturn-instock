@@ -15,11 +15,27 @@ h1,
 h2,
 h3,
 h4,
-p {
+p,
+a {
 	margin: 0;
 	padding: 0;
 }
 
+h1 {
+	@include h1-type-page-header;
+}
+
+h2 {
+	@include h2-type-sub-header;
+}
+
+h3 {
+	@include h3-type-label-link-button;
+}
+
+h4 {
+	@include h4-type-table-header;
+}
 
 
 body {

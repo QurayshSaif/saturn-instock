@@ -1,0 +1,190 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.item {
+
+	min-width: 21.5rem;
+	margin: $pad-large-24;
+	padding: $pad-large-24;
+
+	h4 {
+		padding-top: $pad-med-16;
+		padding-bottom: $pad-small-4;
+
+		@include tablet-viewport {
+			padding-top: 0;
+		}
+	}
+
+	.p2 {
+		@include p2-type-body-medium;
+		text-transform: capitalize;
+
+		&--description {
+			@include p2-type-body-medium;
+			text-transform: none;
+		}
+
+		&--category {
+			@include p2-type-body-medium;
+			text-transform: capitalize;
+
+			@include tablet-viewport {
+				padding-bottom: $pad-med-16;
+			}
+		}
+	}
+
+
+	&__header {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		width: 100%;
+		gap: 1rem;
+		padding: $pad-med-16;
+		@include divider-bottom;
+
+		@include tablet-viewport {
+			display: flex;
+			align-items: baseline;
+			gap: 1rem;
+			width: 100%;
+			padding-left: $t-margin;
+			padding-right: $t-margin;
+			margin: 0 auto;
+			max-width: 60rem;
+
+
+
+		}
+
+		@include desktop-viewport {
+			margin: 0 auto;
+			max-width: 64rem;
+			padding-left: $t-margin;
+			padding-right: $t-margin;
+		}
+
+		.back {
+			&__btn {
+				text-decoration: none;
+			}
+
+		}
+
+		h1 {
+			flex-grow: 1;
+			text-transform: capitalize;
+		}
+
+		.edit {
+
+			&__btn {
+				text-decoration: none;
+				display: flex;
+
+				@include tablet-viewport {
+
+					@include primary-button-style;
+				}
+			}
+
+			&__img {
+				padding: $pad-small-4;
+				border: 1px solid $red;
+				border-radius: 50%;
+
+				@include tablet-viewport {
+					border: none;
+					border-radius: none;
+				}
+
+			}
+
+			&__span {
+				display: none;
+
+				@include tablet-viewport {
+					display: unset;
+				}
+			}
+
+		}
+
+	}
+
+	&__details {
+		padding-left: $pad-med-16;
+		padding-right: $pad-med-16;
+	}
+
+	&__tablet-container {
+		@include tablet-viewport {
+			display: flex;
+			gap: 1rem;
+			width: 100%;
+			padding-left: 1.875rem;
+			padding-right: 1.875rem;
+			padding-top: 1.5rem;
+			padding-bottom: 1.5rem;
+			margin: 0 auto;
+			max-width: 54rem;
+
+
+
+		}
+
+		@include desktop-viewport {
+			max-width: 64rem;
+		}
+	}
+
+	&__tag {
+		&--in {
+			@include tag-in-style;
+
+			@include tablet-viewport {
+				min-width: 5rem;
+				margin-right: 6rem;
+			}
+
+			@include desktop-viewport {
+				margin-right: 10rem;
+			}
+		}
+	}
+
+	&__stat-quant-empty-flex {
+		display: flex;
+		justify-content: space-between;
+
+		@include tablet-viewport {}
+	}
+
+}
+
+.tablet-container {
+
+	@include tablet-viewport {
+		&__left {
+			@include divider-right;
+			padding-right: 3.75rem;
+			display: flex;
+			flex-direction: column;
+			gap: 2.25rem;
+		}
+
+
+		&__right {
+
+			padding-left: 2.25rem;
+			display: flex;
+			flex-direction: column;
+			gap: 2.25rem;
+		}
+
+	}
+}

@@ -40,22 +40,22 @@
 	}
 
 	.h1 {
-		@include h1-type-page-header;
+		// @include h1-type-page-header;
 		padding-bottom: $pad-med-16;
 	}
 
 	.h2 {
-		@include h2-type-sub-header;
+		// @include h2-type-sub-header;
 		padding-bottom: $pad-med-16;
 	}
 
 	.h3 {
-		@include h3-type-label-link-button;
+		// @include h3-type-label-link-button;
 		padding-bottom: $pad-med-16;
 	}
 
 	.h4 {
-		@include h4-type-table-header;
+		// @include h4-type-table-header;
 		padding-bottom: $pad-med-16;
 	}
 
