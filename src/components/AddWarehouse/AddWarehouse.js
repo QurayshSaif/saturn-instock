@@ -70,13 +70,11 @@ const AddWarehouse = () => {
                 </div>
             </div>
             <div className='add-wh__buttons-ctr'>
-                    {/* <div className='add-wh__cancel-btn'><p>Cancel</p></div> */}
                     <CancelButton
                         to="/"
                     />
                     <ActionButton 
                         isButton={true} 
-                        className="add-wh__add-btn" 
                         name="+ Add Warehouse"
                     />
                 </div>

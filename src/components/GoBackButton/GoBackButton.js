@@ -6,9 +6,9 @@ import './GoBackButton.scss'
 const GoBackButton = ({path, className}) => {
     return (
         <div className="goback">
-            {/* <Link to={path}> */}
+            <Link to={path}>
                 <img className="goback__img" src={ArrowBackButton} alt="Arrow Back Button"/>
-            {/* </Link> */}
+            </Link>
         </div>
     );
 };
