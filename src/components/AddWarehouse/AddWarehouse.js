@@ -6,7 +6,6 @@ import InputBox from '../InputBox/InputBox';
 import './AddWarehouse.scss'
 import axios from 'axios';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import { FALSE } from 'sass';
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 // const post_url = REACT_APP_SERVER_URL + "/warehouses"
@@ -28,41 +27,71 @@ const AddWarehouse = () => {
     const [email, setEmail] = useState("");
 
 
+
+    const warehouseNameNotEmpty = () => {
+        if (warehouseName.length < 1) {
+            return false
+            console.log("FALSE")
+        }
+        return true
+        console.log("TRUE")
+    }
+
+
+    const addressNotEmpty = () => {
+        if (address.length < 1) {
+            return false
+        }
+        return true
+    }
+    const cityNotEmpty = () => {
+        if (city.length < 1) {
+            return false
+        }
+        return true
+    }
+    const countryNotEmpty = () => {
+        if (country.length < 1) {
+            return false        
+        }
+        return true
+    }
+    const contactNameNotEmpty = () => {
+        if (contactName.length < 1) {
+            return false
+        }
+        return true
+    }
+    const positionNotEmpty = () => {
+        if (position.length < 1) {
+            return false
+        }
+        return true
+    }
+    const phoneNumberNotEmpty = () => {
+        if (phoneNumber.length < 1) {
+            return false        
+        }
+        return true
+    }
+    const emailNotEmpty = () => {
+        if (email.length < 1) {
+            return false        
+        }
+        return true
+    }
+
+    console.log("emailNotEmpty()", emailNotEmpty())
+    console.log("Email Length", email.length)
+
+
     const notEmpty = () => {
-        // console.log(warehouseName)
-        console.log(address.length)
 
-            // warehouseName.length < 1 || 
-            // address.length < 1 || 
-            // city.length < 1 || 
-            // country.length < 1 || 
-            // contactName.length < 1 ||
-            // position.length < 1 ||
-            // phoneNumber.length < 1
+        if (!warehouseNameNotEmpty()) {
+            return false
+        }
 
-
-    //     if (warehouseName.length < 1) {
-    //             return false
-    //         }
-    //     if (address.length < 1) {
-    //             return false
-    //     }
-    //     if (city.length < 1) {
-    //             return false
-    //     }
-    //     if (country.length < 1) {
-    //             return false        
-    //     }
-    //     if (contactName.length < 1) {
-    //             return false
-    //     }
-    //     if (position.length < 1) {
-    //             return false
-    //     }
-    //     if (phoneNumber.length < 1) {
-    //             return false        
-    //     }
-    //     return true
+        return true
     }
 
     const isEmailCorrect = () => {    
@@ -76,7 +105,7 @@ const AddWarehouse = () => {
         return true
     }
 
-    console.log(notEmpty())
+    console.log("notEmpty()", notEmpty())
 
     const isFormValid = () => {
         if(!notEmpty()) {
@@ -139,80 +168,87 @@ const AddWarehouse = () => {
                 <div className='add-wh__location-ctr'>
                     <h2 className='add-wh__subheader'>Warehouse Details</h2>
                     <InputBox
-                        // isError={true}
+                        isNotError={warehouseNameNotEmpty() ? true : false}
                         isTextarea={false}
                         html="warehouseName"
                         inputId="warehouseName"
                         inputName="Warehouse Name"
                         onChange={(e) => setWarehouseName(e.target.value)}
                         className={
-                            notEmpty() || warehouseName === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            warehouseNameNotEmpty() || warehouseName === "" ? "add-wh__input" : "add-wh__input--invalid"
                         }
                     />
                     <InputBox
+                        isNotError={addressNotEmpty() || address === "" ? true : false}
                         isTextarea={false}
                         html="streetName"
                         inputId="streetName"
                         inputName="Street Address"
                         onChange={(e) => setAddress(e.target.value)}
                         className={
-                            notEmpty() || address === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            addressNotEmpty() || address === "" ? "add-wh__input" : "add-wh__input--invalid"
                         }
                     />
                     <InputBox
+                        isNotError={cityNotEmpty() || city === "" ? true : false}
                         isTextarea={false}
                         html="cityName"
                         inputId="cityName"
                         inputName="City"
                         onChange={(e) => setCity(e.target.value)}
                         className={
-                            notEmpty() || city === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            cityNotEmpty() || city === "" ? "add-wh__input" : "add-wh__input--invalid"
                         }
                     />
                     <InputBox
+                        isNotError={countryNotEmpty() || country === "" ? true : false}
                         isTextarea={false}
                         html="countryName"
                         inputId="countryName"
                         inputName="Country"
                         onChange={(e) => setCountry(e.target.value)}
                         className={
-                            notEmpty() || country === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            countryNotEmpty() || country === "" ? "add-wh__input" : "add-wh__input--invalid"
                         }
                     />
                 </div>
                 <div className='add-wh__contact-ctr'>
                     <h2 className='add-wh__subheader'>Contact Details</h2>
                     <InputBox
+                        isNotError={contactNameNotEmpty() || country === "" ? true : false}
                         isTextarea={false}
                         html="contactName"
                         inputId="contactName"
                         inputName="Contact Name"
                         onChange={(e) => setContactName(e.target.value)}
                         className={
-                            notEmpty() || contactName === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            contactNameNotEmpty() || contactName === "" ? "add-wh__input" : "add-wh__input--invalid"
                         }
                     />
                     <InputBox
+                        isNotError={positionNotEmpty() || position === "" ? true : false}
                         isTextarea={false}
                         html="positionName"
                         inputId="positionName"
                         inputName="Position"
                         onChange={(e) => setPosition(e.target.value)}
                         className={
-                            notEmpty() || position === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            positionNotEmpty() || position === "" ? "add-wh__input" : "add-wh__input--invalid"
                         }
                     />
                     <InputBox
+                        isNotError={phoneNumberNotEmpty() || phoneNumber === "" ? true : false}
                         isTextarea={false}
                         html="phoneName"
                         inputId="phoneName"
                         inputName="Phone Number"
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         className={
-                            notEmpty() || phoneNumber === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            phoneNumberNotEmpty() || phoneNumber === "" ? "add-wh__input" : "add-wh__input--invalid"
                         }
                     />
                     <InputBox
+                        isNotError={emailNotEmpty() || email === "" ? true : false}
                         isTextarea={false}
                         html="emailName"
                         inputId="emailName"
