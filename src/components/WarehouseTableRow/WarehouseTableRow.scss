@@ -3,34 +3,42 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 
-
 .warehouse {
-
 	&__row {
 		display: flex;
 		align-items: center;
 		justify-content: space-evenly;
 		padding: $pad-med-16;
 		@include divider-bottom;
-
-		@include tablet-viewport {}
 	}
 
-	&__name {
-		display: flex;
+	&__block {
+		display: inline-flex;
 		flex-direction: column;
 
 		>h4 {
+			padding-bottom: $pad-small-4;
 			@include h4-type-table-header;
-			color: $slate;
-			font-weight: 600;
+		}
 
-			@include tablet-viewport {
+		>p {
+			@include p2-type-body-medium;
+		}
+
+		@include tablet-viewport {
+			>h4 {
 				display: none;
 			}
 		}
 
-		>p {
+		&--actions {
+			flex-direction: row;
+			gap: 1rem;
+		}
+	}
+
+	&__name {
+		>a {
 			display: flex;
 			flex-direction: row;
 			gap: .25rem;
@@ -39,68 +47,38 @@
 			>img {
 				width: 1.25rem;
 			}
-
 		}
 	}
 
-	&__address {
+}
+
+.mobile {
+
+	@include tablet-viewport {
+		display: none;
+	}
+
+
+	&__left {
 		display: flex;
 		flex-direction: column;
-
-		>h4 {
-			@include h4-type-table-header;
-			color: $slate;
-			font-weight: 600;
-
-			@include tablet-viewport {
-				display: none;
-			}
-		}
-
-		>p {
-			@include p2-type-body-medium;
-		}
-	}
-
-	&__contact-name {
-
-		>h4 {
-			@include h4-type-table-header;
-			color: $slate;
-			font-weight: 600;
-
-			@include tablet-viewport {
-				display: none;
-			}
-		}
-
-		>p {
-			@include p2-type-body-medium;
-		}
-	}
-
-	&__contact-info {
-
-		>h4 {
-			@include h4-type-table-header;
-			color: $slate;
-			font-weight: 600;
-
-			@include tablet-viewport {
-				display: none;
-			}
-		}
-
-		>p {
-			@include p2-type-body-medium;
-		}
-	}
-
-	&__actions {
-		display: flex;
 		gap: 1rem;
-		// >img {
+		flex-grow: 1;
 
-		// }
+		@include tablet-viewport {
+			display: contents;
+		}
 	}
+
+	&__right {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		flex-grow: 1;
+
+		@include tablet-viewport {
+			display: contents;
+		}
+	}
+
 }

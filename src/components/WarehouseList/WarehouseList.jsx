@@ -5,11 +5,9 @@ import WarehouseTableRow from "../WarehouseTableRow/WarehouseTableRow";
 
 const WarehouseList = () => {
   return (
-    <div className="warehouse__list">
+    <div className="warehouse">
       <WarehouseListHeader />
       <WarehouseTableColumns />
-      <WarehouseTableRow />
-      <WarehouseTableRow />
       <WarehouseTableRow />
     </div>
   );
