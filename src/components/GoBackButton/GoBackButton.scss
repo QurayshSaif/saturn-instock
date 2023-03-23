@@ -1,0 +1,10 @@
+@use '../../styles/partials/mixins' as *;
+
+.goback {
+    padding-top: .75rem;
+    cursor: pointer;
+
+        @include tablet-viewport {
+            padding-top: .9375rem;
+        }
+}
