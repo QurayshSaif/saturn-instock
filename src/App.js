@@ -1,10 +1,11 @@
 import './App.scss'
-import WarehouseList from './components/WarehouseList/WarehouseList';
-
 import React from "react";
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AddWarehouse from './components/AddWarehouse/AddWarehouse';
+import WarehouseList from './components/WarehouseList/WarehouseList';
+
 
 
 function App () {
@@ -12,17 +13,17 @@ function App () {
 <BrowserRouter>
 <Header/>
 <Routes>
-<Route path="/" element={<Warehouse />} />
-<Route path="/Warehouse" element={<Warehouse />} />
-<Route path="Warehouse/add" element={<Warehouse />} />
-<Route path="Warehouse/:id" element={<Warehouse />} />
-<Route path="Warehouse/:id/edit" element={<Warehouse />} />
-<Route path="Warehouse/:id/delete" element={<Warehouse />} />
-<Route path="/Inventory" element={<Inventory />} />
-<Route path="Inventory/add" element={<Inventory />} />
-<Route path="Inventory/:id" element={<Inventory />} />
-<Route path="Inventory/:id/edit" element={<Inventory />} />
-<Route path="Inventory/:id/delete" element={<Inventory />} />
+<Route path="/" element={<AddWarehouse/>} />
+<Route path="/Warehouse" element={<WarehouseList />} />
+<Route path="Warehouse/add" element={<AddWarehouse />} />
+<Route path="Warehouse/:id" element={<WarehouseList />} />
+<Route path="Warehouse/:id/edit" element={<WarehouseList />} />
+<Route path="Warehouse/:id/delete" element={<WarehouseList />} />
+<Route path="/Inventory" element={<WarehouseList />} />
+<Route path="Inventory/add" element={<WarehouseList />} />
+<Route path="Inventory/:id" element={<WarehouseList />} />
+<Route path="Inventory/:id/edit" element={<WarehouseList />} />
+<Route path="Inventory/:id/delete" element={<WarehouseList />} />
 </Routes>
 <Footer/>
 </BrowserRouter>
