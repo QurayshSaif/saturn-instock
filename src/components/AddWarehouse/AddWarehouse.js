@@ -4,10 +4,13 @@ import CancelButton from '../CancelButton/CancelButton';
 import GoBackButton from '../GoBackButton/GoBackButton';
 import InputBox from '../InputBox/InputBox';
 import './AddWarehouse.scss'
+import axios from 'axios';
 
 // wh - warehouse; ctr - container; btn - button
 
 const AddWarehouse = () => {
+
+    const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
     const [warehouseName, setWarehouseName] = useState("");
     const [address, setAddress] = useState("");
@@ -74,6 +77,19 @@ const AddWarehouse = () => {
             console.log("position",position)
             console.log("phoneNumber",phoneNumber)
             console.log("email",email)
+
+            axios.post(REACT_APP_SERVER_URL, {
+                    warehouse_name: warehouseName,
+                    address: address,
+                    city: city,
+                    country: country,
+                    contact_name: contactName,
+                    contact_position: position,
+                    contact_phone: phoneNumber,
+                    contact_email: email
+            })
+                .then((result) => console.log("POST Send"))
+                .catch((error) => console.log("Error: ",error));
           } else {
             alert("Failed to add, you have errors in your form");
           }
