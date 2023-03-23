@@ -5,9 +5,14 @@ import InventoryTableRow from "../InventoryTableRow/InventoryTableRow";
 
 const InventoryList = () => {
   return (
-    <div className="Inventory__list">
+    <div className="inventory__list">
       <InventoryListHeader />
       <InventoryTableColumns />
+      <InventoryTableRow />
+      <InventoryTableRow />
+      <InventoryTableRow />
+      <InventoryTableRow />
+      <InventoryTableRow />
       <InventoryTableRow />
       <InventoryTableRow />
       <InventoryTableRow />

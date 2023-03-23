@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddWarehouse from './components/AddWarehouse/AddWarehouse';
 import WarehouseList from './components/WarehouseList/WarehouseList';
+import InventoryList from './components/InventoryList/InventoryList';
 
 
 
@@ -19,11 +20,11 @@ function App () {
 <Route path="Warehouse/:id" element={<WarehouseList />} />
 <Route path="Warehouse/:id/edit" element={<WarehouseList />} />
 <Route path="Warehouse/:id/delete" element={<WarehouseList />} />
-<Route path="/Inventory" element={<WarehouseList />} />
-<Route path="Inventory/add" element={<WarehouseList />} />
-<Route path="Inventory/:id" element={<WarehouseList />} />
-<Route path="Inventory/:id/edit" element={<WarehouseList />} />
-<Route path="Inventory/:id/delete" element={<WarehouseList />} />
+<Route path="/Inventory" element={<InventoryList />} />
+<Route path="Inventory/add" element={<AddWarehouse />} />
+<Route path="Inventory/:id" element={<InventoryList />} />
+<Route path="Inventory/:id/edit" element={<InventoryList />} />
+<Route path="Inventory/:id/delete" element={<InventoryList />} />
 </Routes>
 <Footer/>
 </BrowserRouter>
