@@ -1,6 +1,6 @@
 import './InventoryItemDetails.scss'
 import arrowSvg from '../../assets/icons/arrow_back-24px.svg'
-import editSvg from '../../assets/icons/edit-24px.svg'
+import editWhiteSvg from '../../assets/icons/edit-white-24px.svg'
 
 const InventoryItemDetails = () => {
 	return (
@@ -9,7 +9,7 @@ const InventoryItemDetails = () => {
 				<div className="item__header">
 					<a href="/" className="back__btn"><img src={ arrowSvg } alt="back" className="back__img" /></a>
 					<h1>television</h1>
-					<a href="/" className="edit__btn"><img src={ editSvg } alt="edit" className="edit__img" /><span className="edit__span">Edit</span></a>
+					<a href="/" className="edit__btn"><img src={ editWhiteSvg } alt="edit" className="edit__img" /><span className="edit__span">Edit</span></a>
 				</div>
 				<div className="item__details">
 					<div className="item__tablet-container">
