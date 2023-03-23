@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ActionButton from '../ActionButton/ActionButton';
 import CancelButton from '../CancelButton/CancelButton';
 import GoBackButton from '../GoBackButton/GoBackButton';
@@ -7,8 +8,82 @@ import './AddWarehouse.scss'
 // wh - warehouse; ctr - container; btn - button
 
 const AddWarehouse = () => {
+
+    const [warehouseName, setWarehouseName] = useState("");
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [country, setCountry] = useState("");
+    const [contactName, setContactName] = useState("");
+    const [position, setPosition] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [email, setEmail] = useState("");
+
+
+    const notEmpty = () => {
+        // console.log(warehouseName)
+        console.log(address.length)
+        if (warehouseName.length < 1 || 
+            address.length < 1 || 
+            city.length < 1 || 
+            country.length < 1 || 
+            contactName.length < 1 ||
+            position.length < 1 ||
+            phoneNumber.length < 1
+            ) {
+                return false
+            }
+        return true
+    }
+
+    const isEmailCorrect = () => {    
+        if ( email.length < 1) {
+            return false
+        }
+
+        if (!email.includes("@")) {
+            return false
+        }
+        return true
+    }
+
+    console.log(notEmpty())
+
+    const isFormValid = () => {
+        if(!notEmpty()) {
+            return false
+        }
+        if(!isEmailCorrect()) {
+            return false
+        }
+        return true
+    }
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (isFormValid()) {
+            // This is where we would make an axios request
+            // to our backend to add the user to our database.
+            alert("Added successfully");
+            console.log("warehouse",warehouseName)
+            console.log("address",address)
+            console.log("city",city)
+            console.log("country",country)
+            console.log("contactName",contactName)
+            console.log("position",position)
+            console.log("phoneNumber",phoneNumber)
+            console.log("email",email)
+          } else {
+            alert("Failed to add, you have errors in your form");
+          }
+    }
+
     return (
-        <section className='add-wh'>
+        <form 
+            className='add-wh'
+            onSubmit={handleSubmit}
+        >
             <div className='add-wh__header-ctr'>
                 <GoBackButton path="/"/>
                 <h1 className='add-wh__header'>Add New Warehouse</h1>
@@ -21,24 +96,40 @@ const AddWarehouse = () => {
                         html="warehouseName"
                         inputId="warehouseName"
                         inputName="Warehouse Name"
+                        onChange={(e) => setWarehouseName(e.target.value)}
+                        className={
+                            notEmpty() || warehouseName === "" ? "add-wh__input" : "add-wh__input--invalid"
+                        }
                     />
                     <InputBox
                         isTextarea={false}
                         html="streetName"
                         inputId="streetName"
                         inputName="Street Address"
+                        onChange={(e) => setAddress(e.target.value)}
+                        className={
+                            notEmpty() || address === "" ? "add-wh__input" : "add-wh__input--invalid"
+                        }
                     />
                     <InputBox
                         isTextarea={false}
                         html="cityName"
                         inputId="cityName"
                         inputName="City"
+                        onChange={(e) => setCity(e.target.value)}
+                        className={
+                            notEmpty() || city === "" ? "add-wh__input" : "add-wh__input--invalid"
+                        }
                     />
                     <InputBox
                         isTextarea={false}
                         html="countryName"
                         inputId="countryName"
                         inputName="Country"
+                        onChange={(e) => setCountry(e.target.value)}
+                        className={
+                            notEmpty() || country === "" ? "add-wh__input" : "add-wh__input--invalid"
+                        }
                     />
                 </div>
                 <div className='add-wh__contact-ctr'>
@@ -48,24 +139,40 @@ const AddWarehouse = () => {
                         html="contactName"
                         inputId="contactName"
                         inputName="Contact Name"
+                        onChange={(e) => setContactName(e.target.value)}
+                        className={
+                            notEmpty() || contactName === "" ? "add-wh__input" : "add-wh__input--invalid"
+                        }
                     />
                     <InputBox
                         isTextarea={false}
                         html="positionName"
                         inputId="positionName"
                         inputName="Position"
+                        onChange={(e) => setPosition(e.target.value)}
+                        className={
+                            notEmpty() || position === "" ? "add-wh__input" : "add-wh__input--invalid"
+                        }
                     />
                     <InputBox
                         isTextarea={false}
                         html="phoneName"
                         inputId="phoneName"
                         inputName="Phone Number"
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        className={
+                            notEmpty() || phoneNumber === "" ? "add-wh__input" : "add-wh__input--invalid"
+                        }
                     />
                     <InputBox
                         isTextarea={false}
                         html="emailName"
                         inputId="emailName"
                         inputName="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={
+                            isEmailCorrect() || email === "" ? "add-wh__input" : "add-wh__input--invalid"
+                        }
                     />
                 </div>
             </div>
@@ -78,7 +185,7 @@ const AddWarehouse = () => {
                         name="+ Add Warehouse"
                     />
                 </div>
-        </section>
+        </form>
     );
 };
 

@@ -1,6 +1,6 @@
 import "./InputBox.scss"
 
-const InputBox = ({isTextarea,htmlFor,className,inputId,inputName,name}) => {
+const InputBox = ({isTextarea,htmlFor,className,inputId,inputName,name, onChange, value}) => {
     if (isTextarea) {
         return (
             <textarea></textarea>
@@ -18,6 +18,8 @@ const InputBox = ({isTextarea,htmlFor,className,inputId,inputName,name}) => {
                     className={`input__box ${className}`}
                     id={inputId}
                     name={name}
+                    value={value}
+                    onChange={onChange}
                 ></input>
             </div>
         </>
