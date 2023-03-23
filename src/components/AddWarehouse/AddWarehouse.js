@@ -6,11 +6,15 @@ import InputBox from '../InputBox/InputBox';
 import './AddWarehouse.scss'
 import axios from 'axios';
 
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const post_url = REACT_APP_SERVER_URL + "/warehouses"
+console.log("Post URL",post_url)
+
 // wh - warehouse; ctr - container; btn - button
 
 const AddWarehouse = () => {
 
-    const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 
     const [warehouseName, setWarehouseName] = useState("");
     const [address, setAddress] = useState("");
@@ -78,7 +82,9 @@ const AddWarehouse = () => {
             console.log("phoneNumber",phoneNumber)
             console.log("email",email)
 
-            axios.post(REACT_APP_SERVER_URL, {
+
+            console.log("URL",REACT_APP_SERVER_URL)
+            axios.post(`http://localhost:8080/warehouses`, {
                     warehouse_name: warehouseName,
                     address: address,
                     city: city,
