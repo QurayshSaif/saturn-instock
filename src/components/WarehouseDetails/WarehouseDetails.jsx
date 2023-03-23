@@ -1,5 +1,5 @@
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
-import editIcon from "../../assets/icons/edit-24px.svg";
+import editIconWhite from "../../assets/icons/edit-24px-white.svg";
 import "./WarehouseDetails.scss";
 
 export default function WarehouseDetails() {
@@ -17,7 +17,7 @@ export default function WarehouseDetails() {
         <div className="warehouse-header__edit">
           <img
             className="warehouse-header__edit-icon"
-            src={editIcon}
+            src={editIconWhite}
             alt="Edit"
           />
         </div>
@@ -26,7 +26,9 @@ export default function WarehouseDetails() {
       <section className="warehouse-details">
         <div className="warehouse-details__address">
           <h4 className="warehouse-details__title">WAREHOUSE ADDRESS</h4>
-          <p>33 Pearl Street SW, Washington, USA</p>
+          <div className="warehouse-details__address-tab">
+            <p>33 Pearl Street SW, Washington, USA</p>
+          </div>
         </div>
 
         <div className="warehouse-details__contact">

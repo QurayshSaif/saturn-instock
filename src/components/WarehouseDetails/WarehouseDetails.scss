@@ -49,10 +49,36 @@
 
   &__address {
     margin-bottom: 2.25rem;
+
+    @include tablet-viewport {
+      border-right: $divider-anywhere;
+      margin-right: 1rem;
+      padding-right: 10rem;
+
+      &-tab {
+        display: flex;
+        flex-wrap: wrap;
+        width: 9rem;
+      }
+    }
+
+    @include desktop-viewport {
+      padding-right: 20rem;
+    }
   }
 
   &__contact {
     display: flex;
     gap: 2rem;
+
+    @include tablet-viewport {
+      padding-left: 1rem;
+      gap: 3rem;
+    }
+
+    @include desktop-viewport {
+      gap: 8rem;
+      padding-left: 3rem;
+    }
   }
 }
