@@ -1,5 +1,11 @@
+@use '../../styles/partials/mixins' as *;
+
 .goback {
-    padding-top: 6px;
+    padding-top: 12px;
+
+        @include tablet-viewport {
+            padding-top: 15px;
+        }
 
     &__img {
         // width: 16px;

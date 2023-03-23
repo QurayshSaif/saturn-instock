@@ -3,20 +3,30 @@
 
 
 .input {
-    outline: 1px solid orangered;
     display: flex;
     flex-direction: column;
     font-size: 13px;
     font-weight: 600;
+    color: $instock-black;
+    margin-top: 24px;
+
+        @include tablet-viewport {
+            font-size: $t-p2-size;
+        }
 
     &__box {
         @include secondary-button-style;
         padding-left: $pad-med-16;
         height: 36px;
         margin-top: 4px;
-        margin-bottom: 16px;
         font-size: 13px;
         font-weight: 400;
+
+        @include tablet-viewport {
+            width: 100%;
+            font-size: $t-p2-size;
+            font-weight: 400;
+        }
     }
 
 

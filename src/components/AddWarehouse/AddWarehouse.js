@@ -1,4 +1,5 @@
 import ActionButton from '../ActionButton/ActionButton';
+import CancelButton from '../CancelButton/CancelButton';
 import GoBackButton from '../GoBackButton/GoBackButton';
 import InputBox from '../InputBox/InputBox';
 import './AddWarehouse.scss'
@@ -67,13 +68,18 @@ const AddWarehouse = () => {
                         inputName="Email"
                     />
                 </div>
-                <div className='add-wh__buttons-ctr'>
-                    <div className='add-wh__cancel-btn'><p>Cancel</p></div>
-                    {/* <button className='add-wh__add-btn'>+ Add Warehouse</button>
-                     */}
-                    <ActionButton button={true} className="add-wh__add-btn" name="+ Add Warehouse"/>
-                </div>
             </div>
+            <div className='add-wh__buttons-ctr'>
+                    {/* <div className='add-wh__cancel-btn'><p>Cancel</p></div> */}
+                    <CancelButton
+                        to="/"
+                    />
+                    <ActionButton 
+                        isButton={true} 
+                        className="add-wh__add-btn" 
+                        name="+ Add Warehouse"
+                    />
+                </div>
         </section>
     );
 };

@@ -1,48 +1,118 @@
 @use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
 
 .add-wh {
     border-radius: 3px;
-    outline: 3px solid greenyellow;
+    // outline: 3px solid greenyellow;
     margin: 0 16px;
-    // margin-top: -64px;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+
+        @include tablet-viewport {
+            margin: 0 32px;
+        }
+
+        @include desktop-viewport {
+            width: 1200px;
+            margin: auto;
+        }
 
     &__header-ctr {
         display: flex;
         justify-content: center;
         padding: 2rem 0 1.5rem;
 
-        outline: 1px solid plum;
+            @include tablet-viewport {
+                justify-content: flex-start;
+                padding-left: 32px;
+                @include divider-bottom;
+            }
+
+            @include desktop-viewport {
+                padding-left: 36px;
+
+            }
+
     }
 
     &__details-ctr {
 
+        @include tablet-viewport {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
     }
 
     &__header {
         margin: 0;
-        padding: 0 15px 0 3px;
-        font-size: 28px;
+        padding: 0 15px 0 5px;
+        font-size: $m-h1-size;
+
+            @include tablet-viewport {
+                font-size: $t-h1-size; 
+                padding-left: 10px                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+            }
     }
 
     &__subheader {
-        padding-top: 16px;
-        padding-bottom: 24px;
+        margin-top: 16px;
         font-size: 20px;
+
+            @include tablet-viewport {
+                font-size: $t-h2-size; 
+                margin-top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+            }
     }
 
     &__location-ctr {
         @include divider-bottom;
-        // outline: 1px solid brown;
-        // width: 100%;
         padding: 0 24px;
+        padding-bottom: 24px;
+
+            @include tablet-viewport {
+                width: 50%;
+                border-bottom: none;
+                @include divider-right;
+                margin-top: 24px;
+                padding-bottom: 5px;
+                margin-bottom: 27px;
+                padding-left: 32px;
+                padding-right: 32px;
+            }
+
+            @include desktop-viewport {
+                padding-left: 40px;
+                padding-right: 40px;
+            }
     }
 
     &__contact-ctr {
         padding: 0 24px;
+        padding-bottom: 24px;
+
+            @include tablet-viewport {
+                width: 50%;
+                margin-top: 24px;
+                padding-bottom: 0;
+                padding-left: 32px;
+                padding-right: 32px;
+            }
+
+            @include desktop-viewport {
+                padding-left: 40px;
+                padding-right: 40px;
+            }
     }
 
     &__buttons-ctr {
         display: flex;
         justify-content: space-between;
+        padding: 16px 24px;
+        background-color: $light-grey;
+        gap: 16px;
+
+            @include tablet-viewport {
+                justify-content: flex-end;
+            }
     }
 }

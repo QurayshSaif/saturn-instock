@@ -1,7 +1,7 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
 
-.action-btn {
-    @include primary-button-style;
+.cancel-btn {
+    @include secondary-button-style;
     width: 50%;
 }
