@@ -19,6 +19,7 @@ export default function WarehouseHeader({ warehouseName }) {
           src={editIconWhite}
           alt="Edit"
         />
+        <span className="warehouse-header__edit-tab">Edit</span>
       </div>
     </section>
   );
