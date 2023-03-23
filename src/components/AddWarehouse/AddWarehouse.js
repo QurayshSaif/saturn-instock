@@ -5,10 +5,12 @@ import GoBackButton from '../GoBackButton/GoBackButton';
 import InputBox from '../InputBox/InputBox';
 import './AddWarehouse.scss'
 import axios from 'axios';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { FALSE } from 'sass';
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const post_url = REACT_APP_SERVER_URL + "/warehouses"
-console.log("Post URL",post_url)
+// const post_url = REACT_APP_SERVER_URL + "/warehouses"
+// console.log("Post URL",post_url)
 
 // wh - warehouse; ctr - container; btn - button
 
@@ -29,17 +31,38 @@ const AddWarehouse = () => {
     const notEmpty = () => {
         // console.log(warehouseName)
         console.log(address.length)
-        if (warehouseName.length < 1 || 
-            address.length < 1 || 
-            city.length < 1 || 
-            country.length < 1 || 
-            contactName.length < 1 ||
-            position.length < 1 ||
-            phoneNumber.length < 1
-            ) {
-                return false
-            }
-        return true
+
+            // warehouseName.length < 1 || 
+            // address.length < 1 || 
+            // city.length < 1 || 
+            // country.length < 1 || 
+            // contactName.length < 1 ||
+            // position.length < 1 ||
+            // phoneNumber.length < 1
+
+
+    //     if (warehouseName.length < 1) {
+    //             return false
+    //         }
+    //     if (address.length < 1) {
+    //             return false
+    //     }
+    //     if (city.length < 1) {
+    //             return false
+    //     }
+    //     if (country.length < 1) {
+    //             return false        
+    //     }
+    //     if (contactName.length < 1) {
+    //             return false
+    //     }
+    //     if (position.length < 1) {
+    //             return false
+    //     }
+    //     if (phoneNumber.length < 1) {
+    //             return false        
+    //     }
+    //     return true
     }
 
     const isEmailCorrect = () => {    
@@ -99,6 +122,8 @@ const AddWarehouse = () => {
           } else {
             alert("Failed to add, you have errors in your form");
           }
+
+        event.target.reset();
     }
 
     return (
@@ -114,6 +139,7 @@ const AddWarehouse = () => {
                 <div className='add-wh__location-ctr'>
                     <h2 className='add-wh__subheader'>Warehouse Details</h2>
                     <InputBox
+                        // isError={true}
                         isTextarea={false}
                         html="warehouseName"
                         inputId="warehouseName"

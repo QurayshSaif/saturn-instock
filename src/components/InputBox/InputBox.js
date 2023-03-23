@@ -1,6 +1,7 @@
 import "./InputBox.scss"
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-const InputBox = ({isTextarea,htmlFor,className,inputId,inputName,name, onChange, value}) => {
+const InputBox = ({isTextarea,htmlFor,className,inputId,inputName,name, onChange, value, isError}) => {
     if (isTextarea) {
         return (
             <textarea></textarea>
@@ -22,6 +23,10 @@ const InputBox = ({isTextarea,htmlFor,className,inputId,inputName,name, onChange
                     onChange={onChange}
                 ></input>
             </div>
+            {/* <ErrorMessage
+                    isError={isError}
+                    className={"error--active"}
+            /> */}
         </>
     );
 };
