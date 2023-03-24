@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import ActionButton from '../ActionButton/ActionButton';
-import CancelButton from '../CancelButton/CancelButton';
-import GoBackButton from '../GoBackButton/GoBackButton';
-import InputBox from '../InputBox/InputBox';
-import './AddWarehouse.scss'
-import axios from 'axios';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { useState } from "react";
+import ActionButton from "../ActionButton/ActionButton";
+import CancelButton from "../CancelButton/CancelButton";
+import GoBackButton from "../GoBackButton/GoBackButton";
+import InputBox from "../InputBox/InputBox";
+import "./AddWarehouse.scss"
+import axios from "axios";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -110,8 +110,7 @@ const AddWarehouse = () => {
         notEmpty()
 
         if (isFormValid()) {
-            console.log("URL",REACT_APP_SERVER_URL)
-            axios.post(`http://localhost:8080/api/warehouses`, {
+            axios.post(`${REACT_APP_SERVER_URL}/api/warehouses`, {
                     warehouse_name: warehouseName,
                     address: address,
                     city: city,
@@ -130,16 +129,16 @@ const AddWarehouse = () => {
 
     return (
         <form 
-            className='add-wh'
+            className="add-wh"
             onSubmit={handleSubmit}
         >
-            <div className='add-wh__header-ctr'>
+            <div className="add-wh__header-ctr">
                 <GoBackButton path="/"/>
-                <h1 className='add-wh__header'>Add New Warehouse</h1>
+                <h1 className="add-wh__header">Add New Warehouse</h1>
             </div>
-            <div className='add-wh__details-ctr'>
-                <div className='add-wh__location-ctr'>
-                    <h2 className='add-wh__subheader'>Warehouse Details</h2>
+            <div className="add-wh__details-ctr">
+                <div className="add-wh__location-ctr">
+                    <h2 className="add-wh__subheader">Warehouse Details</h2>
                     <InputBox
                         isTextarea={false}
                         html="warehouseName"
@@ -213,8 +212,8 @@ const AddWarehouse = () => {
                         : null
                     }
                 </div>
-                <div className='add-wh__contact-ctr'>
-                    <h2 className='add-wh__subheader'>Contact Details</h2>
+                <div className="add-wh__contact-ctr">
+                    <h2 className="add-wh__subheader">Contact Details</h2>
                     <InputBox
                         isTextarea={false}
                         html="contactName"
@@ -289,7 +288,7 @@ const AddWarehouse = () => {
                     }
                 </div>
             </div>
-            <div className='add-wh__buttons-ctr'>
+            <div className="add-wh__buttons-ctr">
                     <CancelButton
                         to="/"
                     />
