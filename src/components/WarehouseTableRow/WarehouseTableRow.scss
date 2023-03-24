@@ -5,15 +5,15 @@
 
 .warehouse {
 	&__row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: $pad-med-16;
+		// display: flex;
+		// align-items: center;
+		// justify-content: space-between;
+		// padding: $pad-med-16;
 		@include divider-bottom;
 
-		@include tablet-viewport {
-			padding: 1rem 2rem;
-		}
+		// @include tablet-viewport {
+		// 	padding: 1rem 2rem;
+		// }
 	}
 
 	&__block {
@@ -45,7 +45,7 @@
 	&__name {
 		>a {
 			display: flex;
-			flex-direction: row;
+			// flex-direction: row;
 			gap: .25rem;
 			@include text-link-style;
 
@@ -72,30 +72,66 @@
 
 .mobile {
 
-	@include tablet-viewport {
-		display: none;
-	}
+	// @include tablet-viewport {
+	// 	display: none;
+	// }
 
-
-	&__left {
+	&__container {
 		display: flex;
-		flex-direction: column;
+		flex-wrap: wrap;
+		width: 100%;
+		padding: $pad-med-16;
 		gap: 1rem;
-		flex-grow: 1;
+		// justify-content: space-between;
 
 		@include tablet-viewport {
-			display: contents;
+			justify-content: space-between;
+			// : row;
+		}
+	}
+
+	&__left {
+		// display: flex;
+		display: inline-flex;
+		flex-direction: column;
+		width: 45%;
+		gap: 1rem;
+		// flex-grow: 1;
+
+		@include tablet-viewport {
+			flex-direction: row;
+			width: 30%;
+			justify-content: space-between;
 		}
 	}
 
 	&__right {
-		display: flex;
+		// display: flex;
+		display: inline-flex;
 		flex-direction: column;
+		width: 45%;
 		gap: 1rem;
-		flex-grow: 1;
+		// // flex-grow: 1;
 
 		@include tablet-viewport {
-			display: contents;
+			flex-direction: row;
+			width: 30%;
+			// justify-content: space-between;
+		}
+	}
+
+	&__bottom {
+		display: inline-flex;
+		flex-direction: row;
+		width: 100%;
+		justify-content: space-between;
+		// gap: 5rem;
+
+		@include tablet-viewport {
+			width: auto;
+			// align-items: flex-end;
+			justify-content: flex-end;
+			// flex-direction: row;
 		}
 	}
 

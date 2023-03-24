@@ -25,7 +25,7 @@ const WarehouseList = () => {
       .catch((err) => {
         console.log(err)
       })
-  })
+  }, [])
 
 
 
