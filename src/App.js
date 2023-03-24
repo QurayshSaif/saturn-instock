@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<InventoryItemDetails />} />
+        <Route path="/" element={<WarehouseList />} />
         <Route path="warehouse/:id" element={<WarehouseDetailsPage />} />
         <Route path="/warehouse" element={<WarehouseList />} />
         <Route path="/warehouse/add" element={<AddWarehouse />} />

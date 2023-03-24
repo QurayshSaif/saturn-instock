@@ -1,6 +1,6 @@
 import './InventoryItemDetails.scss'
 import {useEffect, useState, } from 'react'
-import {useParams} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 import arrowSvg from '../../assets/icons/arrow_back-24px.svg'
 import editWhiteSvg from '../../assets/icons/edit-white-24px.svg'
 import {API_URL_BASE, INVENTORIES_PATH} from '../../utils/utils';
@@ -10,32 +10,32 @@ const InventoryItemDetails = () => {
 
 	const {id} = useParams();
 	const [inventoryItem, setInventoryItem] = useState([])
-	// const [documentTitle, setDocumentTitle] = useState(document.title)
-	// const inventoryItemUrl = `${API_URL_BASE}/${INVENTORIES_PATH}/${id}`
-	// console.log(inventoryItemUrl)
+	// const [documentTitle, setDocumentTitle] = useState()
+	const inventoryItemUrl = `${API_URL_BASE}/${INVENTORIES_PATH}`
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:8080/inventories/${id}`)
+			.get(`${inventoryItemUrl}/${id}`)
 			.then((res) => {
-				console.log(res.data[0])
-				// console.log(res.data.item_name.value)
 				setInventoryItem(res.data[0]);
-				// setDocumentTitle(res.data.item_name.value);
+				console.log(res.data[0].item_name)
+				console.log(document.title)
+
 			})
 			.catch((err) => {
 				console.log(err)
 			})
-	}, [id])
+
+	}, [id, inventoryItemUrl])
 
 	return (
 
 		<div className="item">
 			<div className="item__page">
 				<div className="item__header">
-					<a href="/" className="back__btn"><img src={arrowSvg} alt="back" className="back__img" /></a>
+					<Link to="/inventory/" className="back__btn"><img src={arrowSvg} alt="back" className="back__img" /></Link>
 					<h1>{inventoryItem.item_name}</h1>
-					<a href="/" className="edit__btn"><img src={editWhiteSvg} alt="edit" className="edit__img" /><span className="edit__span">Edit</span></a>
+					<Link to={`/inventory/${id}/edit`} className="edit__btn"><img src={editWhiteSvg} alt="edit" className="edit__img" /><span className="edit__span">Edit</span></Link>
 				</div>
 				<div className="item__details">
 					<div className="item__tablet-container">
@@ -53,7 +53,8 @@ const InventoryItemDetails = () => {
 							<div className="item__stat-quant-empty-flex">
 								<div className="item__status">
 									<h4>status:</h4>
-									<p className='item__tag'>{inventoryItem.status}</p>
+									<p
+										className={`${inventoryItem.status === "Out of Stock" ? "item__out" : "item__in"}`}>{inventoryItem.status}</p>
 								</div>
 								<div className="item__quantity">
 									<h4>quantity:</h4>
