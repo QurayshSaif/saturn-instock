@@ -3,8 +3,9 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 
-.inventory__columns {
+.inventory {
 
+&__columns {
 	display: none;
 
 	@include tablet-viewport {
@@ -29,4 +30,5 @@
 			}
 		}
 	}
+}
 }

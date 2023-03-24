@@ -7,18 +7,50 @@
 .inventory {
 
 	&__row {
+		@include divider-bottom;
+		padding-bottom: 1rem;
 		display: flex;
+		flex-direction: column;
+		@include tablet-viewport {
+		flex-direction: row;
 		align-items: center;
 		justify-content: space-evenly;
 		padding: $pad-med-16;
 		@include divider-bottom;
+		}
+	}
 
-		@include tablet-viewport {}
+	&__set {
+		display: flex;
+		flex-direction: row;
+		gap: 5rem;
+	}
+
+	&__holder {
+		padding-bottom: 1rem;
+		overflow-wrap: anywhere;
+	}
+
+	.__container {
+		@include tablet-viewport {
+			display: flex;
+			flex-direction: row;
+		}
+	}
+
+	&__title {
+		color: $slate;
+		text-transform: uppercase;
+		@include tablet-viewport {
+			display: none;
+		}
 	}
 
 	&__item {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+		@include text-link-style;
+		@include tablet-viewport {
 
 		>h4 {
 			@include h4-type-table-header;
@@ -42,8 +74,10 @@
 
 		}
 	}
+	}
 
 	&__category {
+		@include tablet-viewport {
 		display: flex;
 		flex-direction: column;
 
@@ -61,12 +95,15 @@
 			@include p2-type-body-medium;
 		}
 	}
-
-	&__status {
-
 	}
 
+	&__status {
+		@include tablet-viewport {
+	}
+}
+
 	&__qty {
+		@include tablet-viewport {
 
 		>h4 {
 			@include h4-type-table-header;
@@ -82,12 +119,14 @@
 			@include p2-type-body-medium;
 		}
 	}
+	}
 
 	&__actions {
 		display: flex;
-		gap: 1rem;
-		// >img {
+		justify-content: space-between;
+		@include tablet-viewport{
 
-		// }
+		gap: 1rem;
 	}
+}
 }

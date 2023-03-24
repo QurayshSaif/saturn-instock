@@ -6,22 +6,46 @@ import editSvg from "../../assets/icons/edit-24px.svg";
 const InventoryTableRow = () => {
   return (
     <div className="inventory__row">
-      <div className="inventory__tem">
-        <p>
-          item_placeholder
-          <img src={chevronSvg} alt="link" />
-        </p>
+      <div className="inventory__set">
+        <section className="inventory__container">
+          <article className="inventory__holder">
+            <h4 className="inventory__title">inventory item</h4>
+            <div className="inventory__item">
+              <p>item_placeholder</p>
+              <img src={chevronSvg} alt="link" />
+            </div>
+          </article>
+
+          <article className="inventory__holder">
+            <h4 className="inventory__title">category</h4>
+            <div className="inventory__category">
+              <p>category_placeholder</p>
+            </div>
+          </article>
+        </section>
+
+        <section className="inventory__container">
+          <article className="inventory__holder">
+            <h4 className="inventory__title">status</h4>
+            <div className="inventory__status"></div>
+          </article>
+
+          <article className="inventory__holder">
+            <h4 className="inventory__title">qty</h4>
+            <div className="inventory__qty">
+              <p>qty_placeholder</p>
+            </div>
+          </article>
+
+          <article className="inventory__holder">
+            <h4 className="inventory__title">warehouse</h4>
+            <div className="inventory__warehouse">
+              <p>location_placeholder</p>
+            </div>
+          </article>
+        </section>
       </div>
-      <div className="inventory__category">
-        <p>category_placeholder</p>
-      </div>
-      <div className="inventory__status"></div>
-      <div className="inventory__qty">
-        <p>qty_placeholder</p>
-      </div>
-      <div className="inventory__warehouse">
-        <p>location_placeholder</p>
-      </div>
+
       <div className="inventory__actions">
         <img src={deleteSvg} alt="delete" />
         <img src={editSvg} alt="edit" />
