@@ -150,25 +150,31 @@
 	}
 
 	&__tag {
-		&--in {
-			@include tag-in-style;
 
-			@include tablet-viewport {
-				min-width: 5rem;
-				margin-right: 6rem;
-			}
-
-			@include desktop-viewport {
-				margin-right: 10rem;
-			}
+		@include tablet-viewport {
+			min-width: 5rem;
+			margin-right: 6rem;
 		}
+
+		@include desktop-viewport {
+			margin-right: 10rem;
+		}
+	}
+
+	&__in {
+		@include tag-in-style;
+
+	}
+
+	&__out {
+		@include tag-out-style;
+
 	}
 
 	&__stat-quant-empty-flex {
 		display: flex;
 		justify-content: space-between;
 
-		@include tablet-viewport {}
 	}
 
 }
