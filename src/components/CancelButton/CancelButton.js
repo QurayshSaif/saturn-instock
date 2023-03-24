@@ -1,5 +1,5 @@
 import "./CancelButton.scss"
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const CancelButton = ({to, className}) => {
     return (

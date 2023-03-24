@@ -1,16 +1,15 @@
-import { useState } from 'react';
-import ActionButton from '../ActionButton/ActionButton';
-import CancelButton from '../CancelButton/CancelButton';
-import GoBackButton from '../GoBackButton/GoBackButton';
-import InputBox from '../InputBox/InputBox';
-import './AddWarehouse.scss'
-import axios from 'axios';
+import { useState } from "react";
+import ActionButton from "../ActionButton/ActionButton";
+import CancelButton from "../CancelButton/CancelButton";
+import GoBackButton from "../GoBackButton/GoBackButton";
+import InputBox from "../InputBox/InputBox";
+import "./AddWarehouse.scss"
+import axios from "axios";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-// wh - warehouse; ctr - container; btn - button
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const AddWarehouse = () => {
-
-    const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
     const [warehouseName, setWarehouseName] = useState("");
     const [address, setAddress] = useState("");
@@ -21,64 +20,97 @@ const AddWarehouse = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
 
+    const [errorWarehouseName, setErrorWarehouseName] = useState({isActive: false, message: "default"})
+    const [errorAddress, setErrorAddress] = useState({isActive: false, message: "default"})
+    const [errorCity, setErrorCity] = useState({isActive: false, message: "default"})
+    const [errorCountry, setErrorCountry] = useState({isActive: false, message: "default"})
+    const [errorContact, setErrorContact] = useState({isActive: false, message: "default"})
+    const [errorPhone, setErrorPhone] = useState({isActive: false, message: "default"})
+    const [errorPosition, setErrorPosition] = useState({isActive: false, message: "default"})
+    const [errorEmail, setErrorEmail] = useState({isActive: false, message: "default"})
+
 
     const notEmpty = () => {
-        // console.log(warehouseName)
-        console.log(address.length)
-        if (warehouseName.length < 1 || 
-            address.length < 1 || 
-            city.length < 1 || 
-            country.length < 1 || 
-            contactName.length < 1 ||
-            position.length < 1 ||
-            phoneNumber.length < 1
-            ) {
-                return false
-            }
-        return true
+        if (warehouseName.length < 1) {
+            setErrorWarehouseName({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorWarehouseName({isActive: false, message: ""})
+        } 
+        if (address.length < 1) {
+            setErrorAddress({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorAddress({isActive: false, message: ""})
+        } 
+        if (city.length < 1) {
+            setErrorCity({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorCity({isActive: false, message: ""})
+        } 
+        if (country.length < 1) {
+            setErrorCountry({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorCountry({isActive: false, message: ""})
+        } 
+        if (contactName.length < 1) {
+            setErrorContact({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorContact({isActive: false, message: ""})
+        } 
+        if (position.length < 1) {
+            setErrorPosition({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorPosition({isActive: false, message: ""})
+        } 
+        if (phoneNumber.length < 1) {
+            setErrorPhone({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorPhone({isActive: false, message: ""})
+        } 
+        if (email.length < 1) {
+            setErrorEmail({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorEmail({isActive: false, message: ""})
+        } 
     }
 
-    const isEmailCorrect = () => {    
-        if ( email.length < 1) {
-            return false
+    const isEmailValid = () => {
+        if (email.includes("@")) {
+            return true
         }
-
-        if (!email.includes("@")) {
-            return false
-        }
-        return true
+        setErrorEmail({isActive: true, message: "Enter a valid email. Hint: must include @"}) 
+        return false
     }
 
-    console.log(notEmpty())
-
+    const isPhoneValid = () => {
+        const phoneFormat= /^(\+\d{1,2}\s)?\(\d{3}\)\s\d{3}-\d{4}$/;
+        if (phoneFormat.test(phoneNumber)) {
+            return true
+        }
+        setErrorPhone({isActive: true, message: "Must have the format +1 (xxx) xxx-xxxx"}) 
+        return false
+    }
+ 
     const isFormValid = () => {
-        if(!notEmpty()) {
+        if (email.length < 1 && phoneNumber.length < 1 && position.length < 1 && 
+            contactName.length < 1 && country.length < 1 && city.length < 1 && 
+            address.length < 1 && warehouseName.length < 1) {
+                return false
+        }
+        if (!isPhoneValid()) {
             return false
         }
-        if(!isEmailCorrect()) {
+        if (!isEmailValid()) {
             return false
         }
         return true
     }
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        notEmpty()
 
         if (isFormValid()) {
-            // This is where we would make an axios request
-            // to our backend to add the user to our database.
-            alert("Added successfully");
-            console.log("warehouse",warehouseName)
-            console.log("address",address)
-            console.log("city",city)
-            console.log("country",country)
-            console.log("contactName",contactName)
-            console.log("position",position)
-            console.log("phoneNumber",phoneNumber)
-            console.log("email",email)
-
-            axios.post(REACT_APP_SERVER_URL, {
+            axios.post(`${REACT_APP_SERVER_URL}/api/warehouses`, {
                     warehouse_name: warehouseName,
                     address: address,
                     city: city,
@@ -88,25 +120,25 @@ const AddWarehouse = () => {
                     contact_phone: phoneNumber,
                     contact_email: email
             })
-                .then((result) => console.log("POST Send"))
+                .then((result) => {
+                    event.target.reset();
+                })
                 .catch((error) => console.log("Error: ",error));
-          } else {
-            alert("Failed to add, you have errors in your form");
           }
     }
 
     return (
         <form 
-            className='add-wh'
+            className="add-wh"
             onSubmit={handleSubmit}
         >
-            <div className='add-wh__header-ctr'>
+            <div className="add-wh__header-ctr">
                 <GoBackButton path="/"/>
-                <h1 className='add-wh__header'>Add New Warehouse</h1>
+                <h1 className="add-wh__header">Add New Warehouse</h1>
             </div>
-            <div className='add-wh__details-ctr'>
-                <div className='add-wh__location-ctr'>
-                    <h2 className='add-wh__subheader'>Warehouse Details</h2>
+            <div className="add-wh__details-ctr">
+                <div className="add-wh__location-ctr">
+                    <h2 className="add-wh__subheader">Warehouse Details</h2>
                     <InputBox
                         isTextarea={false}
                         html="warehouseName"
@@ -114,9 +146,17 @@ const AddWarehouse = () => {
                         inputName="Warehouse Name"
                         onChange={(e) => setWarehouseName(e.target.value)}
                         className={
-                            notEmpty() || warehouseName === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorWarehouseName.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorWarehouseName.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorWarehouseName.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
                         isTextarea={false}
                         html="streetName"
@@ -124,9 +164,17 @@ const AddWarehouse = () => {
                         inputName="Street Address"
                         onChange={(e) => setAddress(e.target.value)}
                         className={
-                            notEmpty() || address === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorAddress.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorAddress.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorAddress.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
                         isTextarea={false}
                         html="cityName"
@@ -134,9 +182,17 @@ const AddWarehouse = () => {
                         inputName="City"
                         onChange={(e) => setCity(e.target.value)}
                         className={
-                            notEmpty() || city === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorCity.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorCity.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorCity.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
                         isTextarea={false}
                         html="countryName"
@@ -144,12 +200,20 @@ const AddWarehouse = () => {
                         inputName="Country"
                         onChange={(e) => setCountry(e.target.value)}
                         className={
-                            notEmpty() || country === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorCountry.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorCountry.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorCountry.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                 </div>
-                <div className='add-wh__contact-ctr'>
-                    <h2 className='add-wh__subheader'>Contact Details</h2>
+                <div className="add-wh__contact-ctr">
+                    <h2 className="add-wh__subheader">Contact Details</h2>
                     <InputBox
                         isTextarea={false}
                         html="contactName"
@@ -157,9 +221,17 @@ const AddWarehouse = () => {
                         inputName="Contact Name"
                         onChange={(e) => setContactName(e.target.value)}
                         className={
-                            notEmpty() || contactName === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorContact.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorContact.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorContact.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
                         isTextarea={false}
                         html="positionName"
@@ -167,9 +239,17 @@ const AddWarehouse = () => {
                         inputName="Position"
                         onChange={(e) => setPosition(e.target.value)}
                         className={
-                            notEmpty() || position === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorPosition.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorPosition.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorPosition.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
                         isTextarea={false}
                         html="phoneName"
@@ -177,9 +257,17 @@ const AddWarehouse = () => {
                         inputName="Phone Number"
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         className={
-                            notEmpty() || phoneNumber === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorPhone.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorPhone.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorPhone.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
                         isTextarea={false}
                         html="emailName"
@@ -187,12 +275,20 @@ const AddWarehouse = () => {
                         inputName="Email"
                         onChange={(e) => setEmail(e.target.value)}
                         className={
-                            isEmailCorrect() || email === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorEmail.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorEmail.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorEmail.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                 </div>
             </div>
-            <div className='add-wh__buttons-ctr'>
+            <div className="add-wh__buttons-ctr">
                     <CancelButton
                         to="/"
                     />

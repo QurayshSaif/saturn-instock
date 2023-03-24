@@ -1,0 +1,24 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.error {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    padding-top: .25rem;
+    position: absolute;
+
+    &__img {
+        height: 1.0625rem;
+        width: 1.0625rem;
+    }
+
+    &__text {
+        color: $red;
+        font-size: $m-p3-size;
+
+        @include tablet-viewport {
+            font-size: $t-p3-size;
+        }
+    }
+}
