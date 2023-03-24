@@ -2,6 +2,7 @@ import "./WarehouseTableRow.scss";
 import chevronSvg from "../../assets/icons/chevron_right-24px.svg";
 import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
 import editSvg from "../../assets/icons/edit-24px.svg";
+import {Link} from "react-router-dom";
 
 const WarehouseTableRow = (props) => {
   return (
@@ -10,10 +11,10 @@ const WarehouseTableRow = (props) => {
         <div className="mobile__left">
           <div className="warehouse__block warehouse__name warehouse__mobile warehouse__left">
             <h4>warehouse</h4>
-            <a href='/'>
+            <Link to={`/warehouse/${props.id}`}>
               {props.warehouseName}
               <img src={chevronSvg} alt="link" />
-            </a>
+            </Link>
           </div>
           <div className="warehouse__block warehouse__address warehouse__left">
             <h4>address</h4>

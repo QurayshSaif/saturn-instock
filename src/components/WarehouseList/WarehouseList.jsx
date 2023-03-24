@@ -37,6 +37,7 @@ const WarehouseList = () => {
       {warehouseList.map((warehouse) => (
         <WarehouseTableRow
           key={warehouse.id}
+          id={warehouse.id}
           warehouseName={warehouse.warehouse_name}
           address={warehouse.address}
           city={warehouse.city}
