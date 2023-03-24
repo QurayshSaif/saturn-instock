@@ -8,14 +8,8 @@ import axios from 'axios';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
-// const post_url = REACT_APP_SERVER_URL + "/warehouses"
-// console.log("Post URL",post_url)
-
-// wh - warehouse; ctr - container; btn - button
 
 const AddWarehouse = () => {
-
-
 
     const [warehouseName, setWarehouseName] = useState("");
     const [address, setAddress] = useState("");
@@ -26,115 +20,96 @@ const AddWarehouse = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
 
-
-
-    const warehouseNameNotEmpty = () => {
-        if (warehouseName.length < 1) {
-            return false
-            console.log("FALSE")
-        }
-        return true
-        console.log("TRUE")
-    }
-
-
-    const addressNotEmpty = () => {
-        if (address.length < 1) {
-            return false
-        }
-        return true
-    }
-    const cityNotEmpty = () => {
-        if (city.length < 1) {
-            return false
-        }
-        return true
-    }
-    const countryNotEmpty = () => {
-        if (country.length < 1) {
-            return false        
-        }
-        return true
-    }
-    const contactNameNotEmpty = () => {
-        if (contactName.length < 1) {
-            return false
-        }
-        return true
-    }
-    const positionNotEmpty = () => {
-        if (position.length < 1) {
-            return false
-        }
-        return true
-    }
-    const phoneNumberNotEmpty = () => {
-        if (phoneNumber.length < 1) {
-            return false        
-        }
-        return true
-    }
-    const emailNotEmpty = () => {
-        if (email.length < 1) {
-            return false        
-        }
-        return true
-    }
-
-    console.log("emailNotEmpty()", emailNotEmpty())
-    console.log("Email Length", email.length)
+    const [errorWarehouseName, setErrorWarehouseName] = useState({isActive: false, message: "default"})
+    const [errorAddress, setErrorAddress] = useState({isActive: false, message: "default"})
+    const [errorCity, setErrorCity] = useState({isActive: false, message: "default"})
+    const [errorCountry, setErrorCountry] = useState({isActive: false, message: "default"})
+    const [errorContact, setErrorContact] = useState({isActive: false, message: "default"})
+    const [errorPhone, setErrorPhone] = useState({isActive: false, message: "default"})
+    const [errorPosition, setErrorPosition] = useState({isActive: false, message: "default"})
+    const [errorEmail, setErrorEmail] = useState({isActive: false, message: "default"})
 
 
     const notEmpty = () => {
-
-        if (!warehouseNameNotEmpty()) {
-            return false
-        }
-
-        return true
+        if (warehouseName.length < 1) {
+            setErrorWarehouseName({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorWarehouseName({isActive: false, message: ""})
+        } 
+        if (address.length < 1) {
+            setErrorAddress({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorAddress({isActive: false, message: ""})
+        } 
+        if (city.length < 1) {
+            setErrorCity({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorCity({isActive: false, message: ""})
+        } 
+        if (country.length < 1) {
+            setErrorCountry({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorCountry({isActive: false, message: ""})
+        } 
+        if (contactName.length < 1) {
+            setErrorContact({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorContact({isActive: false, message: ""})
+        } 
+        if (position.length < 1) {
+            setErrorPosition({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorPosition({isActive: false, message: ""})
+        } 
+        if (phoneNumber.length < 1) {
+            setErrorPhone({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorPhone({isActive: false, message: ""})
+        } 
+        if (email.length < 1) {
+            setErrorEmail({isActive: true, message: "This field is required"})  
+        } else {
+            setErrorEmail({isActive: false, message: ""})
+        } 
     }
 
-    const isEmailCorrect = () => {    
-        if ( email.length < 1) {
-            return false
+    const isEmailValid = () => {
+        if (email.includes("@")) {
+            return true
         }
-
-        if (!email.includes("@")) {
-            return false
-        }
-        return true
+        setErrorEmail({isActive: true, message: "Enter a valid email. Hint: must include @"}) 
+        return false
     }
 
-    console.log("notEmpty()", notEmpty())
-
+    const isPhoneValid = () => {
+        const phoneFormat= /^(\+\d{1,2}\s)?\(\d{3}\)\s\d{3}-\d{4}$/;
+        if (phoneFormat.test(phoneNumber)) {
+            return true
+        }
+        setErrorPhone({isActive: true, message: "Enter a valid number. Must start with +1"}) 
+        return false
+    }
+ 
     const isFormValid = () => {
-        if(!notEmpty()) {
+        if (email.length < 1 && phoneNumber.length < 1 && position.length < 1 && 
+            contactName.length < 1 && country.length < 1 && city.length < 1 && 
+            address.length < 1 && warehouseName.length < 1) {
+                return false
+        }
+        if (!isPhoneValid()) {
             return false
         }
-        if(!isEmailCorrect()) {
+        if (!isEmailValid()) {
             return false
         }
         return true
     }
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        notEmpty()
 
         if (isFormValid()) {
-            // This is where we would make an axios request
-            // to our backend to add the user to our database.
-            alert("Added successfully");
-            console.log("warehouse",warehouseName)
-            console.log("address",address)
-            console.log("city",city)
-            console.log("country",country)
-            console.log("contactName",contactName)
-            console.log("position",position)
-            console.log("phoneNumber",phoneNumber)
-            console.log("email",email)
-
-
             console.log("URL",REACT_APP_SERVER_URL)
             axios.post(`http://localhost:8080/warehouses`, {
                     warehouse_name: warehouseName,
@@ -146,13 +121,11 @@ const AddWarehouse = () => {
                     contact_phone: phoneNumber,
                     contact_email: email
             })
-                .then((result) => console.log("POST Send"))
+                .then((result) => {
+                    event.target.reset();
+                })
                 .catch((error) => console.log("Error: ",error));
-          } else {
-            alert("Failed to add, you have errors in your form");
           }
-
-        event.target.reset();
     }
 
     return (
@@ -168,96 +141,152 @@ const AddWarehouse = () => {
                 <div className='add-wh__location-ctr'>
                     <h2 className='add-wh__subheader'>Warehouse Details</h2>
                     <InputBox
-                        isNotError={warehouseNameNotEmpty() ? true : false}
                         isTextarea={false}
                         html="warehouseName"
                         inputId="warehouseName"
                         inputName="Warehouse Name"
                         onChange={(e) => setWarehouseName(e.target.value)}
                         className={
-                            warehouseNameNotEmpty() || warehouseName === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorWarehouseName.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorWarehouseName.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorWarehouseName.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
-                        isNotError={addressNotEmpty() || address === "" ? true : false}
                         isTextarea={false}
                         html="streetName"
                         inputId="streetName"
                         inputName="Street Address"
                         onChange={(e) => setAddress(e.target.value)}
                         className={
-                            addressNotEmpty() || address === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorAddress.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorAddress.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorAddress.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
-                        isNotError={cityNotEmpty() || city === "" ? true : false}
                         isTextarea={false}
                         html="cityName"
                         inputId="cityName"
                         inputName="City"
                         onChange={(e) => setCity(e.target.value)}
                         className={
-                            cityNotEmpty() || city === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorCity.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorCity.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorCity.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
-                        isNotError={countryNotEmpty() || country === "" ? true : false}
                         isTextarea={false}
                         html="countryName"
                         inputId="countryName"
                         inputName="Country"
                         onChange={(e) => setCountry(e.target.value)}
                         className={
-                            countryNotEmpty() || country === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorCountry.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorCountry.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorCountry.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                 </div>
                 <div className='add-wh__contact-ctr'>
                     <h2 className='add-wh__subheader'>Contact Details</h2>
                     <InputBox
-                        isNotError={contactNameNotEmpty() || country === "" ? true : false}
                         isTextarea={false}
                         html="contactName"
                         inputId="contactName"
                         inputName="Contact Name"
                         onChange={(e) => setContactName(e.target.value)}
                         className={
-                            contactNameNotEmpty() || contactName === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorContact.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorContact.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorContact.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
-                        isNotError={positionNotEmpty() || position === "" ? true : false}
                         isTextarea={false}
                         html="positionName"
                         inputId="positionName"
                         inputName="Position"
                         onChange={(e) => setPosition(e.target.value)}
                         className={
-                            positionNotEmpty() || position === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorPosition.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorPosition.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorPosition.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
-                        isNotError={phoneNumberNotEmpty() || phoneNumber === "" ? true : false}
                         isTextarea={false}
                         html="phoneName"
                         inputId="phoneName"
                         inputName="Phone Number"
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         className={
-                            phoneNumberNotEmpty() || phoneNumber === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorPhone.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorPhone.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorPhone.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                     <InputBox
-                        isNotError={emailNotEmpty() || email === "" ? true : false}
                         isTextarea={false}
                         html="emailName"
                         inputId="emailName"
                         inputName="Email"
                         onChange={(e) => setEmail(e.target.value)}
                         className={
-                            isEmailCorrect() || email === "" ? "add-wh__input" : "add-wh__input--invalid"
+                            errorEmail.isActive ? "add-wh__input--invalid" : "add-wh__input" 
                         }
                     />
+                    {errorEmail.isActive ? 
+                        <ErrorMessage
+                            isNotError={false}
+                            text={errorEmail.message}
+                            className={"error--active"}
+                        />
+                        : null
+                    }
                 </div>
             </div>
             <div className='add-wh__buttons-ctr'>
