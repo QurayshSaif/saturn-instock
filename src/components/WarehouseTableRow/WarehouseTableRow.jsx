@@ -18,8 +18,7 @@ const WarehouseTableRow = (props) => {
           </div>
           <div className="warehouse__block warehouse__address warehouse__left">
             <h4>address</h4>
-            <p>{props.address}</p>
-            <p>{props.city}, {props.country}</p>
+            <p>{props.address}, {props.city}, {props.country}</p>
           </div>
         </div>
         <div className="mobile__right">
@@ -34,8 +33,8 @@ const WarehouseTableRow = (props) => {
           </div>
         </div>
         <div className="warehouse__block warehouse__block--actions mobile__bottom">
-          <a href="/"><img src={deleteSvg} alt="delete" /></a>
-          <a href="/"><img src={editSvg} alt="edit" /></a>
+          <Link to={`/warehouse/${props.id}/delete`}><img src={deleteSvg} alt="delete" /></Link>
+          <Link to={`/warehouse/${props.id}/edit`}><img src={editSvg} alt="edit" /></Link>
         </div>
       </div>
     </div>

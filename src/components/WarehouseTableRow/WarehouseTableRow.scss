@@ -7,14 +7,19 @@
 	&__row {
 		display: flex;
 		align-items: center;
-		justify-content: space-evenly;
+		justify-content: space-between;
 		padding: $pad-med-16;
 		@include divider-bottom;
+
+		@include tablet-viewport {
+			padding: 1rem 2rem;
+		}
 	}
 
 	&__block {
 		display: inline-flex;
 		flex-direction: column;
+		// overflow-wrap: normal;
 
 		>h4 {
 			padding-bottom: $pad-small-4;
@@ -50,6 +55,19 @@
 		}
 	}
 
+	&__address {
+		>p {
+			max-width: 6rem;
+			// overflow: auto;
+			// white-space: pre-wrap;
+			// text-overflow: inherit;
+
+			@include tablet-viewport {
+				max-width: none;
+				// overflow: unset;
+			}
+		}
+	}
 }
 
 .mobile {

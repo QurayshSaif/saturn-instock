@@ -12,8 +12,8 @@
 			background-color: $light-grey;
 			display: flex;
 			align-items: baseline;
-			padding: 0.5rem 0;
-			justify-content: space-evenly;
+			padding: 0.5rem 2rem;
+			justify-content: space-between;
 
 			>h4 {
 				@include h4-type-table-header;
