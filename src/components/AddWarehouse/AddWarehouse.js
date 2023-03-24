@@ -86,7 +86,7 @@ const AddWarehouse = () => {
         if (phoneFormat.test(phoneNumber)) {
             return true
         }
-        setErrorPhone({isActive: true, message: "Enter a valid number. Must start with +1"}) 
+        setErrorPhone({isActive: true, message: "Must have the format +1 (xxx) xxx-xxxx"}) 
         return false
     }
  
@@ -111,7 +111,7 @@ const AddWarehouse = () => {
 
         if (isFormValid()) {
             console.log("URL",REACT_APP_SERVER_URL)
-            axios.post(`http://localhost:8080/warehouses`, {
+            axios.post(`http://localhost:8080/api/warehouses`, {
                     warehouse_name: warehouseName,
                     address: address,
                     city: city,
