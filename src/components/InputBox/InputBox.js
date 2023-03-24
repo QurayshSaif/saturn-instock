@@ -7,22 +7,20 @@ const InputBox = ({isTextarea,htmlFor,className,inputId,inputName,name, onChange
         )
     } 
     return (
-        <>
-            <div className='input'>
-                <label
-                    htmlFor={htmlFor}   
-                >{inputName}</label>
-                <input 
-                    type="text"
-                    placeholder={inputName}
-                    className={`input__box ${className}`}
-                    id={inputId}
-                    name={name}
-                    value={value}
-                    onChange={onChange}
-                ></input>
-            </div>
-        </>
+        <div className='input'>
+            <label
+                htmlFor={htmlFor}   
+            >{inputName}</label>
+            <input 
+                type="text"
+                placeholder={inputName}
+                className={`input__box ${className}`}
+                id={inputId}
+                name={name}
+                value={value}
+                onChange={onChange}
+            ></input>
+        </div>
     );
 };
 
