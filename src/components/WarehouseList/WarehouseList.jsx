@@ -19,9 +19,11 @@ const WarehouseList = () => {
     document.title = 'InStock - Warehouse Overview'
     axios
       .get(warehouseUrl)
-      .then((response) => {
-        console.log(response.data);
-
+      .then((res) => {
+        setWarehouseList(res.data);
+      })
+      .catch((err) => {
+        console.log(err)
       })
   })
 
@@ -31,7 +33,19 @@ const WarehouseList = () => {
     <div className="warehouse">
       <WarehouseListHeader />
       <WarehouseTableColumns />
-      <WarehouseTableRow />
+
+      {warehouseList.map((warehouse) => (
+        <WarehouseTableRow
+          key={warehouse.id}
+          warehouseName={warehouse.warehouse_name}
+          address={warehouse.address}
+          city={warehouse.city}
+          country={warehouse.country}
+          name={warehouse.contact_name}
+          phone={warehouse.contact_phone}
+          email={warehouse.contact_email}
+        />
+      ))}
     </div>
   );
 };
