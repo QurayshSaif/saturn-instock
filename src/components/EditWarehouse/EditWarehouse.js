@@ -4,7 +4,7 @@ import CancelButton from "../CancelButton/CancelButton";
 import InputBox from "../InputBox/InputBox";
 import "./EditWarehouse.scss"
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const EditWarehouse = () => {
@@ -23,23 +23,50 @@ const EditWarehouse = () => {
     const [phoneEdit, setPhoneEdit] = useState("");
     const [emailEdit, setEmailEdit] = useState("")
 
-    axios.get(`${REACT_APP_SERVER_URL}/api/warehouses/${id}`)
-         .then((results) => {
-            console.log(results)
-            setWarehouseNameEdit(results.data.warehouse_name);
-            setAddressEdit(results.data.address)
-            setCityEdit(results.data.city)
-            setCountryEdit(results.data.country)
-            setContactEdit(results.data.contact_name)
-            setPositionEdit(results.data.contact_position)
-            setPhoneEdit(results.data.contact_phone)
-            setEmailEdit(results.data.contact_email)
-         }
-    ) 
+    const preload = () => {
+        axios.get(`${REACT_APP_SERVER_URL}/api/warehouses/${id}`)
+        .then((results) => {
+           setWarehouseNameEdit(results.data.warehouse_name);
+           setAddressEdit(results.data.address)
+           setCityEdit(results.data.city)
+           setCountryEdit(results.data.country)
+           setContactEdit(results.data.contact_name)
+           setPositionEdit(results.data.contact_position)
+           setPhoneEdit(results.data.contact_phone)
+           setEmailEdit(results.data.contact_email)
+        })
+        .catch((error) => console.log("Error: ",error)); 
+    }
+
+    useEffect(() => {
+        preload()
+    },[])
+
+         console.log(warehouseNameEdit)
+    const handleSubmitEdit = (event) => {
+        event.preventDefault();
+
+        axios.put(`${REACT_APP_SERVER_URL}/api/warehouses/${id}`, {
+                warehouse_name: warehouseNameEdit,
+                address: addressEdit,
+                city: cityEdit,
+                country: countryEdit,
+                contact_name: contactEdit,
+                contact_position: positionEdit,
+                contact_phone: phoneEdit,
+                contact_email: emailEdit
+            })
+            .then((results) => {
+                console.log("PUT Request Sent")
+            })
+            .catch((error) => console.log("Error: ",error)); 
+    }
 
 
     return (
-        <form className="edit-wh">
+        <form 
+            onSubmit={handleSubmitEdit}
+            className="edit-wh">
             <div className="edit-wh__header-ctr">
                 <GoBackButton path="/warehouse"/>
                 <h1 className="edit-wh__header">Edit Warehouse</h1>
