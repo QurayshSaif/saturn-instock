@@ -28,6 +28,7 @@ export default function EditInventory() {
       })
       .catch((error) => console.error(error));
   }, [id]);
+  console.log(inventory.warehouse_id);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +36,7 @@ export default function EditInventory() {
     console.log(itemName, description, category, status, quantity);
     axios
       .put(`${REACT_APP_SERVER_URL}/inventories/${id}`, {
-        warehouse_id: "89898957-04ba-4bd0-9f5c-a7aea7447963",
+        warehouse_id: inventory.warehouse_id,
         item_name: itemName,
         description: description,
         category: category,
@@ -110,6 +111,7 @@ export default function EditInventory() {
             isTextarea={false}
             isRadio={false}
             htmlFor="quantity"
+            name="quantity"
             inputId="quantity"
             inputName="Quantity"
             defaultValue={inventory.quantity}
