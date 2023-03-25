@@ -4,7 +4,7 @@ import CancelButton from "../CancelButton/CancelButton";
 import InputBox from "../InputBox/InputBox";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import "./EditWarehouse.scss"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -12,8 +12,8 @@ const EditWarehouse = () => {
 
     const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
+    const navigate = useNavigate();
     const {id} = useParams();
-    console.log(id)
 
     const [warehouseNameEdit, setWarehouseNameEdit] = useState("");
     const [addressEdit, setAddressEdit] = useState("");
@@ -129,7 +129,7 @@ const EditWarehouse = () => {
                 contact_email: emailEdit
             })
             .then((results) => {
-                console.log("PUT Request Sent")
+                navigate("/warehouse")
             })
             .catch((error) => console.log("Error: ",error)); 
         }
@@ -305,7 +305,7 @@ const EditWarehouse = () => {
             </div>
             <div className="edit-wh__buttons-ctr">
                     <CancelButton
-                        to="/"
+                        to="/warehouse"
                     />
                     <ActionButton 
                         isButton={true} 
