@@ -18,6 +18,7 @@ const InputBox = ({
   value6,
   value7,
   isRadio,
+  defaultValue,
 }) => {
   if (isRadio) {
     return (
@@ -27,17 +28,26 @@ const InputBox = ({
         </div>
 
         <div>
-          <input type="radio" id="inStock" name="status" value="In Stock" />
-          <label className="radio__label radio__label--stock" for="inStock">
+          <input
+            type="radio"
+            id="inStock"
+            name="status"
+            value="In Stock"
+            onChange={onChange}
+            defaultChecked={defaultValue === "In Stock" ? true : false}
+          />
+          <label className="radio__label radio__label--stock" htmlFor="inStock">
             In stock
           </label>
           <input
             type="radio"
             id="outOfStock"
             name="status"
-            value="Out Of Stock"
+            value="Out of Stock"
+            onChange={onChange}
+            defaultChecked={defaultValue === "Out of Stock" ? true : false}
           />
-          <label className="radio__label" for="outOfStock">
+          <label className="radio__label" htmlFor="outOfStock">
             Out of stock
           </label>
         </div>
@@ -48,14 +58,19 @@ const InputBox = ({
     return (
       <div className="input">
         <label htmlFor={htmlFor}>{inputName}</label>
-        <select className={`input__box ${className}`}>
-          <option value="{value1}">{value1}</option>
-          <option value="{value2}">{value2}</option>
-          <option value="{value3}">{value3}</option>
-          <option value="{value4}">{value4}</option>
-          <option value="{value5}">{value5}</option>
-          <option value="{value6}">{value6}</option>
-          <option value="{value7}">{value7}</option>
+        <select
+          className={`input__box ${className}`}
+          value={value}
+          onChange={onChange}
+          selected={defaultValue}
+        >
+          <option value={value1}>{value1}</option>
+          <option value={value2}>{value2}</option>
+          <option value={value3}>{value3}</option>
+          <option value={value4}>{value4}</option>
+          <option value={value5}>{value5}</option>
+          <option value={value6}>{value6}</option>
+          <option value={value7}>{value7}</option>
         </select>
       </div>
     );
@@ -72,6 +87,7 @@ const InputBox = ({
           name={name}
           value={value}
           onChange={onChange}
+          defaultValue={defaultValue}
         ></textarea>
       </div>
     );
@@ -87,6 +103,7 @@ const InputBox = ({
         name={name}
         value={value}
         onChange={onChange}
+        defaultValue={defaultValue}
       ></input>
     </div>
   );

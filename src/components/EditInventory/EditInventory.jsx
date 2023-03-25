@@ -5,6 +5,8 @@ import InputBox from "../InputBox/InputBox";
 import "./EditInventory.scss";
 import axios from "axios";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 // import ErrorMessage from "../ErrorMessage/ErrorMessage";
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -13,29 +15,37 @@ export default function EditInventory() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
-  const [warehouse, setWarehouse] = useState("");
   const [quantity, setQuantity] = useState("");
+  const { id } = useParams();
+
+  const [inventory, setInventory] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(`${REACT_APP_SERVER_URL}/inventories/${id}`)
+      .then((res) => {
+        setInventory(res.data);
+      })
+      .catch((error) => console.error(error));
+  }, [id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(itemName, description, category, status, warehouse, quantity);
-    // axios
-    //   .put(
-    //     `${REACT_APP_SERVER_URL}/inventories/ae986f59-8c40-480c-bd28-ee6068cd3617`,
-    //     {
-    //       item_name: itemName,
-    //       description: description,
-    //       category: category,
-    //       status: status,
-    //       quantity: quantity,
-    //       warehouse: warehouse,
-    //     }
-    //   )
-    //   .then((result) => {
-    //     event.target.reset();
-    //   })
-    //   .catch((error) => console.log("Error: ", error));
+    console.log(itemName, description, category, status, quantity);
+    axios
+      .put(`${REACT_APP_SERVER_URL}/inventories/${id}`, {
+        warehouse_id: "89898957-04ba-4bd0-9f5c-a7aea7447963",
+        item_name: itemName,
+        description: description,
+        category: category,
+        status: status,
+        quantity: quantity,
+      })
+      .then((result) => {
+        event.target.reset();
+      })
+      .catch((error) => console.log("Error: ", error));
   };
 
   return (
@@ -49,9 +59,12 @@ export default function EditInventory() {
           <h2 className="edit-inventory__subheader">Item Details</h2>
           <InputBox
             isTextarea={false}
+            isRadio={false}
+            isDropMenu={false}
             htmlFor="itemName"
             inputId="itemName"
             inputName="Item Name"
+            defaultValue={inventory.item_name}
             onChange={(e) => setItemName(e.target.value)}
           />
 
@@ -60,6 +73,7 @@ export default function EditInventory() {
             htmlFor="description"
             inputId="description"
             inputName="Description"
+            defaultValue={inventory.description}
             onChange={(e) => setDescription(e.target.value)}
           />
 
@@ -74,6 +88,7 @@ export default function EditInventory() {
             value3="Apparel"
             value4="Accessories"
             value5="Health"
+            defaultValue={inventory.category}
             onChange={(e) => setCategory(e.target.value)}
           />
         </div>
@@ -87,6 +102,7 @@ export default function EditInventory() {
             htmlFor="status"
             inputId="status"
             inputName="Status"
+            defaultValue={inventory.status}
             onChange={(e) => setStatus(e.target.value)}
           />
 
@@ -96,6 +112,7 @@ export default function EditInventory() {
             htmlFor="quantity"
             inputId="quantity"
             inputName="Quantity"
+            defaultValue={inventory.quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
 
@@ -112,7 +129,8 @@ export default function EditInventory() {
             value5="Santa Monica"
             value6="Seattle"
             value7="Miami"
-            onChange={(e) => setWarehouse(e.target.value)}
+            // defaultValue={inventory.warehouse_id}
+            // onChange={(e) => setWarehouse_id(e.target.value)}
           />
         </div>
       </div>
