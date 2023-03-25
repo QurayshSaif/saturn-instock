@@ -6,10 +6,12 @@ import InputBox from "../InputBox/InputBox";
 import "./AddWarehouse.scss"
 import axios from "axios";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+import { useNavigate } from "react-router-dom";
 
 const AddWarehouse = () => {
+
+    const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+    const navigate = useNavigate();
 
     const [warehouseName, setWarehouseName] = useState("");
     const [address, setAddress] = useState("");
@@ -20,57 +22,48 @@ const AddWarehouse = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
 
-    const [errorWarehouseName, setErrorWarehouseName] = useState({isActive: false, message: "default"})
-    const [errorAddress, setErrorAddress] = useState({isActive: false, message: "default"})
-    const [errorCity, setErrorCity] = useState({isActive: false, message: "default"})
-    const [errorCountry, setErrorCountry] = useState({isActive: false, message: "default"})
-    const [errorContact, setErrorContact] = useState({isActive: false, message: "default"})
-    const [errorPhone, setErrorPhone] = useState({isActive: false, message: "default"})
-    const [errorPosition, setErrorPosition] = useState({isActive: false, message: "default"})
-    const [errorEmail, setErrorEmail] = useState({isActive: false, message: "default"})
-
+    const [errorWarehouseName, setErrorWarehouseName] = useState({isActive: false, message: ""})
+    const [errorAddress, setErrorAddress] = useState({isActive: false, message: ""})
+    const [errorCity, setErrorCity] = useState({isActive: false, message: ""})
+    const [errorCountry, setErrorCountry] = useState({isActive: false, message: ""})
+    const [errorContact, setErrorContact] = useState({isActive: false, message: ""})
+    const [errorPhone, setErrorPhone] = useState({isActive: false, message: ""})
+    const [errorPosition, setErrorPosition] = useState({isActive: false, message: ""})
+    const [errorEmail, setErrorEmail] = useState({isActive: false, message: ""})
 
     const notEmpty = () => {
         if (warehouseName.length < 1) {
             setErrorWarehouseName({isActive: true, message: "This field is required"})  
         } else {
-            setErrorWarehouseName({isActive: false, message: ""})
-        } 
+            setErrorWarehouseName({isActive: false, message: ""})} 
         if (address.length < 1) {
             setErrorAddress({isActive: true, message: "This field is required"})  
         } else {
-            setErrorAddress({isActive: false, message: ""})
-        } 
+            setErrorAddress({isActive: false, message: ""})} 
         if (city.length < 1) {
             setErrorCity({isActive: true, message: "This field is required"})  
         } else {
-            setErrorCity({isActive: false, message: ""})
-        } 
+            setErrorCity({isActive: false, message: ""})} 
         if (country.length < 1) {
             setErrorCountry({isActive: true, message: "This field is required"})  
         } else {
-            setErrorCountry({isActive: false, message: ""})
-        } 
+            setErrorCountry({isActive: false, message: ""})} 
         if (contactName.length < 1) {
             setErrorContact({isActive: true, message: "This field is required"})  
         } else {
-            setErrorContact({isActive: false, message: ""})
-        } 
+            setErrorContact({isActive: false, message: ""})} 
         if (position.length < 1) {
             setErrorPosition({isActive: true, message: "This field is required"})  
         } else {
-            setErrorPosition({isActive: false, message: ""})
-        } 
+            setErrorPosition({isActive: false, message: ""})} 
         if (phoneNumber.length < 1) {
             setErrorPhone({isActive: true, message: "This field is required"})  
         } else {
-            setErrorPhone({isActive: false, message: ""})
-        } 
+            setErrorPhone({isActive: false, message: ""})} 
         if (email.length < 1) {
             setErrorEmail({isActive: true, message: "This field is required"})  
         } else {
-            setErrorEmail({isActive: false, message: ""})
-        } 
+            setErrorEmail({isActive: false, message: ""})} 
     }
 
     const isEmailValid = () => {
@@ -122,6 +115,7 @@ const AddWarehouse = () => {
             })
                 .then((result) => {
                     event.target.reset();
+                    navigate("/warehouse")
                 })
                 .catch((error) => console.log("Error: ",error));
           }
@@ -290,7 +284,7 @@ const AddWarehouse = () => {
             </div>
             <div className="add-wh__buttons-ctr">
                     <CancelButton
-                        to="/"
+                        to="/warehouse"
                     />
                     <ActionButton 
                         isButton={true} 
