@@ -102,4 +102,11 @@
                     justify-content: flex-end;
                 }
         }
+        
+        &__input {
+
+            &--invalid {
+                border: 1px solid $red;
+            }
+        }
 }
