@@ -8,18 +8,37 @@ import { API_URL_BASE, INVENTORIES_PATH } from "../../utils/utils";
 import axios from "axios";
 
 const InventoryList = () => {
+  const [inventoryList, setInventoryList] = useState([]);
+  const inventoryUrl = `${API_URL_BASE}/${INVENTORIES_PATH}`;
+
+  useEffect(() => {
+    document.title = "InStock - Warehouse Overview";
+    axios
+      .get(inventoryUrl)
+      .then((res) => {
+        setInventoryList(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="inventory__list">
       <InventoryListHeader />
       <InventoryTableColumns />
-      <InventoryTableRow />
-      <InventoryTableRow />
-      <InventoryTableRow />
-      <InventoryTableRow />
-      <InventoryTableRow />
-      <InventoryTableRow />
-      <InventoryTableRow />
-      <InventoryTableRow />
+
+      {inventoryList.map((inventory) => (
+        <InventoryTableRow
+          key={inventory.id}
+          id={inventory.id}
+          inventoryItem={inventory.inventory_item}
+          category={inventory.category}
+          status={inventory.status}
+          quantity={inventory.quantity}
+          warehouse={inventory.warehouse}
+        />
+      ))}
     </div>
   );
 };
