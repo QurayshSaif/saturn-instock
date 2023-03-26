@@ -49,6 +49,13 @@ export default function EditInventory() {
     isActive: false,
     message: "default",
   });
+
+  const [instockStatus, setInstockStatus] = useState(false);
+  const [outofstockStatus, setOutofstockStatus] = useState(false);
+  console.log("Instock Status", instockStatus);
+  console.log("Out Of Stock Status", outofstockStatus);
+
+
   const notEmpty = () => {
     if (Name.length < 1) {
       setErrorName({
@@ -137,14 +144,14 @@ export default function EditInventory() {
     return true;
   };
   return (
-    <form className="add-wh">
-      <div className="add-wh__header-ctr">
+    <form className="add-inv">
+      <div className="add-inv__header-ctr">
         <GoBackButton path="/" />
-        <h1 className="add-wh__header">Add New Inventory Item</h1>
+        <h1 className="add-inv__header">Add New Inventory Item</h1>
       </div>
-      <div className="add-wh__details-ctr">
-        <div className="add-wh__location-ctr">
-          <h2 className="add-wh__subheader">Item Details</h2>
+      <div className="add-inv__details-ctr">
+        <div className="add-inv__location-ctr">
+          <h2 className="add-inv__subheader">Item Details</h2>
           <InputBox
             isTextarea={false}
             htmlFor="Name"
@@ -152,7 +159,7 @@ export default function EditInventory() {
             inputName="Item Name"
             onChange={(e) => setName(e.target.value)}
             className={
-              errorName.isActive ? "add-wh__input--invalid" : "add-wh__input"
+              errorName.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
           {errorName.isActive ? (
@@ -166,9 +173,9 @@ export default function EditInventory() {
             isTextarea={true}
             htmlFor="description"
             inputId="description"
-            inputName="Description"
+            inputName="Please enter a brief item description..."
             className={
-              errorName.isActive ? "add-wh__input--invalid" : "add-wh__input"
+              errorName.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
           <InputBox
@@ -178,19 +185,27 @@ export default function EditInventory() {
             inputId="category"
             inputName="Category"
             value1="Electronics"
+            value2="Health"
+            value3="Gear"
+            value4="Apparel"
+            value5="Accessories"
             className={
-              errorCity.isActive ? "add-wh__input--invalid" : "add-wh__input"
+              errorCity.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
         </div>
-        <div className="add-wh__contact-ctr">
-          <h2 className="add-wh__subheader">Item Availability</h2>
+        <div className="add-inv__contact-ctr">
+          <h2 className="add-inv__subheader">Item Availability</h2>
           <InputBox
             isTextarea={false}
             isRadio={true}
             htmlFor="status"
             inputId="status"
             inputName="Status"
+            instockStatus={instockStatus}
+            setInstockStatus={setInstockStatus}
+            outofstockStatus={outofstockStatus}
+            setOutofstockStatus={setOutofstockStatus}
             // onChange={(e) => setContactName(e.target.value)}
           />
           {errorContact.isActive ? (
@@ -202,18 +217,22 @@ export default function EditInventory() {
           ) : null}
           <InputBox
             isTextarea={false}
+            inputName="Quantity"
+          />
+          <InputBox
+            isTextarea={false}
             isDropMenu={true}
             htmlFor=""
             inputId=""
-            inputName=""
+            inputName="Warehouse"
             value1="Manhattan"
             className={
-              errorCity.isActive ? "add-wh__input--invalid" : "add-wh__input"
+              errorCity.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
         </div>
       </div>
-      <div className="add-wh__buttons-ctr">
+      <div className="add-inv__buttons-ctr">
         <CancelButton to="/" />
         <ActionButton isButton={true} name="+ Add item" />
       </div>

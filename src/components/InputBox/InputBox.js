@@ -1,20 +1,17 @@
 import "./InputBox.scss";
-const InputBox = ({
-  isTextarea,
-  isDropMenu,
-  htmlFor,
-  className,
-  inputId,
-  inputName,
-  name,
-  onChange,
-  value,
-  value1,
-  value2,
-  value3,
-  value4,
-  isRadio,
+const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,name,onChange,value,value1,value2,value3,value4,value5,isRadio,setInstockStatus,setOutofstockStatus,instockStatus,outofstockStatus
 }) => {
+
+    const handleInstockClick = () => {
+        setInstockStatus(true);
+        setOutofstockStatus(false)
+    }
+    const handleOutofstockClick = () => {
+        setInstockStatus(false);
+        setOutofstockStatus(true)
+    }
+
+
   if (isRadio) {
     return (
       <div className="radio">
@@ -22,7 +19,14 @@ const InputBox = ({
           <label htmlFor={htmlFor}>{inputName}</label>
         </div>
         <div>
-          <input type="radio" id="inStock" name="status" value="inStock" />
+          <input 
+            type="radio" 
+            id="inStock" 
+            name="status" 
+            value="inStock" 
+            checked={instockStatus}
+            onClick={handleInstockClick}
+          />
           <label className="radio__label radio__label--stock" for="inStock">
             In stock
           </label>
@@ -31,6 +35,8 @@ const InputBox = ({
             id="outOfStock"
             name="status"
             value="outOfStock"
+            checked={outofstockStatus}
+            onClick={handleOutofstockClick}
           />
           <label className="radio__label" for="outOfStock">
             Out of stock
@@ -43,11 +49,13 @@ const InputBox = ({
     return (
       <div className="input">
         <label htmlFor={htmlFor}>{inputName}</label>
-        <select className={`input__box ${className}`}>
+        <select className={`input__box input__dropdown ${className}`}>
+          <option value="" disabled selected>Please select</option>
           <option value="{value1}">{value1}</option>
           <option value="{value2}">{value2}</option>
           <option value="{value3}">{value3}</option>
           <option value="{value4}">{value4}</option>
+          <option value="{value5}">{value5}</option>
         </select>
       </div>
     );
@@ -58,7 +66,7 @@ const InputBox = ({
         <label htmlFor={htmlFor}>{inputName}</label>
         <textarea
           type="text"
-          placeholder="Please enter a brief item description"
+          placeholder={inputName}
           className={`input__text input__textbox ${className}`}
           id={inputId}
           name={name}
