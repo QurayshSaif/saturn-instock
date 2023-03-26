@@ -5,7 +5,6 @@ import Footer from "./components/Footer/Footer";
 import WarehouseList from "./components/WarehouseList/WarehouseList";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
 import AddWarehouse from "./components/AddWarehouse/AddWarehouse";
-import EditInventory from "./components/EditInventory/EditInventory";
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
         <Route path="warehouse/:id" element={<WarehouseDetailsPage />} />
         <Route path="/warehouse" element={<WarehouseList />} />
         <Route path="/warehouse/add" element={<AddWarehouse />} />
-        <Route path="/inventory/:id/edit/" element={<EditInventory />} />
         {/* <Route path="/warehouse/:id/edit" element={ <WarehouseList /> } /> */}
         {/* <Route path="/warehouse/:id/delete" element={ <WarehouseList /> } /> */}
         {/* <Route path="/inventory" element={ <WarehouseList /> } /> */}
