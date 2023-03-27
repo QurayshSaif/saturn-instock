@@ -12,8 +12,7 @@ const WarehouseListPage = () => {
   const [warehouseList, setWarehouseList] = useState([]);
   const warehouseUrl = `${API_URL_BASE}/api/${WAREHOUSE_PATH}`;
 
-  useEffect(() => {
-    document.title = "InStock - Warehouse Overview";
+  const fetchWarehouseList = () => {
     axios
       .get(warehouseUrl)
       .then((res) => {
@@ -22,6 +21,20 @@ const WarehouseListPage = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    document.title = "InStock - Warehouse Overview";
+    // axios
+    //   .get(warehouseUrl)
+    //   .then((res) => {
+    //     setWarehouseList(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    fetchWarehouseList();
   }, []);
 
   return (
@@ -31,6 +44,7 @@ const WarehouseListPage = () => {
 
       {warehouseList.map((warehouse) => (
         <WarehouseTableRow
+          item_name={warehouse.item_name}
           key={warehouse.id}
           id={warehouse.id}
           warehouseName={warehouse.warehouse_name}
@@ -40,6 +54,7 @@ const WarehouseListPage = () => {
           name={warehouse.contact_name}
           phone={warehouse.contact_phone}
           email={warehouse.contact_email}
+          fetchWarehouseList={fetchWarehouseList}
         />
       ))}
     </div>
