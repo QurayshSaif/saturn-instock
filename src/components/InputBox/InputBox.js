@@ -1,21 +1,43 @@
 import "./InputBox.scss";
-const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,name,onChange,value,value1,value2,value3,value4,value5,isRadio,setInstockStatus,setOutofstockStatus,instockStatus,outofstockStatus,type,setQuantity,setErrorQuantity
+
+const InputBox = ({
+  isTextarea,
+  isDropMenu,
+  isDropMenu1,
+  htmlFor,
+  className,
+  inputId,
+  inputName,
+  name,
+  onChange,
+  value,
+  options = [],
+  classInputBox,
+  value1,
+  value2,
+  value3,
+  value4,
+  value5,
+  isRadio,
+  setInstockStatus,
+  setOutofstockStatus,
+  instockStatus,
+  outofstockStatus,
+  type,
+  setQuantity,
+  setErrorQuantity,
 }) => {
-
-    const handleInstockClick = () => {
-        setInstockStatus(true);
-        setOutofstockStatus(false)
-        setQuantity(1);
-    }
-    const handleOutofstockClick = () => {
-        setInstockStatus(false);
-        setOutofstockStatus(true);
-        setQuantity("0");
-        setErrorQuantity(false);
-    }
-
-  
-
+  const handleInstockClick = () => {
+    setInstockStatus(true);
+    setOutofstockStatus(false);
+    setQuantity(1);
+  };
+  const handleOutofstockClick = () => {
+    setInstockStatus(false);
+    setOutofstockStatus(true);
+    setQuantity("0");
+    setErrorQuantity(false);
+  };
 
   if (isRadio) {
     return (
@@ -24,11 +46,11 @@ const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,nam
           <label htmlFor={htmlFor}>{inputName}</label>
         </div>
         <div>
-          <input 
-            type="radio" 
-            id="inStock" 
-            name="status" 
-            value="inStock" 
+          <input
+            type="radio"
+            id="inStock"
+            name="status"
+            value="inStock"
             checked={instockStatus}
             onChange={handleInstockClick}
           />
@@ -50,15 +72,34 @@ const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,nam
       </div>
     );
   }
-  if (isDropMenu) {
+  if (isDropMenu1) {
     return (
       <div className="input">
         <label htmlFor={htmlFor}>{inputName}</label>
-        <select 
-            value={value}
-            onChange={onChange}
-            className={`input__box input__dropdown ${className}`}>
-          <option value="" disabled>Please select</option>
+        <select
+          className={`input__box ${className}`}
+          value={value}
+          onChange={onChange}
+        >
+          <option value="">Please select</option>
+          {options.map((opt) => (
+            <option key={opt.id} value={opt.id}>
+              {opt.value}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
+
+  if (isDropMenu) {
+    return (
+      <div>
+        <select
+          className={`input__box ${className}`}
+          value={value}
+          onChange={onChange}
+        >
           <option value={value1}>{value1}</option>
           <option value={value2}>{value2}</option>
           <option value={value3}>{value3}</option>
@@ -68,6 +109,7 @@ const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,nam
       </div>
     );
   }
+
   if (isTextarea) {
     return (
       <div className="input">
@@ -85,7 +127,7 @@ const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,nam
     );
   }
   return (
-    <div className="input">
+    <div className={`input ${classInputBox}`}>
       <label htmlFor={htmlFor}>{inputName}</label>
       <input
         type={type}
@@ -99,4 +141,5 @@ const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,nam
     </div>
   );
 };
+
 export default InputBox;
