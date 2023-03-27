@@ -3,9 +3,11 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WarehouseList from "./components/WarehouseList/WarehouseList";
+import InventoryList from "./components/InventoryList/InventoryList";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
 import AddWarehouse from "./components/AddWarehouse/AddWarehouse";
 import EditInventory from "./pages/EditInventory/EditInventory";
+import AddInventory from "./components/AddInventory/AddInventory";
 
 function App() {
   return (
@@ -16,13 +18,13 @@ function App() {
         <Route path="warehouse/:id" element={<WarehouseDetailsPage />} />
         <Route path="/warehouse" element={<WarehouseList />} />
         <Route path="/warehouse/add" element={<AddWarehouse />} />
-        {/* <Route path="/warehouse/:id/edit" element={ <WarehouseList /> } /> */}
-        {/* <Route path="/warehouse/:id/delete" element={ <WarehouseList /> } /> */}
-        {/* <Route path="/inventory" element={ <WarehouseList /> } /> */}
-        {/* <Route path="/inventory/add" element={ <WarehouseList /> } /> */}
-        {/* <Route path="/inventory/:id" element={ <WarehouseList /> } /> */}
+        <Route path="/warehouse/:id/edit" element={<WarehouseList />} />
+        <Route path="/warehouse/:id/delete" element={<WarehouseList />} />
+        <Route path="/inventory" element={<InventoryList />} />
+        <Route path="/inventory/add" element={<AddInventory />} />
+        <Route path="/inventory/:id" element={<InventoryList />} />
         <Route path="/inventory/:id/edit" element={<EditInventory />} />
-        {/* <Route path="/inventory/:id/delete" element={ <WarehouseList /> } /> */}
+        <Route path="/inventory/:id/delete" element={<InventoryList />} />
       </Routes>
       <Footer />
     </BrowserRouter>
