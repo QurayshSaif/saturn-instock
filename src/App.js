@@ -9,6 +9,7 @@ import AddWarehouse from "./components/AddWarehouse/AddWarehouse";
 import EditInventory from "./pages/EditInventory/EditInventory";
 import AddInventory from "./components/AddInventory/AddInventory";
 import EditWarehouse from "./components/EditWarehouse/EditWarehouse";
+import InventoryItemDetails from "./components/InventoryItemDetails/InventoryItemDetails";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path="/warehouse/:id/delete" element={<WarehouseList />} />
         <Route path="/inventory" element={<InventoryList />} />
         <Route path="/inventory/add" element={<AddInventory />} />
-        <Route path="/inventory/:id" element={<InventoryList />} />
+        <Route path="/inventory/:id" element={<InventoryItemDetails />} />
         <Route path="/inventory/:id/edit" element={<EditInventory />} />
         <Route path="/inventory/:id/delete" element={<InventoryList />} />
       </Routes>
