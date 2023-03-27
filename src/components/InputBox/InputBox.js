@@ -3,7 +3,6 @@ import "./InputBox.scss";
 const InputBox = ({
   isTextarea,
   isDropMenu,
-  isInputBox,
   isDropMenu1,
   htmlFor,
   className,
@@ -13,8 +12,6 @@ const InputBox = ({
   onChange,
   value,
   options = [],
-  isRadio,
-  defaultValue,
   classInputBox,
   value1,
   value2,

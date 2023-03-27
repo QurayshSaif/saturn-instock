@@ -151,7 +151,7 @@ export default function EditInventory() {
 
           <InputBox
             isTextarea={false}
-            isDropMenu={true}
+            isDropMenu1={true}
             htmlFor="category"
             inputId="category"
             inputName="Category"
@@ -178,16 +178,6 @@ export default function EditInventory() {
 
         <div className="edit-inventory__contact-ctr">
           <h2 className="edit-inventory__subheader">Item Availability</h2>
-
-          {/* <InputBox
-            isTextarea={false}
-            isRadio={true}
-            htmlFor="status"
-            inputId="status"
-            inputName="Status"
-            defaultValue={inventory.status}
-            onChange={(e) => setStatus(e.target.value)}
-          /> */}
 
           <div className="radio">
             <div className="radio__title">
@@ -246,7 +236,7 @@ export default function EditInventory() {
           )}
           <InputBox
             isTextarea={false}
-            isDropMenu={true}
+            isDropMenu1={true}
             htmlFor="Warehouse"
             inputId="Warehouse"
             inputName="Warehouse"
