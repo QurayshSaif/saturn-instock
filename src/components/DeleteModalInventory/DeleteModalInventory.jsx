@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 const DeleteModalInventory = ({ fetchWarehouseList, to, id, item_name }) => {
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
   return (
     <div>
       <Link to={to}>
@@ -20,7 +19,9 @@ const DeleteModalInventory = ({ fetchWarehouseList, to, id, item_name }) => {
             fetchWarehouseList={fetchWarehouseList}
             setShowModal={setShowModal}
             id={id}
-            onClose={() => setShowModal(false)}
+            onClose={() => 
+              setShowModal(false)
+            }
           />,
           document.body
         )}

@@ -13,7 +13,7 @@ const ModalContent = ({
   return (
     <div className="modal">
       <div className="modal__content">
-        <CloseButton onClick={onClose} className="modal__close" />
+        <CloseButton onClick={() => onClose()} className="modal__close" />
         <div className="modal__text-flex">
           <h1>{`Delete ${item_name} inventory item?`}</h1>
           <p>
@@ -22,7 +22,10 @@ const ModalContent = ({
           </p>
         </div>
         <div className="modal__button-flex">
-          <CancelButton onClick={onClose} />
+          <CancelButton 
+            to="/warehouse" 
+            onClick={() => onClose()} 
+          />
           <DeleteButton
             fetchWarehouseList={fetchWarehouseList}
             setShowModel={setShowModel}
