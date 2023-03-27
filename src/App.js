@@ -16,6 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+      {/* <MixinReference /> */}
       <Routes>
         <Route path="/" element={<WarehouseListPage />} />
         <Route path="warehouse/:id" element={<WarehouseDetailsPage />} />
