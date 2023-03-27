@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import WarehouseList from "./components/WarehouseList/WarehouseList";
+import WarehouseListPage from "./pages/WarehouseListPage/WarehouseListPage";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
 import AddWarehouse from "./components/AddWarehouse/AddWarehouse";
+// import InventoryItemDetails from './components/InventoryItemDetails/InventoryItemDetails'
 
 
 function App() {
@@ -12,17 +13,17 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={ <WarehouseList /> } />
-        <Route path="warehouse/:id" element={ <WarehouseDetailsPage /> } />
-        <Route path="/warehouse" element={ <WarehouseList /> } />
-        <Route path="/warehouse/add" element={ <AddWarehouse /> } />
-        {/* <Route path="/warehouse/:id/edit" element={ <WarehouseList /> } /> */ }
-        {/* <Route path="/warehouse/:id/delete" element={ <WarehouseList /> } /> */ }
-        {/* <Route path="/inventory" element={ <WarehouseList /> } /> */ }
-        {/* <Route path="/inventory/add" element={ <WarehouseList /> } /> */ }
-        {/* <Route path="/inventory/:id" element={ <WarehouseList /> } /> */ }
-        {/* <Route path="/inventory/:id/edit" element={ <WarehouseList /> } /> */ }
-        {/* <Route path="/inventory/:id/delete" element={ <WarehouseList /> } /> */ }
+        <Route path="/" element={<WarehouseListPage />} />
+        <Route path="warehouse/:id" element={<WarehouseDetailsPage />} />
+        <Route path="/warehouse" element={<WarehouseListPage />} />
+        <Route path="/warehouse/add" element={<AddWarehouse />} />
+        {/* <Route path="/warehouse/:id/edit" element={ <WarehouseList /> } /> */}
+        {/* <Route path="/warehouse/:id/delete" element={ <WarehouseList /> } /> */}
+        {/* <Route path="/inventory" element={ <InventoryItemDetails /> } /> */}
+        {/* <Route path="/inventory/add" element={ <WarehouseList /> } /> */}
+        {/* <Route path="/inventory/:id" element={<InventoryItemDetails />} /> */}
+        {/* <Route path="/inventory/:id/edit" element={ <WarehouseList /> } /> */}
+        {/* <Route path="/inventory/:id/delete" element={ <WarehouseList /> } /> */}
       </Routes>
       <Footer />
     </BrowserRouter>
