@@ -1,0 +1,32 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.inventory__columns {
+
+	display: none;
+
+	@include tablet-viewport {
+		background-color: $light-grey;
+		display: flex;
+		align-items: baseline;
+		padding: 0.5rem 0;
+		justify-content: space-evenly;
+
+		>h4 {
+			margin: 0;
+			display: flex;
+			// padding: 0.5rem 0;
+			align-items: center;
+			@include h4-type-table-header;
+			color: $slate;
+			font-weight: 600;
+
+			>img {
+				// padding: 0 1rem;
+				width: 1rem;
+			}
+		}
+	}
+}

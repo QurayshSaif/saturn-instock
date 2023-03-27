@@ -1,0 +1,27 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.inventory {
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 1rem;
+		width: 90%;
+        background-color: white;
+
+		@include tablet-viewport {
+			margin: 2rem;
+		}
+
+		@include desktop-viewport {
+			margin: 0 auto;
+			padding: 2rem;
+			max-width: 64rem;
+		}
+
+	}
+}
