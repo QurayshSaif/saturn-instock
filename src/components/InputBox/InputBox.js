@@ -3,6 +3,7 @@ import "./InputBox.scss";
 const InputBox = ({
   isTextarea,
   isDropMenu,
+  isInputBox,
   htmlFor,
   className,
   inputId,
@@ -10,15 +11,10 @@ const InputBox = ({
   name,
   onChange,
   value,
-  value1,
-  value2,
-  value3,
-  value4,
-  value5,
-  value6,
-  value7,
+  options = [],
   isRadio,
   defaultValue,
+  classInputBox,
 }) => {
   if (isRadio) {
     return (
@@ -62,15 +58,13 @@ const InputBox = ({
           className={`input__box ${className}`}
           value={value}
           onChange={onChange}
-          selected={defaultValue}
         >
-          <option value={value1}>{value1}</option>
-          <option value={value2}>{value2}</option>
-          <option value={value3}>{value3}</option>
-          <option value={value4}>{value4}</option>
-          <option value={value5}>{value5}</option>
-          <option value={value6}>{value6}</option>
-          <option value={value7}>{value7}</option>
+          <option value="">Please select</option>
+          {options.map((opt) => (
+            <option key={opt.id} value={opt.id}>
+              {opt.value}
+            </option>
+          ))}
         </select>
       </div>
     );
@@ -87,13 +81,13 @@ const InputBox = ({
           name={name}
           value={value}
           onChange={onChange}
-          defaultValue={defaultValue}
+          // defaultValue={defaultValue}
         ></textarea>
       </div>
     );
   }
   return (
-    <div className="input">
+    <div className={`input ${classInputBox}`}>
       <label htmlFor={htmlFor}>{inputName}</label>
       <input
         type="text"
@@ -102,8 +96,8 @@ const InputBox = ({
         id={inputId}
         name={name}
         value={value}
+        // defaultValue={defaultValue}
         onChange={onChange}
-        defaultValue={defaultValue}
       ></input>
     </div>
   );
