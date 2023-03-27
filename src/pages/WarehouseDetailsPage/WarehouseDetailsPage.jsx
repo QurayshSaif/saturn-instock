@@ -4,6 +4,7 @@ import WarehouseContactInfo from "../../components/WarehouseContactInfo/Warehous
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import InventoryList from "../../components/InventoryList/InventoryList";
 
 export default function WarehouseDetailsPage() {
   const { id } = useParams();
@@ -11,7 +12,7 @@ export default function WarehouseDetailsPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/warehouses/${id}`)
+      .get(`http://localhost:8080/api/warehouses/${id}`)
       .then((res) => {
         setWarehouse(res.data);
         console.log(res.data);
