@@ -1,7 +1,9 @@
 import "./InputBox.scss";
+
 const InputBox = ({
   isTextarea,
   isDropMenu,
+  isDropMenu1,
   htmlFor,
   className,
   inputId,
@@ -9,6 +11,8 @@ const InputBox = ({
   name,
   onChange,
   value,
+  options = [],
+  classInputBox,
   value1,
   value2,
   value3,
@@ -39,10 +43,29 @@ const InputBox = ({
       </div>
     );
   }
-  if (isDropMenu) {
+  if (isDropMenu1) {
     return (
       <div className="input">
         <label htmlFor={htmlFor}>{inputName}</label>
+        <select
+          className={`input__box ${className}`}
+          value={value}
+          onChange={onChange}
+        >
+          <option value="">Please select</option>
+          {options.map((opt) => (
+            <option key={opt.id} value={opt.id}>
+              {opt.value}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
+
+  if (isDropMenu) {
+    return (
+      <div>
         <select className={`input__box ${className}`}>
           <option value="{value1}">{value1}</option>
           <option value="{value2}">{value2}</option>
@@ -52,6 +75,7 @@ const InputBox = ({
       </div>
     );
   }
+
   if (isTextarea) {
     return (
       <div className="input">
@@ -69,7 +93,7 @@ const InputBox = ({
     );
   }
   return (
-    <div className="input">
+    <div className={`input ${classInputBox}`}>
       <label htmlFor={htmlFor}>{inputName}</label>
       <input
         type="text"
@@ -83,4 +107,5 @@ const InputBox = ({
     </div>
   );
 };
+
 export default InputBox;

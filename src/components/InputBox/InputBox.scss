@@ -1,7 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+
 .radio {
- 
   font-size: 0.8125rem;
   font-weight: 600;
   color: $instock-black;
@@ -58,26 +58,10 @@
       width: 100%;
       font-size: $t-p2-size;
       font-weight: 400;
+      height: 6rem;
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.hideQuantity {
+  display: none;
+}
