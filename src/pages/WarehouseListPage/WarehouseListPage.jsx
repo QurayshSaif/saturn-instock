@@ -1,13 +1,13 @@
-import "./WarehouseList.scss";
+import "./WarehouseListPage.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import WarehouseListHeader from "../WarehouseListHeader/WarehouseListHeader";
-import WarehouseTableColumns from "../WarehouseTableColumns/WarehouseTableColumns";
-import WarehouseTableRow from "../WarehouseTableRow/WarehouseTableRow";
+import WarehouseTableColumns from "../../components/WarehouseTableColumns/WarehouseTableColumns";
+import WarehouseTableRow from "../../components/WarehouseTableRow/WarehouseTableRow";
 import { API_URL_BASE, WAREHOUSE_PATH } from "../../utils/utils";
 import axios from "axios";
+import WarehouseListHeader from "../../components/WarehouseListHeader/WarehouseListHeader";
 
-const WarehouseList = () => {
+const WarehouseListPage = () => {
   // const {id} = useParams()
   const [warehouseList, setWarehouseList] = useState([]);
   const warehouseUrl = `${API_URL_BASE}/api/${WAREHOUSE_PATH}`;
@@ -46,4 +46,4 @@ const WarehouseList = () => {
   );
 };
 
-export default WarehouseList;
+export default WarehouseListPage;

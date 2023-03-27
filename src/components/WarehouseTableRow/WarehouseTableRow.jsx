@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const WarehouseTableRow = (props) => {
   return (
-    // <div className="mobile__container">
     <div className="warehouse__row mobile__container">
       <div className="mobile__left">
         <div className="warehouse__block warehouse__name warehouse__mobile warehouse__left">
@@ -43,7 +42,6 @@ const WarehouseTableRow = (props) => {
         </Link>
       </div>
     </div>
-    // </div >
   );
 };
 
