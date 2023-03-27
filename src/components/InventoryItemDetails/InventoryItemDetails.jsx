@@ -10,7 +10,6 @@ const InventoryItemDetails = () => {
 
 	const {id} = useParams();
 	const [inventoryItem, setInventoryItem] = useState([])
-	// const [documentTitle, setDocumentTitle] = useState()
 	const inventoryItemUrl = `${API_URL_BASE}/${INVENTORIES_PATH}`
 
 	useEffect(() => {
@@ -38,35 +37,28 @@ const InventoryItemDetails = () => {
 					<Link to={`/inventory/${id}/edit`} className="edit__btn"><img src={editWhiteSvg} alt="edit" className="edit__img" /><span className="edit__span">Edit</span></Link>
 				</div>
 				<div className="item__details">
-					<div className="item__tablet-container">
-						<div className="tablet-container__left">
-							<div className="item__description">
-								<h4>item description:</h4>
-								<p className='p2--description'>{inventoryItem.description}</p>
-							</div>
-							<div className="item__category">
-								<h4>category:</h4>
-								<p className='p2--category'>{inventoryItem.category}</p>
-							</div>
+					<div className="item__description">
+						<h4>item description:</h4>
+						<p className='p2--description'>{inventoryItem.description}</p>
+					</div>
+					<div className="item__category">
+						<h4>category:</h4>
+						<p className='p2--category'>{inventoryItem.category}</p>
+					</div>
+					<div className="item__stat-quant-flex">
+						<div className="item__status">
+							<h4>status:</h4>
+							<p
+								className={`${inventoryItem.status === "Out of Stock" ? "item__out" : "item__in"}`}>{inventoryItem.status}</p>
 						</div>
-						<div className="tablet-container__right">
-							<div className="item__stat-quant-empty-flex">
-								<div className="item__status">
-									<h4>status:</h4>
-									<p
-										className={`${inventoryItem.status === "Out of Stock" ? "item__out" : "item__in"}`}>{inventoryItem.status}</p>
-								</div>
-								<div className="item__quantity">
-									<h4>quantity:</h4>
-									<p className='p2'>{inventoryItem.quantity}</p>
-								</div>
-								<div className="item__empty"></div>
-							</div>
-							<div className="item__warehouse">
-								<h4>warehouse:</h4>
-								<p className='p2'>{inventoryItem.warehouse_id}</p>
-							</div>
+						<div className="item__quantity">
+							<h4>quantity:</h4>
+							<p className='p2'>{inventoryItem.quantity}</p>
 						</div>
+					</div>
+					<div className="item__warehouse">
+						<h4>warehouse:</h4>
+						<p className='p2'>{inventoryItem.warehouse_id}</p>
 					</div>
 				</div>
 			</div>
