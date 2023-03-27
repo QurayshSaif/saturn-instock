@@ -10,7 +10,7 @@ import axios from "axios";
 const WarehouseList = () => {
   // const {id} = useParams()
   const [warehouseList, setWarehouseList] = useState([]);
-  const warehouseUrl = `${API_URL_BASE}/${WAREHOUSE_PATH}`;
+  const warehouseUrl = `${API_URL_BASE}/api/${WAREHOUSE_PATH}`;
 
   useEffect(() => {
     document.title = "InStock - Warehouse Overview";

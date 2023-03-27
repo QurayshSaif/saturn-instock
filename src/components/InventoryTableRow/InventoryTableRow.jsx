@@ -9,7 +9,7 @@ const InventoryTableRow = (props) => {
     <div className="inventory__row">
       <div className="inventory__item">
         <p>
-          {props.inventory_item}
+          {props.inventoryItem}
           <img src={chevronSvg} alt="link" />
         </p>
       </div>

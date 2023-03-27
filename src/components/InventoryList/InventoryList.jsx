@@ -8,12 +8,11 @@ import { useParams } from "react-router-dom";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
-  const { id } = useParams();
 
   useEffect(() => {
     document.title = "InStock - Inventory list";
     axios
-      .get(`http://localhost:8080/api/warehouses/${id}/inventories`)
+      .get(`http://localhost:8080/api/inventories`)
       .then((res) => {
         setInventoryList(res.data);
         console.log(res.data);
@@ -32,11 +31,11 @@ const InventoryList = () => {
         <InventoryTableRow
           key={inventory.id}
           id={inventory.id}
-          inventoryItem={inventory.inventory_item}
+          inventoryItem={inventory.item_name}
           category={inventory.category}
           status={inventory.status}
           quantity={inventory.quantity}
-          warehouse={inventory.warehouse}
+          warehouse={inventory.warehouse_name}
         />
       ))}
     </div>
