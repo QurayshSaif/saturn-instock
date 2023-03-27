@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./InputBox.scss";
 const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,name,onChange,value,value1,value2,value3,value4,value5,isRadio,setInstockStatus,setOutofstockStatus,instockStatus,outofstockStatus,type,setQuantity,setErrorQuantity
 }) => {
@@ -11,7 +10,7 @@ const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,nam
     const handleOutofstockClick = () => {
         setInstockStatus(false);
         setOutofstockStatus(true);
-        setQuantity(0);
+        setQuantity("0");
         setErrorQuantity(false);
     }
 
@@ -31,9 +30,9 @@ const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,nam
             name="status" 
             value="inStock" 
             checked={instockStatus}
-            onClick={handleInstockClick}
+            onChange={handleInstockClick}
           />
-          <label className="radio__label radio__label--stock" for="inStock">
+          <label className="radio__label radio__label--stock" htmlFor="inStock">
             In stock
           </label>
           <input
@@ -42,9 +41,9 @@ const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,nam
             name="status"
             value="outOfStock"
             checked={outofstockStatus}
-            onClick={handleOutofstockClick}
+            onChange={handleOutofstockClick}
           />
-          <label className="radio__label" for="outOfStock">
+          <label className="radio__label" htmlFor="outOfStock">
             Out of stock
           </label>
         </div>
@@ -59,7 +58,7 @@ const InputBox = ({isTextarea,isDropMenu,htmlFor,className,inputId,inputName,nam
             value={value}
             onChange={onChange}
             className={`input__box input__dropdown ${className}`}>
-          <option value="" disabled selected>Please select</option>
+          <option value="" disabled>Please select</option>
           <option value={value1}>{value1}</option>
           <option value={value2}>{value2}</option>
           <option value={value3}>{value3}</option>

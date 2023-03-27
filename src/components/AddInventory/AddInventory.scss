@@ -13,8 +13,6 @@
         @include desktop-viewport {
             width: 75rem;
             margin: auto;
-
-
         }
 
     &__header-ctr {
@@ -31,7 +29,6 @@
 
             @include desktop-viewport {
                 padding-left: 2.25rem;
-
             }
     }
 
@@ -122,5 +119,12 @@
             @include tablet-viewport {
                 justify-content: flex-end;
             }
+    }
+
+    &__quantity {
+
+        @include desktop-viewport {
+            width: 110px;
+        }
     }
 }

@@ -6,15 +6,19 @@ import InputBox from "../InputBox/InputBox";
 import "./AddInventory.scss";
 import axios from "axios";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { useNavigate } from "react-router-dom";
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function EditInventory() {
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/api/warehouses`)
     .then((results) => {
      setWarehouseData(results.data)
     })
+    .catch((error) => console.log("Error: ",error));
   }, [])
 
   const [warehouseData, setWarehouseData] = useState(null);
@@ -26,7 +30,6 @@ export default function EditInventory() {
   const [outofstockStatus, setOutofstockStatus] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [warehouseName, setWarehouseName] = useState("");
-
   const [errorItemName, setErrorItemName] = useState({
     isActive: false,
     message: "",
@@ -43,30 +46,14 @@ export default function EditInventory() {
     isActive: false,
     message: "",
   });
-  // const [errorContact, setErrorContact] = useState({
-  //   isActive: false,
-  //   message: "default",
-  // });
-  // const [errorPhone, setErrorPhone] = useState({
-  //   isActive: false,
-  //   message: "default",
-  // });
-  // const [errorPosition, setErrorPosition] = useState({
-  //   isActive: false,
-  //   message: "default",
-  // });
-  // const [errorEmail, setErrorEmail] = useState({
-  //   isActive: false,
-  //   message: "default",
-  // });
-
- 
+  const [errorWarehouseName, setErrorWarehouseName] = useState({
+    isActive: false,
+    message: "",
+  });
 
   const notEmpty = () => {
     if (itemName.length < 1) {
-      setErrorItemName({
-        isActive: true,
-        message: "This field is required",
+      setErrorItemName({isActive: true, message: "This field is required",
       });
     } else {
       setErrorItemName({ isActive: false, message: "" });
@@ -81,58 +68,59 @@ export default function EditInventory() {
     } else {
       setErrorCategory({ isActive: false, message: "" });
     }
-    if (quantity.length < 1 && instockStatus === true && outofstockStatus === false) {
-      setErrorQuantity({ isActive: true, message: "The quantity must be greater than 0 or choose Out of stock" });
+    if (quantity < 1 && instockStatus === true && outofstockStatus === false) {
+      setErrorQuantity({ isActive: true, message: "Must be > 0 or choose Out of stock" });
     } else {
       setErrorQuantity({ isActive: false, message: "" });
     }
-    // if (contactName.length < 1) {
-    //   setErrorContact({ isActive: true, message: "This field is required" });
-    // } else {
-    //   setErrorContact({ isActive: false, message: "" });
-    // }
-    // if (position.length < 1) {
-    //   setErrorPosition({ isActive: true, message: "This field is required" });
-    // } else {
-    //   setErrorPosition({ isActive: false, message: "" });
-    // }
-    // if (phoneNumber.length < 1) {
-    //   setErrorPhone({ isActive: true, message: "This field is required" });
-    // } else {
-    //   setErrorPhone({ isActive: false, message: "" });
-    // }
-    // if (email.length < 1) {
-    //   setErrorEmail({ isActive: true, message: "This field is required" });
-    // } else {
-    //   setErrorEmail({ isActive: false, message: "" });
-    // }
+    if (warehouseName.length < 1) {
+      setErrorWarehouseName({ isActive: true, message: "Choose a category" });
+    } else {
+      setErrorWarehouseName({ isActive: false, message: "" });
+    }
   };
 
+  const isQuantityValid = () => {
+      if (quantity < 1 && instockStatus === true && outofstockStatus === false) {
+        return false
+      }
+    return true
+  }
+
   const isFormValid = () => {
-    // if (
-    //   email.length < 1 &&
-    //   phoneNumber.length < 1 &&
-    //   position.length < 1 &&
-    //   contactName.length < 1 &&
-    //   country.length < 1 &&
-    //   city.length < 1 &&
-    //   address.length < 1 &&
-    //   Name.length < 1
-    // ) {
-    //   return false;
-    // }
-    // if (!isPhoneValid()) {
-    //   return false;
-    // }
-    // if (!isEmailValid()) {
-    //   return false;
-    // }
-    // return true;
+    if (
+      itemName.length < 1 &&
+      description.length < 1 &&
+      category.length < 1 &&
+      warehouseName.length < 1
+    ) {
+      return false;
+    }
+    if (!isQuantityValid()) {
+      return false
+    }
+    return true
   };
 
   const handleOnsubmit = (event) => {
     event.preventDefault();
     notEmpty();
+
+    if(isFormValid()) {
+      axios.post(`${REACT_APP_SERVER_URL}/api/inventories`, 
+        {
+          warehouse_id: warehouseName,
+          item_name: itemName,
+          description: description,
+          category: category,
+          status: `${instockStatus ? "In Stock" : "Out of Stock"}`,
+          quantity: quantity
+        })
+          .then(() => {
+            navigate("/inventory")
+          })
+          .catch((error) => console.log("Error: ",error));
+    }
   }
 
   return (
@@ -141,7 +129,7 @@ export default function EditInventory() {
       onSubmit={handleOnsubmit}  
     >
       <div className="add-inv__header-ctr">
-        <GoBackButton path="/" />
+        <GoBackButton path="/inventory" />
         <h1 className="add-inv__header">Add New Inventory Item</h1>
       </div>
       <div className="add-inv__details-ctr">
@@ -221,18 +209,14 @@ export default function EditInventory() {
             setQuantity={setQuantity}
             setErrorQuantity={setErrorQuantity}
           />
-          {/* {errorContact.isActive ? (
-            <ErrorMessage
-              isNotError={false}
-              text={errorContact.message}
-              className={"error--active"}
-            />
-          ) : null} */}
           {instockStatus ? 
             (<InputBox
             isTextarea={false}
             type="number"
             inputName="Quantity"
+            className={
+              errorQuantity.isActive ? "add-inv__input--invalid add-inv__quantity" : "add-inv__input add-inv__quantity"
+            }
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
             />
@@ -244,41 +228,41 @@ export default function EditInventory() {
               className={"error--active"}
             />
           ) : null}
-          {/* <InputBox
-            isTextarea={false}
-            isDropMenu={true}
-            htmlFor=""
-            inputId=""
-            inputName="Warehouse"
-            value1="Manhattan"
-            className={
-              errorCity.isActive ? "add-inv__input--invalid" : "add-inv__input"
-            }
-          /> */}
           {warehouseData ? (
-            <div className="input">
+            <div 
+              className="input"
+            >
               <label htmlFor="warehouseName">Warehouse</label>
               <select 
-                className={`input__box input__dropdown`}
+                className={
+                  errorWarehouseName.isActive ? "input__box input__dropdown add-inv__input--invalid" : "input__box input__dropdown add-inv__input"
+                }
                 name="warehouseName"
                 onChange={(e) => setWarehouseName(e.target.value)}
                 value={warehouseName}
               >
-                <option value="" disabled selected>Please select</option>
+                <option value="" disabled>Please select</option>
                 {warehouseData.map(data => {
                     return (
-                      <option key={data.id}>{data.warehouse_name}</option>
+                      <option key={data.id} value={data.id}>{data.warehouse_name}</option>
                     )
                   })
                 }
               </select>
             </div>
-            ) : null
-            }
+            ) : null}
+            {errorWarehouseName.isActive ? (
+            <ErrorMessage
+              isNotError={false}
+              text={errorWarehouseName.message}
+              className={"error--active"}
+            />
+          ) : null}
+
         </div>
       </div>
       <div className="add-inv__buttons-ctr">
-        <CancelButton to="/" />
+        <CancelButton to="/inventory" />
         <ActionButton isButton={true} name="+ Add item" />
       </div>
     </form>

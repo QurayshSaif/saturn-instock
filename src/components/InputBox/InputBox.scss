@@ -21,6 +21,10 @@
 
         &--stock {
           margin-right: 5rem;
+
+          @include tablet-viewport {
+          margin-right: 44px;
+          }
         }
   }
 }
