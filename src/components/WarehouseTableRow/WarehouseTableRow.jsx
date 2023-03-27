@@ -2,8 +2,10 @@ import "./WarehouseTableRow.scss";
 import chevronSvg from "../../assets/icons/chevron_right-24px.svg";
 import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
 import editSvg from "../../assets/icons/edit-24px.svg";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import DeleteModalInventory from "../DeleteModalInventory/DeleteModalInventory";
+import { useEffect } from "react";
+import axios from "axios";
 
 const WarehouseTableRow = (props) => {
   return (
@@ -35,12 +37,13 @@ const WarehouseTableRow = (props) => {
         </div>
       </div>
       <div className="warehouse__block warehouse__block--actions mobile__bottom">
-        {/* <Link to={`/warehouse/${props.id}/delete`}><img src={deleteSvg} alt="delete" /></Link> */}
-        <DeleteModalInventory />
-        {/* <Link to={`/warehouse/${props.id}/edit`}><img src={editSvg} alt="edit" /></Link> */}
-        <Link to={`/warehouse/${props.id}/delete`}>
-          <img src={deleteSvg} alt="delete" />
-        </Link>
+        <DeleteModalInventory
+          item_name={props.warehouse_name}
+          fetchWarehouseList={props.fetchWarehouseList}
+          id={props.id}
+          to={`/warehouse/${props.id}/delete`}
+        />
+
         <Link to={`/warehouse/${props.id}/edit`}>
           <img src={editSvg} alt="edit" />
         </Link>
