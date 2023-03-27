@@ -1,22 +1,22 @@
 import "./InventoryList.scss";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import InventoryListHeader from "../InventoryListHeader/InventoryListHeader";
 import InventoryTableColumns from "../InventoryTableColumns/InventoryTableColumns";
 import InventoryTableRow from "../InventoryTableRow/InventoryTableRow";
-import { API_URL_BASE, INVENTORIES_PATH } from "../../utils/utils";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
-  const inventoryUrl = `${API_URL_BASE}/${INVENTORIES_PATH}`;
+  const { id } = useParams();
 
   useEffect(() => {
-    document.title = "InStock - Warehouse Overview";
+    document.title = "InStock - Inventory list";
     axios
-      .get(inventoryUrl)
+      .get(`http://localhost:8080/api/warehouses/${id}/inventories`)
       .then((res) => {
         setInventoryList(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
