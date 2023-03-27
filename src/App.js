@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <MixinReference />
+      {/* <MixinReference /> */}
       <Routes>
         <Route path="/" element={<WarehouseList />} />
         <Route path="warehouse/:id" element={<WarehouseDetailsPage />} />
