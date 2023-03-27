@@ -8,6 +8,7 @@ import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsP
 import AddWarehouse from "./components/AddWarehouse/AddWarehouse";
 import EditInventory from "./pages/EditInventory/EditInventory";
 import AddInventory from "./components/AddInventory/AddInventory";
+import EditWarehouse from "./components/EditWarehouse/EditWarehouse";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="warehouse/:id" element={<WarehouseDetailsPage />} />
         <Route path="/warehouse" element={<WarehouseList />} />
         <Route path="/warehouse/add" element={<AddWarehouse />} />
-        <Route path="/warehouse/:id/edit" element={<WarehouseList />} />
+        <Route path="/warehouse/:id/edit" element={<EditWarehouse />} />
         <Route path="/warehouse/:id/delete" element={<WarehouseList />} />
         <Route path="/inventory" element={<InventoryList />} />
         <Route path="/inventory/add" element={<AddInventory />} />

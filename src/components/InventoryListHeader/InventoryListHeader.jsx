@@ -1,4 +1,5 @@
 import "./InventoryListHeader.scss";
+import { Link } from "react-router-dom";
 
 const InventoryListHeader = () => {
   return (
@@ -11,7 +12,7 @@ const InventoryListHeader = () => {
           id="search"
           placeholder="Search..."
         />
-        <a href="/">+ Add New Item</a>
+        <Link to="/inventory/add">+ Add New Item</Link>
       </div>
     </div>
   );

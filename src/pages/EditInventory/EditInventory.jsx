@@ -5,13 +5,14 @@ import InputBox from "../../components/InputBox/InputBox";
 import "./EditInventory.scss";
 import axios from "axios";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-// import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function EditInventory() {
+  const navigate = useNavigate();
   const [itemName, setItemName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -96,6 +97,9 @@ export default function EditInventory() {
           warehouse_id: warehouse,
           id,
         })
+        .then((results) => {
+          navigate("/inventory");
+        })
         .catch((error) => console.log("Error: ", error));
     }
   };
@@ -103,7 +107,7 @@ export default function EditInventory() {
   return (
     <form className="edit-inventory" onSubmit={handleSubmit}>
       <div className="edit-inventory__header-ctr">
-        <GoBackButton path="/" />
+        <GoBackButton path="/inventory" />
         <h1 className="edit-inventory__header">Edit Inventory Item</h1>
       </div>
       <div className="edit-inventory__details-ctr">
@@ -256,7 +260,7 @@ export default function EditInventory() {
         </div>
       </div>
       <div className="edit-inventory__buttons-ctr">
-        <CancelButton to="/" />
+        <CancelButton to="/inventory" />
         <ActionButton isButton={true} name="Save" />
       </div>
     </form>

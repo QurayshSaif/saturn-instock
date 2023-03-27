@@ -2,7 +2,7 @@ import "./InventoryTableRow.scss";
 import chevronSvg from "../../assets/icons/chevron_right-24px.svg";
 import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
 import editSvg from "../../assets/icons/edit-24px.svg";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const InventoryTableRow = (props) => {
   return (
@@ -25,7 +25,9 @@ const InventoryTableRow = (props) => {
       </div>
       <div className="inventory__actions">
         <img src={deleteSvg} alt="delete" />
-        <img src={editSvg} alt="edit" />
+        <Link to={`/inventory/${props.id}/edit`}>
+          <img src={editSvg} alt="edit" />
+        </Link>
       </div>
     </div>
   );
