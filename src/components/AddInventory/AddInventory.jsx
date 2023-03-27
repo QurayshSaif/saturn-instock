@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ActionButton from "../ActionButton/ActionButton";
 import CancelButton from "../CancelButton/CancelButton";
 import GoBackButton from "../GoBackButton/GoBackButton";
@@ -9,142 +9,137 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function EditInventory() {
-  const [Name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [contactName, setContactName] = useState("");
-  const [position, setPosition] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [errorName, setErrorName] = useState({
-    isActive: false,
-    message: "default",
-  });
-  const [errorAddress, setErrorAddress] = useState({
-    isActive: false,
-    message: "default",
-  });
-  const [errorCity, setErrorCity] = useState({
-    isActive: false,
-    message: "default",
-  });
-  const [errorCountry, setErrorCountry] = useState({
-    isActive: false,
-    message: "default",
-  });
-  const [errorContact, setErrorContact] = useState({
-    isActive: false,
-    message: "default",
-  });
-  const [errorPhone, setErrorPhone] = useState({
-    isActive: false,
-    message: "default",
-  });
-  const [errorPosition, setErrorPosition] = useState({
-    isActive: false,
-    message: "default",
-  });
-  const [errorEmail, setErrorEmail] = useState({
-    isActive: false,
-    message: "default",
-  });
 
-  const [instockStatus, setInstockStatus] = useState(false);
+  useEffect(() => {
+    axios.get(`${REACT_APP_SERVER_URL}/api/warehouses`)
+    .then((results) => {
+     setWarehouseData(results.data)
+    })
+  }, [])
+
+  const [warehouseData, setWarehouseData] = useState(null);
+
+  const [itemName, setItemName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [instockStatus, setInstockStatus] = useState(true);
   const [outofstockStatus, setOutofstockStatus] = useState(false);
-  console.log("Instock Status", instockStatus);
-  console.log("Out Of Stock Status", outofstockStatus);
+  const [quantity, setQuantity] = useState(1);
+  const [warehouseName, setWarehouseName] = useState("");
 
+  const [errorItemName, setErrorItemName] = useState({
+    isActive: false,
+    message: "",
+  });
+  const [errorDescription, setErrorDescription] = useState({
+    isActive: false,
+    message: "",
+  });
+  const [errorCategory, setErrorCategory] = useState({
+    isActive: false,
+    message: "",
+  });
+  const [errorQuantity, setErrorQuantity] = useState({
+    isActive: false,
+    message: "",
+  });
+  // const [errorContact, setErrorContact] = useState({
+  //   isActive: false,
+  //   message: "default",
+  // });
+  // const [errorPhone, setErrorPhone] = useState({
+  //   isActive: false,
+  //   message: "default",
+  // });
+  // const [errorPosition, setErrorPosition] = useState({
+  //   isActive: false,
+  //   message: "default",
+  // });
+  // const [errorEmail, setErrorEmail] = useState({
+  //   isActive: false,
+  //   message: "default",
+  // });
+
+ 
 
   const notEmpty = () => {
-    if (Name.length < 1) {
-      setErrorName({
+    if (itemName.length < 1) {
+      setErrorItemName({
         isActive: true,
         message: "This field is required",
       });
     } else {
-      setErrorName({ isActive: false, message: "" });
+      setErrorItemName({ isActive: false, message: "" });
     }
-    if (address.length < 1) {
-      setErrorAddress({ isActive: true, message: "This field is required" });
+    if (description.length < 1) {
+      setErrorDescription({ isActive: true, message: "This field is required" });
     } else {
-      setErrorAddress({ isActive: false, message: "" });
+      setErrorDescription({ isActive: false, message: "" });
     }
-    if (city.length < 1) {
-      setErrorCity({ isActive: true, message: "This field is required" });
+    if (category.length < 1) {
+      setErrorCategory({ isActive: true, message: "Choose a category" });
     } else {
-      setErrorCity({ isActive: false, message: "" });
+      setErrorCategory({ isActive: false, message: "" });
     }
-    if (country.length < 1) {
-      setErrorCountry({ isActive: true, message: "This field is required" });
+    if (quantity.length < 1 && instockStatus === true && outofstockStatus === false) {
+      setErrorQuantity({ isActive: true, message: "The quantity must be greater than 0 or choose Out of stock" });
     } else {
-      setErrorCountry({ isActive: false, message: "" });
+      setErrorQuantity({ isActive: false, message: "" });
     }
-    if (contactName.length < 1) {
-      setErrorContact({ isActive: true, message: "This field is required" });
-    } else {
-      setErrorContact({ isActive: false, message: "" });
-    }
-    if (position.length < 1) {
-      setErrorPosition({ isActive: true, message: "This field is required" });
-    } else {
-      setErrorPosition({ isActive: false, message: "" });
-    }
-    if (phoneNumber.length < 1) {
-      setErrorPhone({ isActive: true, message: "This field is required" });
-    } else {
-      setErrorPhone({ isActive: false, message: "" });
-    }
-    if (email.length < 1) {
-      setErrorEmail({ isActive: true, message: "This field is required" });
-    } else {
-      setErrorEmail({ isActive: false, message: "" });
-    }
+    // if (contactName.length < 1) {
+    //   setErrorContact({ isActive: true, message: "This field is required" });
+    // } else {
+    //   setErrorContact({ isActive: false, message: "" });
+    // }
+    // if (position.length < 1) {
+    //   setErrorPosition({ isActive: true, message: "This field is required" });
+    // } else {
+    //   setErrorPosition({ isActive: false, message: "" });
+    // }
+    // if (phoneNumber.length < 1) {
+    //   setErrorPhone({ isActive: true, message: "This field is required" });
+    // } else {
+    //   setErrorPhone({ isActive: false, message: "" });
+    // }
+    // if (email.length < 1) {
+    //   setErrorEmail({ isActive: true, message: "This field is required" });
+    // } else {
+    //   setErrorEmail({ isActive: false, message: "" });
+    // }
   };
-  const isEmailValid = () => {
-    if (email.includes("@")) {
-      return true;
-    }
-    setErrorEmail({
-      isActive: true,
-      message: "Enter a valid email. Hint: must include @",
-    });
-    return false;
-  };
-  const isPhoneValid = () => {
-    const phoneFormat = /^(\+\d{1,2}\s)?\(\d{3}\)\s\d{3}-\d{4}$/;
-    if (phoneFormat.test(phoneNumber)) {
-      return true;
-    }
-    setErrorPhone({
-      isActive: true,
-      message: "Must have the format +1 (xxx) xxx-xxxx",
-    });
-    return false;
-  };
+
   const isFormValid = () => {
-    if (
-      email.length < 1 &&
-      phoneNumber.length < 1 &&
-      position.length < 1 &&
-      contactName.length < 1 &&
-      country.length < 1 &&
-      city.length < 1 &&
-      address.length < 1 &&
-      Name.length < 1
-    ) {
-      return false;
-    }
-    if (!isPhoneValid()) {
-      return false;
-    }
-    if (!isEmailValid()) {
-      return false;
-    }
-    return true;
+    // if (
+    //   email.length < 1 &&
+    //   phoneNumber.length < 1 &&
+    //   position.length < 1 &&
+    //   contactName.length < 1 &&
+    //   country.length < 1 &&
+    //   city.length < 1 &&
+    //   address.length < 1 &&
+    //   Name.length < 1
+    // ) {
+    //   return false;
+    // }
+    // if (!isPhoneValid()) {
+    //   return false;
+    // }
+    // if (!isEmailValid()) {
+    //   return false;
+    // }
+    // return true;
   };
+
+  const handleOnsubmit = (event) => {
+    event.preventDefault();
+    notEmpty();
+  }
+
   return (
-    <form className="add-inv">
+    <form 
+      className="add-inv"
+      onSubmit={handleOnsubmit}  
+    >
       <div className="add-inv__header-ctr">
         <GoBackButton path="/" />
         <h1 className="add-inv__header">Add New Inventory Item</h1>
@@ -157,15 +152,15 @@ export default function EditInventory() {
             htmlFor="Name"
             inputId="Name"
             inputName="Item Name"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setItemName(e.target.value)}
             className={
-              errorName.isActive ? "add-inv__input--invalid" : "add-inv__input"
+              errorItemName.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
-          {errorName.isActive ? (
+          {errorItemName.isActive ? (
             <ErrorMessage
               isNotError={false}
-              text={errorName.message}
+              text={errorItemName.message}
               className={"error--active"}
             />
           ) : null}
@@ -174,10 +169,18 @@ export default function EditInventory() {
             htmlFor="description"
             inputId="description"
             inputName="Please enter a brief item description..."
+            onChange={(e) => setDescription(e.target.value)}
             className={
-              errorName.isActive ? "add-inv__input--invalid" : "add-inv__input"
+              errorDescription.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
+          {errorDescription.isActive ? (
+            <ErrorMessage
+              isNotError={false}
+              text={errorDescription.message}
+              className={"error--active"}
+            />
+          ) : null}
           <InputBox
             isTextarea={false}
             isDropMenu={true}
@@ -189,10 +192,19 @@ export default function EditInventory() {
             value3="Gear"
             value4="Apparel"
             value5="Accessories"
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
             className={
-              errorCity.isActive ? "add-inv__input--invalid" : "add-inv__input"
+              errorCategory.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
+          {errorCategory.isActive ? (
+            <ErrorMessage
+              isNotError={false}
+              text={errorCategory.message}
+              className={"error--active"}
+            />
+          ) : null}
         </div>
         <div className="add-inv__contact-ctr">
           <h2 className="add-inv__subheader">Item Availability</h2>
@@ -206,20 +218,33 @@ export default function EditInventory() {
             setInstockStatus={setInstockStatus}
             outofstockStatus={outofstockStatus}
             setOutofstockStatus={setOutofstockStatus}
-            // onChange={(e) => setContactName(e.target.value)}
+            setQuantity={setQuantity}
+            setErrorQuantity={setErrorQuantity}
           />
-          {errorContact.isActive ? (
+          {/* {errorContact.isActive ? (
             <ErrorMessage
               isNotError={false}
               text={errorContact.message}
               className={"error--active"}
             />
-          ) : null}
-          <InputBox
+          ) : null} */}
+          {instockStatus ? 
+            (<InputBox
             isTextarea={false}
+            type="number"
             inputName="Quantity"
-          />
-          <InputBox
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            />
+            ) : null}
+          {errorQuantity.isActive ? (
+            <ErrorMessage
+              isNotError={false}
+              text={errorQuantity.message}
+              className={"error--active"}
+            />
+          ) : null}
+          {/* <InputBox
             isTextarea={false}
             isDropMenu={true}
             htmlFor=""
@@ -229,7 +254,27 @@ export default function EditInventory() {
             className={
               errorCity.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
-          />
+          /> */}
+          {warehouseData ? (
+            <div className="input">
+              <label htmlFor="warehouseName">Warehouse</label>
+              <select 
+                className={`input__box input__dropdown`}
+                name="warehouseName"
+                onChange={(e) => setWarehouseName(e.target.value)}
+                value={warehouseName}
+              >
+                <option value="" disabled selected>Please select</option>
+                {warehouseData.map(data => {
+                    return (
+                      <option key={data.id}>{data.warehouse_name}</option>
+                    )
+                  })
+                }
+              </select>
+            </div>
+            ) : null
+            }
         </div>
       </div>
       <div className="add-inv__buttons-ctr">
