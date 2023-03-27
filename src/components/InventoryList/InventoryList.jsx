@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     document.title = "InStock - Inventory list";
