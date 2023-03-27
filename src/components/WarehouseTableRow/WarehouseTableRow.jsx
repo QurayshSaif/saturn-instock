@@ -3,6 +3,7 @@ import chevronSvg from "../../assets/icons/chevron_right-24px.svg";
 import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
 import editSvg from "../../assets/icons/edit-24px.svg";
 import {Link} from "react-router-dom";
+import DeleteModalInventory from "../DeleteModalInventory/DeleteModalInventory";
 
 const WarehouseTableRow = (props) => {
   return (
@@ -33,7 +34,8 @@ const WarehouseTableRow = (props) => {
         </div>
       </div>
       <div className="warehouse__block warehouse__block--actions mobile__bottom">
-        <Link to={`/warehouse/${props.id}/delete`}><img src={deleteSvg} alt="delete" /></Link>
+        {/* <Link to={`/warehouse/${props.id}/delete`}><img src={deleteSvg} alt="delete" /></Link> */}
+        <DeleteModalInventory />
         <Link to={`/warehouse/${props.id}/edit`}><img src={editSvg} alt="edit" /></Link>
       </div>
     </div>
