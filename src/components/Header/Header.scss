@@ -3,11 +3,16 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
+/* stylesheet://localhost/style#91970.1672 */
+
+
 .header {
   background: #232940;
-  padding-bottom: 5.5rem;
+  padding-bottom: 3.5rem;
+  margin-bottom: -4rem;
 
   @include tablet-viewport {
+    padding-bottom: 5.5rem;
     margin-bottom: -6rem;
   }
 
@@ -16,8 +21,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1rem 1.5rem 1rem;
-    gap: 1.5rem;
+    padding: 2rem 1rem 0 1rem;
+    // gap: 1.5rem;
 
     @include tablet-viewport {
       flex-direction: row;

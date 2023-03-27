@@ -5,7 +5,7 @@ import {Link, useLocation} from "react-router-dom";
 const Header = () => {
 
   const location = useLocation();
-  const isWarehouseActive = location.pathname.startsWith("/warehouse");
+  const isWarehouseActive = location.pathname.startsWith("/warehouse") || location.pathname === "/";
   const isInventoryActive = location.pathname.startsWith("/inventory");
 
   return (

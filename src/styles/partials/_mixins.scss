@@ -263,7 +263,6 @@
 	color: $cloud;
 	text-decoration: none;
 	text-transform: capitalize;
-	width: 100%;
 	// padding: 1rem 2rem;
 
 	@include tablet-viewport {
@@ -281,7 +280,6 @@
 @mixin active-nav-link-style {
 	@include button-style;
 	background-color: $instock-black;
-	width: 100%;
 
 
 	&:hover {
