@@ -16,7 +16,6 @@ const InventoryList = () => {
       .get(`http://localhost:8080/api/inventories`)
       .then((res) => {
         setInventoryList(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
