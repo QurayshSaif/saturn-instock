@@ -84,9 +84,9 @@ const AddWarehouse = () => {
     }
  
     const isFormValid = () => {
-        if (email.length < 1 && phoneNumber.length < 1 && position.length < 1 && 
-            contactName.length < 1 && country.length < 1 && city.length < 1 && 
-            address.length < 1 && warehouseName.length < 1) {
+        if (email.length < 1 || phoneNumber.length < 1 || position.length < 1 || 
+            contactName.length < 1 || country.length < 1 || city.length < 1 || 
+            address.length < 1 || warehouseName.length < 1) {
                 return false
         }
         if (!isPhoneValid()) {

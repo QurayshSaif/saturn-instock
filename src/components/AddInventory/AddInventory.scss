@@ -1,7 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.add-wh {
+.add-inv {
     border-radius: .1875rem;
     margin: 0 1rem;
     box-shadow: 0rem .125rem .3125rem rgba(19, 24, 44, 0.1);
@@ -13,14 +13,13 @@
         @include desktop-viewport {
             width: 75rem;
             margin: auto;
-
-
         }
 
     &__header-ctr {
         display: flex;
         justify-content: center;
-        padding: 2rem 0 1.5rem;
+        padding: 2rem 1.25rem 1.5rem;
+        @include divider-bottom;
 
             @include tablet-viewport {
                 justify-content: flex-start;
@@ -30,7 +29,6 @@
 
             @include desktop-viewport {
                 padding-left: 2.25rem;
-
             }
     }
 
@@ -121,5 +119,12 @@
             @include tablet-viewport {
                 justify-content: flex-end;
             }
+    }
+
+    &__quantity {
+
+        @include desktop-viewport {
+            width: 110px;
+        }
     }
 }

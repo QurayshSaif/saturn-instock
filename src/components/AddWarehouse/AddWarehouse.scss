@@ -18,7 +18,8 @@
     &__header-ctr {
         display: flex;
         justify-content: center;
-        padding: 2rem 0 1.5rem;
+        padding: 2rem 1.25rem 1.5rem;
+        @include divider-bottom;
 
             @include tablet-viewport {
                 justify-content: flex-start;

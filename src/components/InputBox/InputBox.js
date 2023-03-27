@@ -17,8 +17,28 @@ const InputBox = ({
   value2,
   value3,
   value4,
+  value5,
   isRadio,
+  setInstockStatus,
+  setOutofstockStatus,
+  instockStatus,
+  outofstockStatus,
+  type,
+  setQuantity,
+  setErrorQuantity,
 }) => {
+  const handleInstockClick = () => {
+    setInstockStatus(true);
+    setOutofstockStatus(false);
+    setQuantity(1);
+  };
+  const handleOutofstockClick = () => {
+    setInstockStatus(false);
+    setOutofstockStatus(true);
+    setQuantity("0");
+    setErrorQuantity(false);
+  };
+
   if (isRadio) {
     return (
       <div className="radio">
@@ -26,8 +46,15 @@ const InputBox = ({
           <label htmlFor={htmlFor}>{inputName}</label>
         </div>
         <div>
-          <input type="radio" id="inStock" name="status" value="inStock" />
-          <label className="radio__label radio__label--stock" for="inStock">
+          <input
+            type="radio"
+            id="inStock"
+            name="status"
+            value="inStock"
+            checked={instockStatus}
+            onChange={handleInstockClick}
+          />
+          <label className="radio__label radio__label--stock" htmlFor="inStock">
             In stock
           </label>
           <input
@@ -35,8 +62,10 @@ const InputBox = ({
             id="outOfStock"
             name="status"
             value="outOfStock"
+            checked={outofstockStatus}
+            onChange={handleOutofstockClick}
           />
-          <label className="radio__label" for="outOfStock">
+          <label className="radio__label" htmlFor="outOfStock">
             Out of stock
           </label>
         </div>
@@ -66,11 +95,16 @@ const InputBox = ({
   if (isDropMenu) {
     return (
       <div>
-        <select className={`input__box ${className}`}>
-          <option value="{value1}">{value1}</option>
-          <option value="{value2}">{value2}</option>
-          <option value="{value3}">{value3}</option>
-          <option value="{value4}">{value4}</option>
+        <select
+          className={`input__box ${className}`}
+          value={value}
+          onChange={onChange}
+        >
+          <option value={value1}>{value1}</option>
+          <option value={value2}>{value2}</option>
+          <option value={value3}>{value3}</option>
+          <option value={value4}>{value4}</option>
+          <option value={value5}>{value5}</option>
         </select>
       </div>
     );
@@ -82,7 +116,7 @@ const InputBox = ({
         <label htmlFor={htmlFor}>{inputName}</label>
         <textarea
           type="text"
-          placeholder="Please enter a brief item description"
+          placeholder={inputName}
           className={`input__text input__textbox ${className}`}
           id={inputId}
           name={name}
@@ -96,7 +130,7 @@ const InputBox = ({
     <div className={`input ${classInputBox}`}>
       <label htmlFor={htmlFor}>{inputName}</label>
       <input
-        type="text"
+        type={type}
         placeholder={inputName}
         className={`input__box ${className}`}
         id={inputId}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ActionButton from "../ActionButton/ActionButton";
 import CancelButton from "../CancelButton/CancelButton";
 import GoBackButton from "../GoBackButton/GoBackButton";
@@ -6,159 +6,149 @@ import InputBox from "../InputBox/InputBox";
 import "./AddInventory.scss";
 import axios from "axios";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { useNavigate } from "react-router-dom";
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function EditInventory() {
-  const [Name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [contactName, setContactName] = useState("");
-  const [position, setPosition] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [errorName, setErrorName] = useState({
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get(`${REACT_APP_SERVER_URL}/api/warehouses`)
+    .then((results) => {
+     setWarehouseData(results.data)
+    })
+    .catch((error) => console.log("Error: ",error));
+  }, [])
+
+  const [warehouseData, setWarehouseData] = useState(null);
+
+  const [itemName, setItemName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [instockStatus, setInstockStatus] = useState(true);
+  const [outofstockStatus, setOutofstockStatus] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [warehouseName, setWarehouseName] = useState("");
+  const [errorItemName, setErrorItemName] = useState({
     isActive: false,
-    message: "default",
+    message: "",
   });
-  const [errorAddress, setErrorAddress] = useState({
+  const [errorDescription, setErrorDescription] = useState({
     isActive: false,
-    message: "default",
+    message: "",
   });
-  const [errorCity, setErrorCity] = useState({
+  const [errorCategory, setErrorCategory] = useState({
     isActive: false,
-    message: "default",
+    message: "",
   });
-  const [errorCountry, setErrorCountry] = useState({
+  const [errorQuantity, setErrorQuantity] = useState({
     isActive: false,
-    message: "default",
+    message: "",
   });
-  const [errorContact, setErrorContact] = useState({
+  const [errorWarehouseName, setErrorWarehouseName] = useState({
     isActive: false,
-    message: "default",
+    message: "",
   });
-  const [errorPhone, setErrorPhone] = useState({
-    isActive: false,
-    message: "default",
-  });
-  const [errorPosition, setErrorPosition] = useState({
-    isActive: false,
-    message: "default",
-  });
-  const [errorEmail, setErrorEmail] = useState({
-    isActive: false,
-    message: "default",
-  });
+
   const notEmpty = () => {
-    if (Name.length < 1) {
-      setErrorName({
-        isActive: true,
-        message: "This field is required",
+    if (itemName.length < 1) {
+      setErrorItemName({isActive: true, message: "This field is required",
       });
     } else {
-      setErrorName({ isActive: false, message: "" });
+      setErrorItemName({ isActive: false, message: "" });
     }
-    if (address.length < 1) {
-      setErrorAddress({ isActive: true, message: "This field is required" });
+    if (description.length < 1) {
+      setErrorDescription({ isActive: true, message: "This field is required" });
     } else {
-      setErrorAddress({ isActive: false, message: "" });
+      setErrorDescription({ isActive: false, message: "" });
     }
-    if (city.length < 1) {
-      setErrorCity({ isActive: true, message: "This field is required" });
+    if (category.length < 1) {
+      setErrorCategory({ isActive: true, message: "Choose a category" });
     } else {
-      setErrorCity({ isActive: false, message: "" });
+      setErrorCategory({ isActive: false, message: "" });
     }
-    if (country.length < 1) {
-      setErrorCountry({ isActive: true, message: "This field is required" });
+    if (quantity < 1 && instockStatus === true && outofstockStatus === false) {
+      setErrorQuantity({ isActive: true, message: "Must be > 0 or choose Out of stock" });
     } else {
-      setErrorCountry({ isActive: false, message: "" });
+      setErrorQuantity({ isActive: false, message: "" });
     }
-    if (contactName.length < 1) {
-      setErrorContact({ isActive: true, message: "This field is required" });
+    if (warehouseName.length < 1) {
+      setErrorWarehouseName({ isActive: true, message: "Choose a category" });
     } else {
-      setErrorContact({ isActive: false, message: "" });
-    }
-    if (position.length < 1) {
-      setErrorPosition({ isActive: true, message: "This field is required" });
-    } else {
-      setErrorPosition({ isActive: false, message: "" });
-    }
-    if (phoneNumber.length < 1) {
-      setErrorPhone({ isActive: true, message: "This field is required" });
-    } else {
-      setErrorPhone({ isActive: false, message: "" });
-    }
-    if (email.length < 1) {
-      setErrorEmail({ isActive: true, message: "This field is required" });
-    } else {
-      setErrorEmail({ isActive: false, message: "" });
+      setErrorWarehouseName({ isActive: false, message: "" });
     }
   };
-  const isEmailValid = () => {
-    if (email.includes("@")) {
-      return true;
-    }
-    setErrorEmail({
-      isActive: true,
-      message: "Enter a valid email. Hint: must include @",
-    });
-    return false;
-  };
-  const isPhoneValid = () => {
-    const phoneFormat = /^(\+\d{1,2}\s)?\(\d{3}\)\s\d{3}-\d{4}$/;
-    if (phoneFormat.test(phoneNumber)) {
-      return true;
-    }
-    setErrorPhone({
-      isActive: true,
-      message: "Must have the format +1 (xxx) xxx-xxxx",
-    });
-    return false;
-  };
+
+  const isQuantityValid = () => {
+      if (quantity < 1 && instockStatus === true && outofstockStatus === false) {
+        return false
+      }
+    return true
+  }
+
   const isFormValid = () => {
     if (
-      email.length < 1 &&
-      phoneNumber.length < 1 &&
-      position.length < 1 &&
-      contactName.length < 1 &&
-      country.length < 1 &&
-      city.length < 1 &&
-      address.length < 1 &&
-      Name.length < 1
+      itemName.length < 1 &&
+      description.length < 1 &&
+      category.length < 1 &&
+      warehouseName.length < 1
     ) {
       return false;
     }
-    if (!isPhoneValid()) {
-      return false;
+    if (!isQuantityValid()) {
+      return false
     }
-    if (!isEmailValid()) {
-      return false;
-    }
-    return true;
+    return true
   };
+
+  const handleOnsubmit = (event) => {
+    event.preventDefault();
+    notEmpty();
+
+    if(isFormValid()) {
+      axios.post(`${REACT_APP_SERVER_URL}/api/inventories`, 
+        {
+          warehouse_id: warehouseName,
+          item_name: itemName,
+          description: description,
+          category: category,
+          status: `${instockStatus ? "In Stock" : "Out of Stock"}`,
+          quantity: quantity
+        })
+          .then(() => {
+            navigate("/inventory")
+          })
+          .catch((error) => console.log("Error: ",error));
+    }
+  }
+
   return (
-    <form className="add-wh">
-      <div className="add-wh__header-ctr">
-        <GoBackButton path="/" />
-        <h1 className="add-wh__header">Add New Inventory Item</h1>
+    <form 
+      className="add-inv"
+      onSubmit={handleOnsubmit}  
+    >
+      <div className="add-inv__header-ctr">
+        <GoBackButton path="/inventory" />
+        <h1 className="add-inv__header">Add New Inventory Item</h1>
       </div>
-      <div className="add-wh__details-ctr">
-        <div className="add-wh__location-ctr">
-          <h2 className="add-wh__subheader">Item Details</h2>
+      <div className="add-inv__details-ctr">
+        <div className="add-inv__location-ctr">
+          <h2 className="add-inv__subheader">Item Details</h2>
           <InputBox
             isTextarea={false}
             htmlFor="Name"
             inputId="Name"
             inputName="Item Name"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setItemName(e.target.value)}
             className={
-              errorName.isActive ? "add-wh__input--invalid" : "add-wh__input"
+              errorItemName.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
-          {errorName.isActive ? (
+          {errorItemName.isActive ? (
             <ErrorMessage
               isNotError={false}
-              text={errorName.message}
+              text={errorItemName.message}
               className={"error--active"}
             />
           ) : null}
@@ -166,11 +156,19 @@ export default function EditInventory() {
             isTextarea={true}
             htmlFor="description"
             inputId="description"
-            inputName="Description"
+            inputName="Please enter a brief item description..."
+            onChange={(e) => setDescription(e.target.value)}
             className={
-              errorName.isActive ? "add-wh__input--invalid" : "add-wh__input"
+              errorDescription.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
+          {errorDescription.isActive ? (
+            <ErrorMessage
+              isNotError={false}
+              text={errorDescription.message}
+              className={"error--active"}
+            />
+          ) : null}
           <InputBox
             isTextarea={false}
             isDropMenu={true}
@@ -178,43 +176,93 @@ export default function EditInventory() {
             inputId="category"
             inputName="Category"
             value1="Electronics"
+            value2="Health"
+            value3="Gear"
+            value4="Apparel"
+            value5="Accessories"
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
             className={
-              errorCity.isActive ? "add-wh__input--invalid" : "add-wh__input"
+              errorCategory.isActive ? "add-inv__input--invalid" : "add-inv__input"
             }
           />
+          {errorCategory.isActive ? (
+            <ErrorMessage
+              isNotError={false}
+              text={errorCategory.message}
+              className={"error--active"}
+            />
+          ) : null}
         </div>
-        <div className="add-wh__contact-ctr">
-          <h2 className="add-wh__subheader">Item Availability</h2>
+        <div className="add-inv__contact-ctr">
+          <h2 className="add-inv__subheader">Item Availability</h2>
           <InputBox
             isTextarea={false}
             isRadio={true}
             htmlFor="status"
             inputId="status"
             inputName="Status"
-            // onChange={(e) => setContactName(e.target.value)}
+            instockStatus={instockStatus}
+            setInstockStatus={setInstockStatus}
+            outofstockStatus={outofstockStatus}
+            setOutofstockStatus={setOutofstockStatus}
+            setQuantity={setQuantity}
+            setErrorQuantity={setErrorQuantity}
           />
-          {errorContact.isActive ? (
+          {instockStatus ? 
+            (<InputBox
+            isTextarea={false}
+            type="number"
+            inputName="Quantity"
+            className={
+              errorQuantity.isActive ? "add-inv__input--invalid add-inv__quantity" : "add-inv__input add-inv__quantity"
+            }
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            />
+            ) : null}
+          {errorQuantity.isActive ? (
             <ErrorMessage
               isNotError={false}
-              text={errorContact.message}
+              text={errorQuantity.message}
               className={"error--active"}
             />
           ) : null}
-          <InputBox
-            isTextarea={false}
-            isDropMenu={true}
-            htmlFor=""
-            inputId=""
-            inputName=""
-            value1="Manhattan"
-            className={
-              errorCity.isActive ? "add-wh__input--invalid" : "add-wh__input"
-            }
-          />
+          {warehouseData ? (
+            <div 
+              className="input"
+            >
+              <label htmlFor="warehouseName">Warehouse</label>
+              <select 
+                className={
+                  errorWarehouseName.isActive ? "input__box input__dropdown add-inv__input--invalid" : "input__box input__dropdown add-inv__input"
+                }
+                name="warehouseName"
+                onChange={(e) => setWarehouseName(e.target.value)}
+                value={warehouseName}
+              >
+                <option value="" disabled>Please select</option>
+                {warehouseData.map(data => {
+                    return (
+                      <option key={data.id} value={data.id}>{data.warehouse_name}</option>
+                    )
+                  })
+                }
+              </select>
+            </div>
+            ) : null}
+            {errorWarehouseName.isActive ? (
+            <ErrorMessage
+              isNotError={false}
+              text={errorWarehouseName.message}
+              className={"error--active"}
+            />
+          ) : null}
+
         </div>
       </div>
-      <div className="add-wh__buttons-ctr">
-        <CancelButton to="/" />
+      <div className="add-inv__buttons-ctr">
+        <CancelButton to="/inventory" />
         <ActionButton isButton={true} name="+ Add item" />
       </div>
     </form>
