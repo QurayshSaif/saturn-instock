@@ -257,22 +257,23 @@
 // LINKS
 
 @mixin inactive-nav-link-style {
-	@include h3-type-label-link-button;
+	// @include h3-type-label-link-button;
+	@include button-style;
+	background: none;
 	color: $cloud;
 	text-decoration: none;
 	text-transform: capitalize;
-	width: auto;
-	padding: 1rem 2rem;
+	width: 100%;
+	// padding: 1rem 2rem;
 
 	@include tablet-viewport {
-		width: fit-content;
+		// width: fit-content;
 		padding: 1rem;
 	}
 
 	&:hover {
 		color: $white;
 		text-decoration: underline;
-		cursor: pointer;
 	}
 
 }
@@ -280,13 +281,13 @@
 @mixin active-nav-link-style {
 	@include button-style;
 	background-color: $instock-black;
-	padding-top: 1.25rem;
-	padding-bottom: 1.25rem;
+	width: 100%;
+
 
 	&:hover {
-		text-decoration: underline;
 		background-color: $instock-black;
-		cursor: pointer;
+		text-decoration: underline;
+
 	}
 }
 

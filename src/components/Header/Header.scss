@@ -3,80 +3,97 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.Header__container {
+.header {
   background: #232940;
-  padding-bottom: 4rem;
-  @include tablet-viewport {
-    margin-bottom: 6rem;
-  }
-}
+  padding-bottom: 5.5rem;
 
-.Header__contents {
-  display: flex;
-  flex-direction: column;
   @include tablet-viewport {
-    flex-direction: row;
-    justify-content: space-between;
+    margin-bottom: -6rem;
+  }
+
+  &__contents {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem 1.5rem 1rem;
+    gap: 1.5rem;
+
+    @include tablet-viewport {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 2.25rem;
+    }
+
+    @include desktop-viewport {
+      margin: 0 auto;
+      max-width: 64rem;
+    }
+  }
+
+  &__logo {
+
+    height: 2rem;
+
+    @include tablet-viewport {}
+
+    @include desktop-viewport {
+      // margin-left: 7rem;
+    }
+  }
+
+  &__nav {
+    display: inline-flex;
+    width: 100%;
+
+
+    @include tablet-viewport {
+      width: auto;
+    }
+
+    @include desktop-viewport {}
+  }
+
+  &__active {
+    @include active-nav-link-style;
+    width: inherit;
+
+  }
+
+  &__inactive {
+    @include inactive-nav-link-style;
+    width: inherit;
   }
 }
 
-.Header__logo {
-  display: flex;
-  height: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  cursor: pointer;
-  @include tablet-viewport {
-    margin-left: 3rem;
-    margin-top: 1rem;
-  }
-  @include desktop-viewport {
-    margin-left: 7rem;
-  }
-}
 
-.Header__list {
-  display: flex;
-  flex-direction: row;
-  padding-left: 0;
-  justify-content: space-evenly;
-  align-items: center;
-  @include tablet-viewport {
-    margin-right: 3rem;
-    gap: 3rem;
-    align-items: center;
-    margin-top: 1rem;
-  }
-  @include desktop-viewport {
-    margin-right: 7rem;
-    gap: 3rem;
-    align-items: center;
-  }
-}
 
-.Header__items {
-  color: #bdc5d5;
-  list-style: none;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
-  &--active {
-    @extend .Header__items;
-    color: white;
-    background: black;
-    border: solid black;
-    border-radius: 50px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-}
 
-.Header__link {
-  text-decoration: none;
-}
+
+// .Header__items {
+//   color: #bdc5d5;
+//   list-style: none;
+//   margin-bottom: 1rem;
+//   margin-top: 1rem;
+//   cursor: pointer;
+
+//   &:hover {
+//     text-decoration: underline;
+//   }
+
+//   &--active {
+//     @extend .Header__items;
+//     color: white;
+//     background: black;
+//     border: solid black;
+//     border-radius: 50px;
+//     padding-left: 1rem;
+//     padding-right: 1rem;
+//     padding-top: 0.5rem;
+//     padding-bottom: 0.5rem;
+//   }
+// }
+
+// .Header__link {
+//   text-decoration: none;
+// }
