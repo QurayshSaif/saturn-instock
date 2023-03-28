@@ -33,6 +33,7 @@ const InventoryList = () => {
 
       {inventoryList.map((inventory) => (
         <InventoryTableRow
+          path="/inventory"
           key={inventory.id}
           id={inventory.id}
           inventoryItem={inventory.item_name}
