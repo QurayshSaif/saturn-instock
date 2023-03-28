@@ -1,14 +1,7 @@
 import "./DeleteButton.scss";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 
-const DeleteButton = ({
-  to,
-  setShowModel,
-  id,
-  className,
-  fetchWarehouseList,
-  onClick
+const DeleteButton = ({className,onClick
 }) => {
   const navigate = useNavigate();
 
