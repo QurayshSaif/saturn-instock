@@ -2,9 +2,28 @@ import "./InventoryTableRow.scss";
 import chevronSvg from "../../assets/icons/chevron_right-24px.svg";
 import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
 import editSvg from "../../assets/icons/edit-24px.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import DeleteModalInventory from "../DeleteModalInventory/DeleteModalInventory";
+import axios from "axios";
 
 const InventoryTableRow = (props) => {
+  const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    axios
+    .delete(`${REACT_APP_SERVER_URL}/api/inventories/${props.id}`)
+      .then(() => {
+        navigate("/inventory");
+        props.fetchInventoryList();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+  console.log(props)
   return (
     <div className="inventory__row">
       <Link to={`/inventory/${props.id}`}>
@@ -26,7 +45,15 @@ const InventoryTableRow = (props) => {
         <p>{props.warehouse}</p>
       </div>
       <div className="inventory__actions">
-        <img src={deleteSvg} alt="delete" />
+        {/* <img src={deleteSvg} alt="delete" /> */}
+        <DeleteModalInventory
+            item_name={props.inventoryItem}
+            title="inventory"
+            subtitle="from the inventory list"
+            id={props.id}
+            onClick={handleClick}
+            // to={`/warehouse/${props.id}/delete`}
+        />
         <Link to={`/inventory/${props.id}/edit`}>
           <img src={editSvg} alt="edit" />
         </Link>
