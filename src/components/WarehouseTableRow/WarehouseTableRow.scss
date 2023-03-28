@@ -7,12 +7,10 @@
 .warehouse {
 	&__row {
 		display: flex;
-		// flex-direction: column;
 		flex-wrap: wrap;
 		width: 100%;
 		padding: $pad-med-16;
 		gap: 1rem;
-		// justify-content: space-between;
 		@include divider-bottom;
 
 		@include tablet-viewport {
@@ -95,63 +93,5 @@
 
 
 
-
-}
-
-.mobile {
-
-
-	// &__container {
-	// 	display: flex;
-	// 	flex-wrap: wrap;
-	// 	width: 100%;
-	// 	padding: $pad-med-16;
-	// 	gap: 1rem;
-	// 	justify-content: space-between;
-
-	// 	@include tablet-viewport {
-	// 		// display: flex;
-	// 	}
-	// }
-
-	&__left {
-		display: inline-flex;
-		flex-direction: column;
-		width: 45%;
-		gap: 1rem;
-
-		@include tablet-viewport {
-			// flex-direction: row;
-			// width: 30%;
-			// justify-content: space-between;
-			display: block;
-		}
-	}
-
-	&__right {
-		display: inline-flex;
-		flex-direction: column;
-		width: 45%;
-		gap: 1rem;
-
-		@include tablet-viewport {
-			// flex-direction: row;
-			// width: 30%;
-			display: block;
-		}
-	}
-
-	&__bottom {
-		display: inline-flex;
-		flex-direction: row;
-		width: 100%;
-		justify-content: space-between;
-
-		@include tablet-viewport {
-			// width: auto;
-			// justify-content: flex-end;
-			display: block;
-		}
-	}
 
 }
