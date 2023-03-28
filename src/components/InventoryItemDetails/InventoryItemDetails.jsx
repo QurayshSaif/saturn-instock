@@ -22,17 +22,6 @@ const InventoryItemDetails = () => {
       });
   }, [id, inventoryItemUrl]);
 
-  // 	useEffect(() => {
-  //     axios
-  //       .get(`http://localhost:8080/api/inventories`)
-  //       .then((res) => {
-  //         setInventory(res.data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }, [id]);
-
   return (
     <div className="item">
       <div className="item__page">
