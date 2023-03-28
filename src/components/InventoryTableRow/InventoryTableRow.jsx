@@ -7,12 +7,14 @@ import { Link } from "react-router-dom";
 const InventoryTableRow = (props) => {
   return (
     <div className="inventory__row">
-      <div className="inventory__item">
-        <p>
-          {props.inventoryItem}
-          <img src={chevronSvg} alt="link" />
-        </p>
-      </div>
+      <Link to={`/inventory/${props.id}`}>
+        <div className="inventory__item">
+          <p>
+            {props.inventoryItem}
+            <img src={chevronSvg} alt="link" />
+          </p>
+        </div>
+      </Link>
       <div className="inventory__category">
         <p>{props.category}</p>
       </div>

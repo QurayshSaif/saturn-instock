@@ -1,26 +1,33 @@
-import React from "react";
 import logo from "../../assets/logo/Logo-inStock.svg";
-import "../Header/Header.scss";
-import { Link } from "react-router-dom";
+import "./Header.scss";
+import {Link, useLocation} from "react-router-dom";
 
-const header = () => {
+const Header = () => {
+
+  const location = useLocation();
+  const isWarehouseActive = location.pathname.startsWith("/warehouse") || location.pathname === "/";
+  const isInventoryActive = location.pathname.startsWith("/inventory");
+
   return (
-    <div className="Header__container">
-      <div className="Header__contents">
+    <div className="header">
+      <div className="header__contents">
         <Link to="/">
-          <img src={logo} className="Header__logo" alt="" />
+          <img src={logo} className="header__logo" alt="" />
         </Link>
-        <ul className="Header__list">
-          <Link className="Header__link" to="/warehouse">
-            <li className="Header__items--active">Warehouses</li>
-          </Link>
-          <Link className="Header__link" to="/inventory">
-            <li className="Header__items">Inventory</li>
-          </Link>
-        </ul>
+        <div className="header__nav">
+          {/* <li className={isWarehouseActive ? "header__active" : "header__inactive"}> */}
+          {/* <Link className="Header__link" to="/warehouse">Warehouses</Link> */}
+          <Link to="/warehouse" className={isWarehouseActive ? " header__active" : "header__inactive"}>Warehouses</Link>
+          <Link to="/inventory" className={isInventoryActive ? " header__active" : "header__inactive"}>Inventory</Link>
+          {/* </li> */}
+          {/* <li className={isInventoryActive ? "header__active" : "header__inactive"}> */}
+          {/* <Link to="/inventory">Inventory</Link> */}
+          {/* <Link className="Header__link" to="/inventory">Inventory</Link> */}
+          {/* </li> */}
+        </div>
       </div>
     </div>
   );
 };
 
-export default header;
+export default Header;

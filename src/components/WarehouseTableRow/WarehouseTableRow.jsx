@@ -4,8 +4,6 @@ import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
 import editSvg from "../../assets/icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 import DeleteModalInventory from "../DeleteModalInventory/DeleteModalInventory";
-import { useEffect } from "react";
-import axios from "axios";
 
 const WarehouseTableRow = (props) => {
   return (
