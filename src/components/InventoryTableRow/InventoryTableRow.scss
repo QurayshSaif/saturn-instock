@@ -1,140 +1,131 @@
-@use '../../styles/partials/globals' as *;
-@use '../../styles/partials/typography' as *;
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/mixins' as *;
-
+@use "../../styles/partials/globals" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 .inventory {
+  &__row {
+    display: flex;
+    flex-direction: column;
 
-	&__row {
-		display: flex;
-			flex-direction: column;
+    @include tablet-viewport {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: $pad-med-16;
+      @include divider-bottom;
+    }
+  }
 
-		@include tablet-viewport {
-			flex-direction: row;
-		align-items: center;
-		justify-content: space-evenly;
-		padding: $pad-med-16;
-		@include divider-bottom;
-		}
-	}
+  &__item {
+    text-decoration: none;
+    @include tablet-viewport {
+      display: flex;
+      flex-direction: column;
+    }
 
+    > h4 {
+      @include tablet-viewport {
+        @include h4-type-table-header;
+        color: $slate;
+        font-weight: 600;
+      }
 
+      @include tablet-viewport {
+        display: none;
+      }
+    }
 
+    > p {
+      text-decoration: none;
+      @include tablet-viewport {
+        display: flex;
+        flex-direction: row;
+        gap: 0.25rem;
+        @include text-link-style;
+      }
 
-	&__item {
-		text-decoration: none;
-		@include tablet-viewport {
-		display: flex;
-		flex-direction: column;
-	}
+      > img {
+        @include tablet-viewport {
+          width: 1.25rem;
+        }
+      }
+    }
+  }
 
-		>h4 {
-			@include tablet-viewport {
-			@include h4-type-table-header;
-			color: $slate;
-			font-weight: 600;
-			}
+  &__category {
+    @include tablet-viewport {
+      width: 10%;
+      display: flex;
+      flex-direction: column;
+    }
 
-			@include tablet-viewport {
-				display: none;
-			}
-		}
+    > h4 {
+      @include tablet-viewport {
+        @include h4-type-table-header;
+        color: $slate;
+        font-weight: 600;
+      }
 
-		>p {
-			text-decoration: none;
-			@include tablet-viewport {
-			display: flex;
-			flex-direction: row;
-			gap: .25rem;
-			@include text-link-style;
-			}
+      @include tablet-viewport {
+        display: none;
+      }
+    }
 
-			>img {
-				@include tablet-viewport {
-				width: 1.25rem;
-				}
-			}
+    > p {
+      @include tablet-viewport {
+        @include p2-type-body-medium;
+      }
+    }
+  }
 
-		}
-	}
+  &__status {
+    @include tablet-viewport {
+      width: 10%;
+      text-align: left;
+    }
+  }
 
-	&__category {
-		@include tablet-viewport {
-			width: 10%;
-		display: flex;
-		flex-direction: column;
-		}
+  &__qty {
+    > h4 {
+      @include tablet-viewport {
+        width: 10%;
+        @include h4-type-table-header;
+        color: $slate;
+        font-weight: 600;
+      }
 
-		>h4 {
-			@include tablet-viewport {
-			@include h4-type-table-header;
-			color: $slate;
-			font-weight: 600;
-			}
+      @include tablet-viewport {
+        display: none;
+      }
+    }
 
-			@include tablet-viewport {
-				display: none;
-			}
-		}
+    > p {
+      @include tablet-viewport {
+        @include p2-type-body-medium;
+      }
+    }
+  }
 
-		>p {
-			@include tablet-viewport {
-			@include p2-type-body-medium;
-			}
-		}
-	}
-
-	&__status {
-		@include tablet-viewport {
-			width: 10%;
-		text-align: left;
-		}
-
-	}
-
-	&__qty {
-
-		>h4 {
-			@include tablet-viewport {
-				width: 10%;
-			@include h4-type-table-header;
-			color: $slate;
-			font-weight: 600;
-			}
-
-			@include tablet-viewport {
-				display: none;
-			}
-		}
-
-		>p {
-			@include tablet-viewport {
-			@include p2-type-body-medium;
-			}
-		}
-	}
-
-	&__actions {
-		@include tablet-viewport {
-			width: 10%;
-		display: flex;
-		gap: 1rem;
-		}
-	}
+  &__actions {
+    @include tablet-viewport {
+      width: 10%;
+      display: flex;
+      gap: 1rem;
+    }
+  }
 }
 
-
 .item__in {
-        @include tag-in-style;
-    }
-    .item__out {
-        @include tag-out-style;
-    }
+  @include tag-in-style;
+}
+.item__out {
+  @include tag-out-style;
+}
 
 a {
-		text-decoration: none;
-		&:visited {
-			color: $instock-indigo;
-		  }
-	  }
+  text-decoration: none;
+  // &:visited {
+  // 	color: $instock-indigo;
+  //   }
+}
