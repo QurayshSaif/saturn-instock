@@ -24,6 +24,9 @@ const InventoryTableColumns = () => {
         warehouse
         <img src={sortSvg} alt="sort" />
       </h4>
+      <h4>
+        actions
+      </h4>
     </div>
   );
 };
