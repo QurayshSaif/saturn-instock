@@ -8,8 +8,6 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const WarehouseTableRow = (props) => {
-
-  console.log(props)
   return (
     <div className="warehouse__row mobile__container">
       <div className="mobile__left">
