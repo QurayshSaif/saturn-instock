@@ -54,9 +54,6 @@
       // padding-bottom: 2rem;
     }
 
-    @include desktop-viewport {
-    }
-
     .back {
       &__btn {
         text-decoration: none;
@@ -95,6 +92,13 @@
     }
   }
 
+  &__container {
+    @include tablet-viewport {
+      border-right: 1px solid $cloud;
+      padding-right: 1rem;
+    }
+  }
+
   &__details {
     display: inline-flex;
     flex-direction: column;
@@ -105,7 +109,14 @@
 
     @include tablet-viewport {
       padding-top: 1.5rem;
+      display: flex;
+      flex-direction: row;
     }
+  }
+
+  &__warehouse,
+  &__category {
+    margin-top: 1rem;
   }
 
   &__in {
