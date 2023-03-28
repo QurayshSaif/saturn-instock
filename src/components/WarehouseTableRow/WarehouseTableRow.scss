@@ -3,73 +3,116 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 
+
 .warehouse {
 	&__row {
+		display: flex;
+		// flex-direction: column;
+		flex-wrap: wrap;
+		width: 100%;
+		padding: $pad-med-16;
+		gap: 1rem;
+		// justify-content: space-between;
 		@include divider-bottom;
+
+		@include tablet-viewport {
+			flex-wrap: nowrap;
+			padding: 1rem 2rem;
+			gap: 2rem;
+			align-items: center;
+			justify-content: space-between;
+		}
+
 	}
 
 	&__block {
 		display: inline-flex;
 		flex-direction: column;
+		flex-wrap: wrap;
+		width: 40%;
+
+		@include tablet-viewport {
+			flex-wrap: nowrap;
+			align-items: flex-start;
+			width: auto;
+		}
 
 		>h4 {
 			padding-bottom: $pad-small-4;
 			@include h4-type-table-header;
+
+			@include tablet-viewport {
+				display: none;
+			}
 		}
 
 		>p {
 			@include p2-type-body-medium;
 		}
 
-		@include tablet-viewport {
-			>h4 {
-				display: none;
+		&--name {
+			>a {
+				display: inline-flex;
+				gap: .25rem;
+				@include text-link-style;
+
+				>img {
+					width: 1.25rem;
+				}
+			}
+
+			@include tablet-viewport {
+				width: auto;
+			}
+		}
+
+		&--address {
+			>p {
+				max-width: 6rem;
+
+				@include tablet-viewport {
+					max-width: none;
+					width: 8rem;
+				}
 			}
 		}
 
 		&--actions {
 			flex-direction: row;
+			justify-content: space-between;
 			gap: 1rem;
-		}
-	}
-
-	&__name {
-		>a {
-			display: flex;
-			gap: .25rem;
-			@include text-link-style;
-
-			>img {
-				width: 1.25rem;
-			}
-		}
-	}
-
-	&__address {
-		>p {
-			max-width: 6rem;
+			width: 100%;
 
 			@include tablet-viewport {
-				max-width: none;
+				justify-content: flex-end;
+				width: auto;
+				align-self: flex-end;
 			}
 		}
+
+
 	}
+
+
+
+
 }
 
 .mobile {
 
 
-	&__container {
-		display: flex;
-		flex-wrap: wrap;
-		width: 100%;
-		padding: $pad-med-16;
-		gap: 1rem;
+	// &__container {
+	// 	display: flex;
+	// 	flex-wrap: wrap;
+	// 	width: 100%;
+	// 	padding: $pad-med-16;
+	// 	gap: 1rem;
+	// 	justify-content: space-between;
 
-		@include tablet-viewport {
-			justify-content: space-between;
-		}
-	}
+	// 	@include tablet-viewport {
+	// 		// display: flex;
+	// 	}
+	// }
 
 	&__left {
 		display: inline-flex;
@@ -78,9 +121,10 @@
 		gap: 1rem;
 
 		@include tablet-viewport {
-			flex-direction: row;
-			width: 30%;
-			justify-content: space-between;
+			// flex-direction: row;
+			// width: 30%;
+			// justify-content: space-between;
+			display: block;
 		}
 	}
 
@@ -91,8 +135,9 @@
 		gap: 1rem;
 
 		@include tablet-viewport {
-			flex-direction: row;
-			width: 30%;
+			// flex-direction: row;
+			// width: 30%;
+			display: block;
 		}
 	}
 
@@ -103,8 +148,9 @@
 		justify-content: space-between;
 
 		@include tablet-viewport {
-			width: auto;
-			justify-content: flex-end;
+			// width: auto;
+			// justify-content: flex-end;
+			display: block;
 		}
 	}
 
