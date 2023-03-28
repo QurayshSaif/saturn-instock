@@ -27,7 +27,7 @@ const ModalContent = ({
         </div>
         <div className="modal__button-flex">
           <CancelButton 
-            to="/warehouse" 
+            // to="/warehouse" 
             onClick={() => onClose()} 
           />
           <DeleteButton

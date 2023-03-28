@@ -45,7 +45,7 @@ const InventoryTableRow = (props) => {
         <p>{props.warehouse}</p>
       </div>
       <div className="inventory__actions">
-        <img src={deleteSvg} alt="delete" />
+        {/* <img src={deleteSvg} alt="delete" /> */}
         <DeleteModalInventory
             item_name={props.inventoryItem}
             title="inventory"
