@@ -9,11 +9,12 @@
 		display: none;
 
 		@include tablet-viewport {
+			gap: 6rem;
 			background-color: $light-grey;
 			display: flex;
 			align-items: baseline;
 			padding: 0.5rem 2rem;
-			justify-content: space-between;
+			
 
 			>h4 {
 				@include h4-type-table-header;
