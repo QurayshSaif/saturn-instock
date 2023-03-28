@@ -37,7 +37,14 @@ const InventoryTableRow = (props) => {
       <div className="inventory__category">
         <p>{props.category}</p>
       </div>
-      <div className="inventory__status">{props.status}</div>
+      {/* <div className="inventory__status"></div> */}
+      <p
+        className={`${
+          props.status === "Out of Stock" ? "item__out" : "item__in"
+        }`}
+      >
+        {props.status}
+      </p>
       <div className="inventory__qty">
         <p>{props.quantity}</p>
       </div>
