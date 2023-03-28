@@ -1,111 +1,118 @@
-@use '../../styles/partials/globals' as *;
-@use '../../styles/partials/typography' as *;
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/mixins' as *;
+@use "../../styles/partials/globals" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 .warehouse {
-	&__row {
-		@include divider-bottom;
-	}
+  &__row {
+    @include divider-bottom;
+  }
 
-	&__block {
-		display: inline-flex;
-		flex-direction: column;
+  &__contact-name {
+    @include tablet-viewport {
+      width: 50%;
+    }
+  }
 
-		>h4 {
-			padding-bottom: $pad-small-4;
-			@include h4-type-table-header;
-		}
+  &__block {
+    display: inline-flex;
+    flex-direction: column;
 
-		>p {
-			@include p2-type-body-medium;
-		}
+    > h4 {
+      padding-bottom: $pad-small-4;
+      @include h4-type-table-header;
+    }
 
-		@include tablet-viewport {
-			>h4 {
-				display: none;
-			}
-		}
+    > p {
+      @include p2-type-body-medium;
+    }
 
-		&--actions {
-			flex-direction: row;
-			gap: 1rem;
-		}
-	}
+    @include tablet-viewport {
+      > h4 {
+        display: none;
+      }
+    }
 
-	&__name {
-		>a {
-			display: flex;
-			gap: .25rem;
-			@include text-link-style;
+    &--actions {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
 
-			>img {
-				width: 1.25rem;
-			}
-		}
-	}
+  &__name {
+    // @include tablet-viewport {
+    //   width: 40%;
+    // }
+    > a {
+      display: flex;
+      gap: 0.25rem;
+      @include text-link-style;
 
-	&__address {
-		>p {
-			max-width: 6rem;
+      > img {
+        width: 1.25rem;
+      }
+    }
+  }
 
-			@include tablet-viewport {
-				max-width: none;
-			}
-		}
-	}
+  &__address {
+    > p {
+      max-width: 6rem;
+
+      @include tablet-viewport {
+        max-width: none;
+      }
+    }
+  }
 }
 
 .mobile {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: $pad-med-16;
+    gap: 1rem;
 
+    @include tablet-viewport {
+      justify-content: space-between;
+    }
+  }
 
-	&__container {
-		display: flex;
-		flex-wrap: wrap;
-		width: 100%;
-		padding: $pad-med-16;
-		gap: 1rem;
+  &__left {
+    display: inline-flex;
+    flex-direction: column;
+    width: 45%;
+    gap: 1rem;
 
-		@include tablet-viewport {
-			justify-content: space-between;
-		}
-	}
+    @include tablet-viewport {
+      flex-direction: row;
+      width: 36%;
+      justify-content: space-between;
+    }
+  }
 
-	&__left {
-		display: inline-flex;
-		flex-direction: column;
-		width: 45%;
-		gap: 1rem;
+  &__right {
+    display: inline-flex;
+    flex-direction: column;
+    width: 45%;
+    gap: 1rem;
 
-		@include tablet-viewport {
-			flex-direction: row;
-			width: 30%;
-			justify-content: space-between;
-		}
-	}
+    @include tablet-viewport {
+      flex-direction: row;
+      width: 40%;
+      //   justify-content: space-between;
+    }
+  }
 
-	&__right {
-		display: inline-flex;
-		flex-direction: column;
-		width: 45%;
-		gap: 1rem;
+  &__bottom {
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
 
-		@include tablet-viewport {
-			flex-direction: row;
-			width: 30%;
-		}
-	}
-
-	&__bottom {
-		display: inline-flex;
-		flex-direction: row;
-		width: 100%;
-		justify-content: space-between;
-
-		@include tablet-viewport {
-			width: auto;
-			justify-content: flex-end;
-		}
-	}
-
+    @include tablet-viewport {
+      width: auto;
+      justify-content: flex-end;
+    }
+  }
 }

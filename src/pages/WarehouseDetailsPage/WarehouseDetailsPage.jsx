@@ -21,7 +21,10 @@ export default function WarehouseDetailsPage() {
   }, [id]);
   return (
     <div className="warehouse">
-      <WarehouseHeader warehouseName={warehouse.warehouse_name} />
+      <WarehouseHeader
+        id={warehouse.id}
+        warehouseName={warehouse.warehouse_name}
+      />
       <WarehouseContactInfo
         address={warehouse.address}
         city={warehouse.city}

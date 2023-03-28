@@ -22,7 +22,7 @@
     @include tablet-viewport {
       border-right: $divider-anywhere;
       margin-right: 1rem;
-      padding-right: 10rem;
+      padding-right: 6rem;
 
       &-tab {
         display: flex;
@@ -46,7 +46,7 @@
     }
 
     @include desktop-viewport {
-      gap: 8rem;
+      gap: 3.5em;
       padding-left: 3rem;
     }
   }

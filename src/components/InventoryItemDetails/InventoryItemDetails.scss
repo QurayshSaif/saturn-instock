@@ -1,137 +1,136 @@
-@use '../../styles/partials/globals' as *;
-@use '../../styles/partials/typography' as *;
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/mixins' as *;
+@use "../../styles/partials/globals" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 /* stylesheet://localhost/inventory/style#91970.1059 */
 
-
 .item {
+  margin: 0 1rem;
+  border-radius: 0.1875rem;
+  box-shadow: 0rem 0.125rem 0.3125rem rgba(19, 24, 44, 0.1);
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  background-color: $white;
 
-	margin: 0 1rem;
-	border-radius: .1875rem;
-	box-shadow: 0rem .125rem .3125rem rgba(19, 24, 44, 0.1);
-	padding: 2.5rem 1.5rem 2rem 1.5rem;
-	background-color: $white;
+  @include tablet-viewport {
+    padding: 2rem;
+    margin: 0 2rem;
+  }
 
+  @include desktop-viewport {
+    max-width: 80rem;
+    margin: 0 auto;
+  }
 
-	@include tablet-viewport {
-		padding: 2rem;
-		margin: 0 2rem;
-		max-width: 44rem;
+  h4 {
+    padding-bottom: $pad-small-4;
+  }
 
+  .p2 {
+    @include p2-type-body-medium;
+    text-transform: capitalize;
 
-	}
+    &--description {
+      @include p2-type-body-medium;
+      text-transform: none;
+    }
 
-	@include desktop-viewport {
-		max-width: 64rem;
-	}
+    &--category {
+      @include p2-type-body-medium;
+      text-transform: capitalize;
+    }
+  }
 
-	h4 {
-		padding-bottom: $pad-small-4;
+  &__header {
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    @include divider-bottom;
 
-	}
+    @include tablet-viewport {
+      // padding-bottom: 2rem;
+    }
 
-	.p2 {
-		@include p2-type-body-medium;
-		text-transform: capitalize;
+    .back {
+      &__btn {
+        text-decoration: none;
+      }
+    }
 
-		&--description {
-			@include p2-type-body-medium;
-			text-transform: none;
-		}
+    h1 {
+      flex-grow: 1;
+      text-transform: capitalize;
+    }
 
-		&--category {
-			@include p2-type-body-medium;
-			text-transform: capitalize;
-		}
-	}
+    .edit {
+      &__btn {
+        text-decoration: none;
+        display: flex;
+        @include primary-button-style;
 
+        @include tablet-viewport {
+          padding-left: 0.5rem;
+        }
+      }
 
-	&__header {
-		display: inline-flex;
-		align-items: flex-end;
-		justify-content: center;
-		width: 100%;
-		gap: 1.5rem;
-		padding-bottom: 1.5rem;
-		@include divider-bottom;
+      &__img {
+        padding: 0.375rem;
+        border-radius: 50%;
+        width: 90%;
+      }
 
-		@include tablet-viewport {
-			// padding-bottom: 2rem;
-		}
+      &__span {
+        display: none;
 
-		@include desktop-viewport {}
+        @include tablet-viewport {
+          display: unset;
+        }
+      }
+    }
+  }
 
-		.back {
-			&__btn {
-				text-decoration: none;
-			}
+  &__container {
+    @include tablet-viewport {
+      border-right: 1px solid $cloud;
+      padding-right: 1rem;
+    }
+  }
 
-		}
+  &__details {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: fit-content;
+    align-items: flex-start;
+    padding-top: 1rem;
 
-		h1 {
-			flex-grow: 1;
-			text-transform: capitalize;
-		}
+    @include tablet-viewport {
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: row;
+    }
+  }
 
-		.edit {
+  &__warehouse,
+  &__category {
+    margin-top: 1rem;
+  }
 
-			&__btn {
-				text-decoration: none;
-				display: flex;
-				@include primary-button-style;
+  &__in {
+    @include tag-in-style;
+  }
 
-				@include tablet-viewport {
-					padding-left: 0.5rem;
-				}
-			}
+  &__out {
+    @include tag-out-style;
+  }
 
-			&__img {
-				padding: 0.375rem;
-				border-radius: 50%;
-				width: 90%;
-
-			}
-
-			&__span {
-				display: none;
-
-				@include tablet-viewport {
-					display: unset;
-				}
-			}
-
-		}
-
-	}
-
-	&__details {
-		display: inline-flex;
-		flex-direction: column;
-		gap: 1rem;
-		width: fit-content;
-		align-items: flex-start;
-		padding-top: 1rem;
-
-		@include tablet-viewport {
-			padding-top: 1.5rem;
-		}
-	}
-
-	&__in {
-		@include tag-in-style;
-	}
-
-	&__out {
-		@include tag-out-style;
-	}
-
-	&__stat-quant-flex {
-		align-self: flex-start;
-		display: inline-flex;
-		width: 100%;
-		justify-content: space-between;
-	}
-
+  &__stat-quant-flex {
+    align-self: flex-start;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+  }
 }
