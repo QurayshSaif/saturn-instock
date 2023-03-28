@@ -5,7 +5,7 @@ import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
 import ModalContent from "../ModalContent/ModalContent";
 import { Link } from "react-router-dom";
 
-const DeleteModalInventory = ({ fetchWarehouseList, to, id, item_name, title, subtitle }) => {
+const DeleteModalInventory = ({ fetchWarehouseList, to, id, item_name, title, subtitle, onClick }) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div>
@@ -15,6 +15,7 @@ const DeleteModalInventory = ({ fetchWarehouseList, to, id, item_name, title, su
       {showModal &&
         createPortal(
           <ModalContent
+            onClick={onClick}
             item_name={item_name}
             title={title}
             subtitle={subtitle}

@@ -10,7 +10,8 @@ const ModalContent = ({
   id,
   item_name,
   title,
-  subtitle
+  subtitle,
+  onClick
 }) => {
 
   console.log(item_name)
@@ -30,7 +31,7 @@ const ModalContent = ({
             onClick={() => onClose()} 
           />
           <DeleteButton
-            fetchWarehouseList={fetchWarehouseList}
+            onClick={onClick}
             setShowModel={setShowModel}
             id={id}
             title={title}

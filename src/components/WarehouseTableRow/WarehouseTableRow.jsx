@@ -2,10 +2,28 @@ import "./WarehouseTableRow.scss";
 import chevronSvg from "../../assets/icons/chevron_right-24px.svg";
 import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
 import editSvg from "../../assets/icons/edit-24px.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DeleteModalInventory from "../DeleteModalInventory/DeleteModalInventory";
+import axios from "axios";
 
 const WarehouseTableRow = (props) => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    axios
+      .delete(`http://localhost:8080/api/warehouses/${props.id}`)
+
+      .then(() => {
+        navigate("/warehouse");
+        props.fetchWarehouseList();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
   return (
     <div className="warehouse__row mobile__container">
       <div className="mobile__left">
@@ -41,7 +59,8 @@ const WarehouseTableRow = (props) => {
           subtitle="from the list of warehouses"
           fetchWarehouseList={props.fetchWarehouseList}
           id={props.id}
-          to={`/warehouse/${props.id}/delete`}
+          onClick={handleClick}
+          // to={`/warehouse/${props.id}/delete`}
         />
 
         <Link to={`/warehouse/${props.id}/edit`}>

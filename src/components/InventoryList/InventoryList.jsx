@@ -10,8 +10,7 @@ const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
   const { id } = useParams();
 
-  useEffect(() => {
-    document.title = "InStock - Inventory list";
+  const fetchInventoryList = () => {
     axios
       .get(`http://localhost:8080/api/inventories`)
       .then((res) => {
@@ -20,6 +19,11 @@ const InventoryList = () => {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  useEffect(() => {
+    document.title = "InStock - Inventory list";
+    fetchInventoryList();
   }, []);
 
   return (
@@ -36,6 +40,7 @@ const InventoryList = () => {
           status={inventory.status}
           quantity={inventory.quantity}
           warehouse={inventory.warehouse_name}
+          fetchInventoryList={fetchInventoryList}
         />
       ))}
     </div>
