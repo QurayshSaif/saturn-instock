@@ -5,11 +5,10 @@
 
 /* stylesheet://localhost/style#91970.1672 */
 
-
 .header {
   background: #232940;
   padding-bottom: 5.5rem;
-  margin-bottom: -5.5rem;
+  margin-bottom: -4.5rem;
 
   @include tablet-viewport {
     padding-bottom: 6rem;
@@ -28,20 +27,20 @@
       flex-direction: row;
       justify-content: space-between;
       padding: 2rem 0;
-      max-width: 44rem;
-      margin: 0 auto;
+      margin: 0 2rem;
     }
 
     @include desktop-viewport {
-      max-width: 64rem;
+      max-width: 80rem;
+      margin: 0 auto;
     }
   }
 
   &__logo {
-
     height: 2rem;
 
-    @include tablet-viewport {}
+    @include tablet-viewport {
+    }
 
     @include desktop-viewport {
       // margin-left: 7rem;
@@ -52,18 +51,17 @@
     display: inline-flex;
     width: 100%;
 
-
     @include tablet-viewport {
       width: auto;
     }
 
-    @include desktop-viewport {}
+    @include desktop-viewport {
+    }
   }
 
   &__active {
     @include active-nav-link-style;
     width: inherit;
-
   }
 
   &__inactive {
@@ -71,10 +69,6 @@
     width: inherit;
   }
 }
-
-
-
-
 
 // .Header__items {
 //   color: #bdc5d5;

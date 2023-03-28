@@ -1,28 +1,25 @@
-@use '../../styles/partials/globals' as *;
-@use '../../styles/partials/typography' as *;
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/mixins' as *;
-
+@use "../../styles/partials/globals" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 .warehouse {
+  min-width: 21.5rem;
+  margin: $pad-large-24;
+  padding: $pad-large-24;
+  background-color: $white;
+  border-radius: 0.1875rem;
+  box-shadow: 0rem 0.125rem 0.3125rem rgba(19, 24, 44, 0.1);
 
-	min-width: 21.5rem;
-	margin: $pad-large-24;
-	padding: $pad-large-24;
-	background-color: $white;
-	border-radius: .1875rem;
-	box-shadow: 0rem .125rem .3125rem rgba(19, 24, 44, 0.1);
+  @include tablet-viewport {
+    // max-width: 50rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin: 0 2rem;
+  }
 
-	@include tablet-viewport {
-		max-width: 50rem;
-		padding-right: 2rem;
-		padding-left: 2rem;
-		margin: 0 auto;
-	}
-
-
-	@include desktop-viewport {
-		margin: 0 auto;
-		max-width: 64rem;
-	}
+  @include desktop-viewport {
+    margin: 0 auto;
+    max-width: 80rem;
+  }
 }
