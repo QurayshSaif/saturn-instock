@@ -7,22 +7,19 @@
 .warehouse {
 
 	min-width: 21.5rem;
-	margin: $pad-large-24;
-	padding: $pad-large-24;
+	margin: 1.5rem 1rem;
 	background-color: $white;
 	border-radius: .1875rem;
 	box-shadow: 0rem .125rem .3125rem rgba(19, 24, 44, 0.1);
 
 	@include tablet-viewport {
-		max-width: 50rem;
-		padding-right: 2rem;
-		padding-left: 2rem;
+		max-width: 44rem;
+
 		margin: 0 auto;
 	}
 
 
 	@include desktop-viewport {
-		margin: 0 auto;
 		max-width: 64rem;
 	}
 }
