@@ -12,20 +12,11 @@ const DeleteButton = ({
 }) => {
   const navigate = useNavigate();
 
-  // const handleClick = () => {
-  //   axios
-  //     .delete(`http://localhost:8080/api/warehouses/${id}`)
-
-  //     .then(() => {
-  //       fetchWarehouseList();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   return (
-    <button onClick={onClick} className={`delete-btn ${className}`}>
+    <button 
+      onClick={onClick} 
+      className={`delete-btn ${className}`}
+    >
       Delete
     </button>
   );

@@ -14,8 +14,11 @@ const InventoryTableRow = (props) => {
     axios
     .delete(`${REACT_APP_SERVER_URL}/api/inventories/${props.id}`)
       .then(() => {
-        navigate("/inventory");
+        // navigate("/inventory");
+        console.log(props.path)
+        navigate(props.path);
         props.fetchInventoryList();
+        props.fetchWarehouseInventoryList(props.warehouseId);
       })
       .catch((err) => {
         console.log(err);
@@ -23,7 +26,6 @@ const InventoryTableRow = (props) => {
   }
 
 
-  console.log(props)
   return (
     <div className="inventory__row">
       <Link to={`/inventory/${props.id}`}>

@@ -10,14 +10,19 @@ const WarehouseInventoryList = () => {
   const [WarehouseInventoryList, setWarehouseInventoryList] = useState([]);
   const { id } = useParams();
 
-  useEffect(() => {
+  const fetchWarehouseInventoryList = (id) => {
     axios
       .get(`http://localhost:8080/api/warehouses/${id}/inventories`)
       .then((res) => {
         setWarehouseInventoryList(res.data);
+        console.log("GET REQUEST FOR EACH WAREHOUSE")
         console.log(res.data);
       })
       .catch((error) => console.error(error));
+  }
+
+  useEffect(() => {
+    fetchWarehouseInventoryList(id);
   }, [id]);
 
   return (
@@ -26,6 +31,8 @@ const WarehouseInventoryList = () => {
 
       {WarehouseInventoryList.map((inventory) => (
         <InventoryTableRow
+          path={`/warehouse/${id}`}
+          warehouseId={id}
           key={inventory.id}
           id={inventory.id}
           inventoryItem={inventory.item_name}
@@ -33,6 +40,7 @@ const WarehouseInventoryList = () => {
           status={inventory.status}
           quantity={inventory.quantity}
           warehouse={inventory.warehouse_name}
+          fetchWarehouseInventoryList={fetchWarehouseInventoryList}
         />
       ))}
     </div>
