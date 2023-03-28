@@ -36,7 +36,9 @@ const WarehouseTableRow = (props) => {
       </div>
       <div className="warehouse__block warehouse__block--actions mobile__bottom">
         <DeleteModalInventory
-          item_name={props.warehouse_name}
+          item_name={props.warehouseName}
+          title="warehouse"
+          subtitle="from the list of warehouses"
           fetchWarehouseList={props.fetchWarehouseList}
           id={props.id}
           to={`/warehouse/${props.id}/delete`}

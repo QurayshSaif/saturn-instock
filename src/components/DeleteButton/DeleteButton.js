@@ -17,7 +17,7 @@ const DeleteButton = ({
 
       .then(() => {
         navigate("/warehouse");
-        setShowModel(false);
+        fetchWarehouseList();
       })
       .catch((err) => {
         console.log(err);
