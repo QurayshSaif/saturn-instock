@@ -94,7 +94,8 @@ const InputBox = ({
 
   if (isDropMenu) {
     return (
-      <div>
+      <div className="input">
+        <label htmlFor={htmlFor}>{inputName}</label>
         <select
           className={`input__box ${className}`}
           value={value}

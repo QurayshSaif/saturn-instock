@@ -10,16 +10,16 @@ import { useNavigate } from "react-router-dom";
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function EditInventory() {
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${REACT_APP_SERVER_URL}/api/warehouses`)
-    .then((results) => {
-     setWarehouseData(results.data)
-    })
-    .catch((error) => console.log("Error: ",error));
-  }, [])
+    axios
+      .get(`${REACT_APP_SERVER_URL}/api/warehouses`)
+      .then((results) => {
+        setWarehouseData(results.data);
+      })
+      .catch((error) => console.log("Error: ", error));
+  }, []);
 
   const [warehouseData, setWarehouseData] = useState(null);
 
@@ -53,13 +53,15 @@ export default function EditInventory() {
 
   const notEmpty = () => {
     if (itemName.length < 1) {
-      setErrorItemName({isActive: true, message: "This field is required",
-      });
+      setErrorItemName({ isActive: true, message: "This field is required" });
     } else {
       setErrorItemName({ isActive: false, message: "" });
     }
     if (description.length < 1) {
-      setErrorDescription({ isActive: true, message: "This field is required" });
+      setErrorDescription({
+        isActive: true,
+        message: "This field is required",
+      });
     } else {
       setErrorDescription({ isActive: false, message: "" });
     }
@@ -69,7 +71,10 @@ export default function EditInventory() {
       setErrorCategory({ isActive: false, message: "" });
     }
     if (quantity < 1 && instockStatus === true && outofstockStatus === false) {
-      setErrorQuantity({ isActive: true, message: "Must be > 0 or choose Out of stock" });
+      setErrorQuantity({
+        isActive: true,
+        message: "Must be > 0 or choose Out of stock",
+      });
     } else {
       setErrorQuantity({ isActive: false, message: "" });
     }
@@ -81,11 +86,11 @@ export default function EditInventory() {
   };
 
   const isQuantityValid = () => {
-      if (quantity < 1 && instockStatus === true && outofstockStatus === false) {
-        return false
-      }
-    return true
-  }
+    if (quantity < 1 && instockStatus === true && outofstockStatus === false) {
+      return false;
+    }
+    return true;
+  };
 
   const isFormValid = () => {
     if (
@@ -97,37 +102,34 @@ export default function EditInventory() {
       return false;
     }
     if (!isQuantityValid()) {
-      return false
+      return false;
     }
-    return true
+    return true;
   };
 
   const handleOnsubmit = (event) => {
     event.preventDefault();
     notEmpty();
 
-    if(isFormValid()) {
-      axios.post(`${REACT_APP_SERVER_URL}/api/inventories`, 
-        {
+    if (isFormValid()) {
+      axios
+        .post(`${REACT_APP_SERVER_URL}/api/inventories`, {
           warehouse_id: warehouseName,
           item_name: itemName,
           description: description,
           category: category,
           status: `${instockStatus ? "In Stock" : "Out of Stock"}`,
-          quantity: quantity
+          quantity: quantity,
         })
-          .then(() => {
-            navigate("/inventory")
-          })
-          .catch((error) => console.log("Error: ",error));
+        .then(() => {
+          navigate("/inventory");
+        })
+        .catch((error) => console.log("Error: ", error));
     }
-  }
+  };
 
   return (
-    <form 
-      className="add-inv"
-      onSubmit={handleOnsubmit}  
-    >
+    <form className="add-inv" onSubmit={handleOnsubmit}>
       <div className="add-inv__header-ctr">
         <GoBackButton path="/inventory" />
         <h1 className="add-inv__header">Add New Inventory Item</h1>
@@ -142,7 +144,9 @@ export default function EditInventory() {
             inputName="Item Name"
             onChange={(e) => setItemName(e.target.value)}
             className={
-              errorItemName.isActive ? "add-inv__input--invalid" : "add-inv__input"
+              errorItemName.isActive
+                ? "add-inv__input--invalid"
+                : "add-inv__input"
             }
           />
           {errorItemName.isActive ? (
@@ -159,7 +163,9 @@ export default function EditInventory() {
             inputName="Please enter a brief item description..."
             onChange={(e) => setDescription(e.target.value)}
             className={
-              errorDescription.isActive ? "add-inv__input--invalid" : "add-inv__input"
+              errorDescription.isActive
+                ? "add-inv__input--invalid"
+                : "add-inv__input"
             }
           />
           {errorDescription.isActive ? (
@@ -183,7 +189,9 @@ export default function EditInventory() {
             onChange={(e) => setCategory(e.target.value)}
             value={category}
             className={
-              errorCategory.isActive ? "add-inv__input--invalid" : "add-inv__input"
+              errorCategory.isActive
+                ? "add-inv__input--invalid"
+                : "add-inv__input"
             }
           />
           {errorCategory.isActive ? (
@@ -209,18 +217,20 @@ export default function EditInventory() {
             setQuantity={setQuantity}
             setErrorQuantity={setErrorQuantity}
           />
-          {instockStatus ? 
-            (<InputBox
-            isTextarea={false}
-            type="number"
-            inputName="Quantity"
-            className={
-              errorQuantity.isActive ? "add-inv__input--invalid add-inv__quantity" : "add-inv__input add-inv__quantity"
-            }
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
+          {instockStatus ? (
+            <InputBox
+              isTextarea={false}
+              type="number"
+              inputName="Quantity"
+              className={
+                errorQuantity.isActive
+                  ? "add-inv__input--invalid add-inv__quantity"
+                  : "add-inv__input add-inv__quantity"
+              }
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
             />
-            ) : null}
+          ) : null}
           {errorQuantity.isActive ? (
             <ErrorMessage
               isNotError={false}
@@ -229,36 +239,38 @@ export default function EditInventory() {
             />
           ) : null}
           {warehouseData ? (
-            <div 
-              className="input"
-            >
+            <div className="input">
               <label htmlFor="warehouseName">Warehouse</label>
-              <select 
+              <select
                 className={
-                  errorWarehouseName.isActive ? "input__box input__dropdown add-inv__input--invalid" : "input__box input__dropdown add-inv__input"
+                  errorWarehouseName.isActive
+                    ? "input__box input__dropdown add-inv__input--invalid"
+                    : "input__box input__dropdown add-inv__input"
                 }
                 name="warehouseName"
                 onChange={(e) => setWarehouseName(e.target.value)}
                 value={warehouseName}
               >
-                <option value="" disabled>Please select</option>
-                {warehouseData.map(data => {
-                    return (
-                      <option key={data.id} value={data.id}>{data.warehouse_name}</option>
-                    )
-                  })
-                }
+                <option value="" disabled>
+                  Please select
+                </option>
+                {warehouseData.map((data) => {
+                  return (
+                    <option key={data.id} value={data.id}>
+                      {data.warehouse_name}
+                    </option>
+                  );
+                })}
               </select>
             </div>
-            ) : null}
-            {errorWarehouseName.isActive ? (
+          ) : null}
+          {errorWarehouseName.isActive ? (
             <ErrorMessage
               isNotError={false}
               text={errorWarehouseName.message}
               className={"error--active"}
             />
           ) : null}
-
         </div>
       </div>
       <div className="add-inv__buttons-ctr">

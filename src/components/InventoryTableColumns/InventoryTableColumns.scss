@@ -3,29 +3,27 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 
-.inventory__columns {
+.inventory {
 
-	display: none;
+	&__columns {
+		display: none;
 
-	@include tablet-viewport {
-		background-color: $light-grey;
-		display: flex;
-		align-items: baseline;
-		padding: 0.5rem 0;
-		justify-content: space-evenly;
-
-		>h4 {
-			margin: 0;
+		@include tablet-viewport {
+			background-color: $light-grey;
 			display: flex;
-			// padding: 0.5rem 0;
-			align-items: center;
-			@include h4-type-table-header;
-			color: $slate;
-			font-weight: 600;
+			align-items: baseline;
+			padding: 0.5rem 2rem;
+			justify-content: space-between; 
 
-			>img {
-				// padding: 0 1rem;
-				width: 1rem;
+			>h4 {
+				@include h4-type-table-header;
+				margin: 0;
+				display: flex;
+				align-items: center;
+
+				>img {
+					width: 1rem;
+				}
 			}
 		}
 	}

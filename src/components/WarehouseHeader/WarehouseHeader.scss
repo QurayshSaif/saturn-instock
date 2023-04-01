@@ -12,6 +12,7 @@
 
   &__title-container {
     display: flex;
+    align-items: center;
     margin-left: 1.5rem;
   }
 
@@ -46,4 +47,7 @@
       display: none;
     }
   }
+}
+a {
+  text-decoration: none;
 }

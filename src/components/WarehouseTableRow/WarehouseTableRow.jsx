@@ -4,8 +4,26 @@ import deleteSvg from "../../assets/icons/delete_outline-24px.svg";
 import editSvg from "../../assets/icons/edit-24px.svg";
 import {Link} from "react-router-dom";
 import DeleteModalInventory from "../DeleteModalInventory/DeleteModalInventory";
+import axios from "axios";
 
 const WarehouseTableRow = (props) => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    axios
+      .delete(`http://localhost:8080/api/warehouses/${props.id}`)
+
+      .then(() => {
+        navigate("/warehouse");
+        props.fetchWarehouseList();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
   return (
     <div className="warehouse__row">
 

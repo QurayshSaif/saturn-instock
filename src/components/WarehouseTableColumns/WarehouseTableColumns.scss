@@ -9,6 +9,7 @@
 		display: none;
 
 		@include tablet-viewport {
+			gap: 6rem;
 			background-color: $light-grey;
 			display: flex;
 			align-items: baseline;

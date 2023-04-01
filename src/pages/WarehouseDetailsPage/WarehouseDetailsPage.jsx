@@ -4,7 +4,7 @@ import WarehouseContactInfo from "../../components/WarehouseContactInfo/Warehous
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import InventoryList from "../../components/InventoryList/InventoryList";
+import WarehouseInventoryList from "../../components/WarehouseInventoryList/WarehouseInventoryList";
 
 export default function WarehouseDetailsPage() {
   const { id } = useParams();
@@ -21,7 +21,10 @@ export default function WarehouseDetailsPage() {
   }, [id]);
   return (
     <div className="warehouse">
-      <WarehouseHeader warehouseName={warehouse.warehouse_name} />
+      <WarehouseHeader
+        id={warehouse.id}
+        warehouseName={warehouse.warehouse_name}
+      />
       <WarehouseContactInfo
         address={warehouse.address}
         city={warehouse.city}
@@ -31,6 +34,7 @@ export default function WarehouseDetailsPage() {
         email={warehouse.contact_email}
         position={warehouse.contact_position}
       />
+      <WarehouseInventoryList id={id} />
     </div>
   );
 }

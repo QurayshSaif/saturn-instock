@@ -5,91 +5,91 @@
 
 
 .warehouse {
-	&__row {
-		display: flex;
-		flex-wrap: wrap;
-		width: 100%;
-		padding: $pad-med-16;
-		gap: 1rem;
-		@include divider-bottom;
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: $pad-med-16;
+    gap: 1rem;
+    @include divider-bottom;
 
-		@include tablet-viewport {
-			flex-wrap: nowrap;
-			padding: 1rem 2rem;
-			gap: 2rem;
-			align-items: center;
-			justify-content: space-between;
-		}
+    @include tablet-viewport {
+      flex-wrap: nowrap;
+      padding: 1rem 2rem;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-	}
+  }
 
-	&__block {
-		display: inline-flex;
-		flex-direction: column;
-		flex-wrap: wrap;
-		width: 40%;
+  &__block {
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 40%;
 
-		@include tablet-viewport {
-			flex-wrap: nowrap;
-			align-items: flex-start;
-			width: auto;
-		}
+    @include tablet-viewport {
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      width: auto;
+    }
 
-		>h4 {
-			padding-bottom: $pad-small-4;
-			@include h4-type-table-header;
+    >h4 {
+      padding-bottom: $pad-small-4;
+      @include h4-type-table-header;
 
-			@include tablet-viewport {
-				display: none;
-			}
-		}
+      @include tablet-viewport {
+        display: none;
+      }
+    }
 
-		>p {
-			@include p2-type-body-medium;
-		}
+    >p {
+      @include p2-type-body-medium;
+    }
 
-		&--name {
-			>a {
-				display: inline-flex;
-				gap: .25rem;
-				@include text-link-style;
+    &--name {
+      >a {
+        display: inline-flex;
+        gap: .25rem;
+        @include text-link-style;
 
-				>img {
-					width: 1.25rem;
-				}
-			}
+        >img {
+          width: 1.25rem;
+        }
+      }
 
-			@include tablet-viewport {
-				width: auto;
-			}
-		}
+      @include tablet-viewport {
+        width: auto;
+      }
+    }
 
-		&--address {
-			>p {
-				max-width: 6rem;
+    &--address {
+      >p {
+        max-width: 6rem;
 
-				@include tablet-viewport {
-					max-width: none;
-					width: 8rem;
-				}
-			}
-		}
+        @include tablet-viewport {
+          max-width: none;
+          width: 8rem;
+        }
+      }
+    }
 
-		&--actions {
-			flex-direction: row;
-			justify-content: space-between;
-			gap: 1rem;
-			width: 100%;
+    &--actions {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
 
-			@include tablet-viewport {
-				justify-content: flex-end;
-				width: auto;
-				align-self: flex-end;
-			}
-		}
+      @include tablet-viewport {
+        justify-content: flex-end;
+        width: auto;
+        align-self: flex-end;
+      }
+    }
 
 
-	}
+  }
 
 
 
